@@ -1,0 +1,2 @@
+# Mirage
+Mirage is a psychological horror that sets itself apart from other staples in the genre by ditching the traditional supernaturalism and instead haunts the player with a realistic scenario that a person may actually be unlucky enough to find themselves in, should they make the wrong decisions. Players will not only be haunted by the relatability of the ill-fated scenario; they will be made to question the validity of reality itself.
