@@ -1,4 +1,8 @@
 ###
+# Link to .gitignore source: https://gist.github.com/FullStackForger/20bbf62861394b1a3de0
+###
+
+###
 # Unity folders and files
 ###
 [Aa]ssets/AssetStoreTools*
