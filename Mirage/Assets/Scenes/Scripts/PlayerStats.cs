@@ -38,7 +38,7 @@ public class PlayerStats : MonoBehaviour
     }
     private void Update()
     {
-        CalculateSanity();
+        CalculateSanity(sanityDepletionRate);
 
         Sprint();
 
@@ -46,9 +46,9 @@ public class PlayerStats : MonoBehaviour
         Debug.Log(stamina);
     }
 
-    private void CalculateSanity()
+    private void CalculateSanity(float depletionSpeed)
     {
-        sanity -= Time.deltaTime * sanityDepletionRate;
+        sanity -= Time.deltaTime * depletionSpeed;
 
         CalculateMaxStamina();
     }
@@ -73,6 +73,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (isRunning)
         {
+            CalculateSanity(sanityDepletionRate * 2);
             movePlayer.speed = runSpeed;
 
             stamina -= Time.deltaTime;
