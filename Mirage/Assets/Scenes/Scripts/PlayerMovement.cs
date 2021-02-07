@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     [SerializeField]public float defaultSpeed;
 
+    public Camera mainCam;
+
     private void Awake()
     {
         defaultSpeed = speed;
@@ -31,6 +33,17 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.LeftShift))
         {
             myStats.isRunning = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            RaycastHit hit;
+
+            if(Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
+            {
+                if (hit.collider.tag == "Water")
+                    myStats.DrinkWater();
+            }
         }
 
         controller.Move(move * speed * Time.deltaTime);

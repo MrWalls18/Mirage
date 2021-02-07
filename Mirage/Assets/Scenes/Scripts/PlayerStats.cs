@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private PlayerMovement movePlayer;
 
     [HideInInspector] public float sanity;
+    private float maxSanity;
     [HideInInspector] public float stamina;
     [HideInInspector] public float maxStamina;
     private float minStamina;
@@ -26,6 +27,7 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         sanity = 20f;
+        maxSanity = sanity;
        maxStamina = 10f;
         minStamina = 5f;
         hallucinationTimer = 120f;
@@ -58,6 +60,11 @@ public class PlayerStats : MonoBehaviour
         if (stamina > maxStamina)
         {
             stamina = maxStamina;
+        }
+
+        if (maxStamina < minStamina )
+        {
+            maxStamina = minStamina;
         }
     }
 
@@ -93,6 +100,17 @@ public class PlayerStats : MonoBehaviour
     public void ResetSprint(float originalSpeed)
     {
         movePlayer.speed = originalSpeed;
+    }
+
+    public void DrinkWater()
+    {
+        sanity += 5f;
+
+        if (sanity > maxSanity)
+        {
+            sanity = maxSanity;
+        }
+
     }
 }
 
