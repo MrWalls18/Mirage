@@ -97,11 +97,6 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    
-    public void ResetSprint(float originalSpeed)
-    {
-        movePlayer.speed = originalSpeed;
-    }
 
     public void DrinkWater()
     {
