@@ -320,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 438407209}
   - component: {fileID: 438407210}
+  - component: {fileID: 438407211}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -365,6 +366,29 @@ MonoBehaviour:
   maxGroundAngle: 120
   debug: 0
   isGrounded: 0
+  defaultSpeed: 0
+  myStats: {fileID: 438407211}
+  mainCam: {fileID: 0}
+--- !u!114 &438407211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438407208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592e9815cbbad184291f9cc098e858af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprintSpeedMultiplier: 1.5
+  sanityDepletionRate: 0.01
+  sprintTimer: 10
+  movePlayer: {fileID: 438407210}
+  sanity: 0
+  stamina: 0
+  maxStamina: 0
+  isRunning: 0
 --- !u!1 &588924190
 GameObject:
   m_ObjectHideFlags: 0

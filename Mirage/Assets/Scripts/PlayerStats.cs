@@ -28,12 +28,12 @@ public class PlayerStats : MonoBehaviour
     {
         sanity = 20f;
         maxSanity = sanity;
-       maxStamina = 10f;
+        maxStamina = 10f;
         minStamina = 5f;
         hallucinationTimer = 120f;
 
         stamina = maxStamina;
-        runSpeed = movePlayer.speed * sprintSpeedMultiplier;
+        runSpeed = movePlayer.moveSpeed * sprintSpeedMultiplier;
 
     }
     private void Update()
@@ -74,26 +74,26 @@ public class PlayerStats : MonoBehaviour
         if (isRunning)
         {
             CalculateSanity(sanityDepletionRate * 2);
-            movePlayer.speed = runSpeed;
+            movePlayer.moveSpeed = runSpeed;
 
             stamina -= Time.deltaTime;
             if (stamina < 0)
             {
                 stamina = 0;
                 isRunning = false;
-                movePlayer.speed = movePlayer.defaultSpeed;
+                movePlayer.moveSpeed = movePlayer.defaultSpeed;
             }
         }
 
         else if (stamina < maxStamina)
         {
-            movePlayer.speed = movePlayer.defaultSpeed;
+            movePlayer.moveSpeed = movePlayer.defaultSpeed;
             stamina += Time.deltaTime / 2f;
         }
 
         else
         {
-            movePlayer.speed = movePlayer.defaultSpeed;
+            movePlayer.moveSpeed = movePlayer.defaultSpeed;
         }
     }
 

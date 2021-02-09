@@ -23,15 +23,20 @@ public class PlayerMove : MonoBehaviour
     float groundAngle;
 
     Quaternion playerRotation;
-    Transform camera;
+    new Transform camera;
 
     Vector3 forward;
     RaycastHit hitInfo;
     public bool isGrounded;
 
+    [HideInInspector] public float defaultSpeed;
+    [SerializeField] private PlayerStats myStats;
+    [SerializeField] private Camera mainCam;
+
     void Awake()
     {
         isGrounded = true;
+        defaultSpeed = moveSpeed;
     }
 
     void Start()
@@ -105,6 +110,25 @@ public class PlayerMove : MonoBehaviour
         }
 
         transform.position += forward * moveSpeed * Time.deltaTime;
+
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            myStats.isRunning = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            myStats.isRunning = false;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
+            {
+                if (hit.collider.tag == "Water")
+                    myStats.DrinkWater();
+            }
+        }
     }
 
     void CalculateForward()
