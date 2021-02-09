@@ -9,7 +9,7 @@ public class PlayerStats : MonoBehaviour
     public float sanityDepletionRate;
 
     [SerializeField] private float sprintTimer;
-    [SerializeField] private PlayerMovement movePlayer;
+    [SerializeField] private PlayerMove movePlayer;
 
     [HideInInspector] public float sanity;
     private float maxSanity;
