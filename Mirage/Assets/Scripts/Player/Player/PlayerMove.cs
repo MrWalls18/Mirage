@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : PlayerStats
 {
     
-    public float moveSpeed = 5f;
+    public float moveSpeed;
     
     public float turnSpeed = 10f;
 
