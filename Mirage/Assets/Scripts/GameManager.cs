@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        /*
+        
         maxStamina.text = myStats.maxStamina.ToString();
         stamina.text = myStats.stamina.ToString();
         sanity.text = myStats.sanity.ToString();
-        */
+        
 
     }
 }
