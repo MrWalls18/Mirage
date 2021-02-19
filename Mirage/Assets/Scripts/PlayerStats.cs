@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -16,24 +17,31 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector] public float stamina;
     [HideInInspector] public float maxStamina;
     private float minStamina;
-    private float hallucinationTimer;
+    [SerializeField] private float hallucinationTimer;
+    private float hallucinationCountdown;
 
     private float runSpeed;
 
     private float timer;
 
     [HideInInspector] public bool isRunning = false;
+    public bool isHallucinating;
 
     private void Awake()
     {
+        isHallucinating = false;
         sanity = 20f;
         maxSanity = sanity;
         maxStamina = 10f;
         minStamina = 5f;
-        hallucinationTimer = 120f;
+       // hallucinationTimer = 120f;
 
         stamina = maxStamina;
         runSpeed = movePlayer.moveSpeed * sprintSpeedMultiplier;
+
+        hallucinationCountdown = hallucinationTimer;
+
+        
 
     }
     private void Update()
@@ -43,9 +51,19 @@ public class PlayerStats : MonoBehaviour
         Sprint();
 
 
-        Debug.Log(stamina);
+
+        hallucinationCountdown -= Time.deltaTime;
+
+        if (hallucinationCountdown <= 0)
+        {
+            Hallucination();
+            hallucinationCountdown = hallucinationTimer;
+        }
+
+        //Debug.Log(stamina);
     }
 
+    //Deteriorates sanity and a certain speed
     private void CalculateSanity(float depletionSpeed)
     {
         sanity -= Time.deltaTime * depletionSpeed;
@@ -53,6 +71,7 @@ public class PlayerStats : MonoBehaviour
         CalculateMaxStamina();
     }
 
+    //Takes sanity into account to calculate for max stamina
     private void CalculateMaxStamina()
     {
         maxStamina = sanity / 2;
@@ -68,7 +87,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-
+   
     public void Sprint()
     {
         if (isRunning)
@@ -98,6 +117,7 @@ public class PlayerStats : MonoBehaviour
     }
 
 
+    //Adds to the players sanity
     public void DrinkWater()
     {
         sanity += 5f;
@@ -107,6 +127,45 @@ public class PlayerStats : MonoBehaviour
             sanity = maxSanity;
         }
 
+    }
+
+
+    private void Hallucination()
+    {
+        float sanityPercentage;
+
+        sanityPercentage = (sanity / maxSanity) * 100;
+
+        if (sanityPercentage < 25f)
+        {
+            if (Random.value > 0.2f)
+                isHallucinating = true;
+            else
+                isHallucinating = false;
+        }
+        else if (sanityPercentage < 50f)
+        {
+            if (Random.value > 0.3)
+                isHallucinating = true;
+            else
+                isHallucinating = false;
+        }
+        else if (sanityPercentage < 75f)
+        {
+            if (Random.value > 0.4)
+                isHallucinating = true;
+            else
+                isHallucinating = false;
+        }
+        else
+        {
+            if (Random.value > 0.5)
+                isHallucinating = true;
+            else
+                isHallucinating = false;
+        }
+
+       // Debug.Log(sanityPercentage);
     }
 }
 
