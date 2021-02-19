@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 6734172480617740842}
   - component: {fileID: 1921512100928556605}
   - component: {fileID: 5065092713232555829}
-  - component: {fileID: 7331273380390701385}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: HallucinatedEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5533903d8f49fc54ea7eddf5cebda3a6, type: 2}
+  - {fileID: 2100000, guid: 8cb1d9ceebde3434ba2971b05c7b0eee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,29 +94,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7331273380390701385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4864691167016334134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294f0841499ea12479b335fe8a0b23b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 512
-  walkTo: {x: 0, y: 0, z: 0}
-  walkToRange: 7
-  sightRange: 10
-  attackRange: 3
-  playerInSight: 0
-  playerInAttackRange: 0
