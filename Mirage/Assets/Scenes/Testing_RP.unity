@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 236917828}
   - component: {fileID: 236917827}
   - component: {fileID: 236917825}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,9 +560,9 @@ GameObject:
   - component: {fileID: 438407211}
   - component: {fileID: 438407213}
   - component: {fileID: 438407212}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1583,7 +1583,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2230,7 +2230,7 @@ GameObject:
   - component: {fileID: 1516908211}
   - component: {fileID: 1516908210}
   - component: {fileID: 1516908209}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FacingDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
