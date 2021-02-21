@@ -34,7 +34,6 @@ public class PlayerStats : MonoBehaviour
         maxSanity = sanity;
         maxStamina = 10f;
         minStamina = 5f;
-       // hallucinationTimer = 120f;
 
         stamina = maxStamina;
         runSpeed = movePlayer.moveSpeed * sprintSpeedMultiplier;
@@ -60,7 +59,6 @@ public class PlayerStats : MonoBehaviour
             hallucinationCountdown = hallucinationTimer;
         }
 
-        //Debug.Log(stamina);
     }
 
     //Deteriorates sanity and a certain speed
@@ -165,7 +163,6 @@ public class PlayerStats : MonoBehaviour
                 isHallucinating = false;
         }
 
-       // Debug.Log(sanityPercentage);
     }
 }
 
