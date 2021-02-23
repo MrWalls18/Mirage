@@ -595,16 +595,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40356f83744d69743b03d6a7dee6a5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprintSpeedMultiplier: 0
-  sanityDepletionRate: 0
-  sprintTimer: 0
-  movePlayer: {fileID: 0}
-  sanity: 0
-  stamina: 0
-  maxStamina: 0
-  hallucinationTimer: 0
-  isRunning: 0
-  isHallucinating: 0
   moveSpeed: 5
   turnSpeed: 10
   height: 1
