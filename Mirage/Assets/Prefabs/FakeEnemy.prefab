@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FakeEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1634261151990827206, guid: 5b17b950a5b2a434b85be55f4c349b41,
+        type: 3}
+      propertyPath: m_TagString
+      value: FakeEnemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1634261151990827258, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

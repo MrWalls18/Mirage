@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector] public bool isRunning = false;
     public bool isHallucinating;
 
+    //Predetermines variables
     private void Awake()
     {
         isHallucinating = false;
@@ -40,8 +41,6 @@ public class PlayerStats : MonoBehaviour
 
         hallucinationCountdown = hallucinationTimer;
 
-        
-
     }
     private void Update()
     {
@@ -50,9 +49,11 @@ public class PlayerStats : MonoBehaviour
         Sprint();
 
 
-
+        //Hallucination timer
         hallucinationCountdown -= Time.deltaTime;
 
+        //Checks if the player will be hallucinating
+        //after timer hits zero
         if (hallucinationCountdown <= 0)
         {
             Hallucination();
@@ -90,9 +91,11 @@ public class PlayerStats : MonoBehaviour
     {
         if (isRunning)
         {
+            //Sanity depletes faster when sprinting
             CalculateSanity(sanityDepletionRate * 2);
             movePlayer.moveSpeed = runSpeed;
 
+            //Stamina deplete as you are running
             stamina -= Time.deltaTime;
             if (stamina < 0)
             {
@@ -102,12 +105,15 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
+        //Regenerates stamina if player isn't running
         else if (stamina < maxStamina)
         {
             movePlayer.moveSpeed = movePlayer.defaultSpeed;
             stamina += Time.deltaTime / 2f;
         }
 
+        //If player isn't running and they are at maxStamina
+        //They revert back to their walking speed
         else
         {
             movePlayer.moveSpeed = movePlayer.defaultSpeed;
@@ -127,13 +133,15 @@ public class PlayerStats : MonoBehaviour
 
     }
 
-
+    //Checks to see if player will be hallucinating
     private void Hallucination()
     {
         float sanityPercentage;
 
         sanityPercentage = (sanity / maxSanity) * 100;
 
+        //The lower the sanity percentage,
+        //the higher chance of the player experiencing a hallucination
         if (sanityPercentage < 25f)
         {
             if (Random.value > 0.2f)
