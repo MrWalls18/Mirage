@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float eSpawnerTimer;
 
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject hallucinatedEnemyPrefab;
     private GameObject enemyClone;
     private int randomSpawnPos;
     private SpriteRenderer s_renderer;
@@ -42,7 +43,15 @@ public class EnemySpawner : MonoBehaviour
                     Vector3.Distance(player.transform.position, eSpawner[randomSpawnPos].transform.position) < maxSpawnDistance &&
                         !s_renderer.isVisible)
             {
-                enemyClone = Instantiate(enemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
+                if (player.GetComponent<PlayerStats>().isHallucinating)
+                {
+                    enemyClone = Instantiate(hallucinatedEnemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
+                    
+                }
+                else
+                {
+                    enemyClone = Instantiate(enemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
+                }
                 break;
             }
         }
