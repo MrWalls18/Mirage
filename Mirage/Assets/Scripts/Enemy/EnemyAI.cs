@@ -86,7 +86,17 @@ public class EnemyAI : MonoBehaviour
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
-        Debug.Log("I've attacked");
+
+        //Reggie's Code
+        //Added 2/23/21 @ 11:42am
+        if (this.gameObject.tag == "FakeEnemy")
+        {
+            Debug.Log("Fake Enemy Attack");
+            Debug.Log("Damage sanity");
+        }
+
+        else if (this.gameObject.tag == "Enemy")
+            Debug.Log("I've attacked");
     }
 
     private void OnDrawGizmosSelected()
