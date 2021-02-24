@@ -47,6 +47,7 @@ public class PlayerMove : MonoBehaviour
     //inputs handled here
     void Update()
     {
+        Interact();
         acquireInput();
         CalculateDirection();
         CalculateForward();
@@ -57,11 +58,31 @@ public class PlayerMove : MonoBehaviour
 
         //faces player in the direction of last input
         if(Mathf.Abs(Input.GetAxis("Horizontal")) < 1 && Mathf.Abs(Input.GetAxis("Vertical")) < 1) return;
-
+        
         CalculateDirection();
         Rotate();
         Move();
+        
+        
        
+    }
+
+
+    void Interact()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            RaycastHit hit;
+            Debug.Log("In E");
+
+            if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
+            {
+                Debug.Log("Hit something");
+                Debug.Log(hit.collider.gameObject.name);
+                if (hit.collider.tag == "Water")
+                    myStats.DrinkWater(hit.collider.GetComponent<WaterSource>().waterPoints, hit.collider.name);
+            }
+        }
     }
 
     //is the player on the ground
@@ -119,16 +140,7 @@ public class PlayerMove : MonoBehaviour
         {
             myStats.isRunning = false;
         }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            RaycastHit hit;
-
-            if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
-            {
-                if (hit.collider.tag == "Water")
-                    myStats.DrinkWater();
-            }
-        }
+        
     }
 
     void CalculateForward()
