@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -75,15 +76,17 @@ public class PlayerStats : MonoBehaviour
     {
         maxStamina = sanity / 2;
 
+        if (maxStamina < minStamina )
+        {
+            maxStamina = minStamina;
+        }
+
         if (stamina > maxStamina)
         {
             stamina = maxStamina;
         }
 
-        if (maxStamina < minStamina )
-        {
-            maxStamina = minStamina;
-        }
+        
     }
 
    
@@ -120,16 +123,21 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-
+    public Text waterText;
+    public Text waterSourceText;
     //Adds to the players sanity
-    public void DrinkWater()
+    public void DrinkWater(float waterPoints, string waterName)
     {
-        sanity += 5f;
+        sanity += waterPoints;
 
+        waterText.text = waterPoints.ToString();
+        waterSourceText.text = waterName;
         if (sanity > maxSanity)
         {
             sanity = maxSanity;
         }
+
+        stamina += waterPoints;
 
     }
 

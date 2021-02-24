@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
         maxStamina.text = myStats.maxStamina.ToString();
         stamina.text = myStats.stamina.ToString();
         sanity.text = myStats.sanity.ToString();
+
         
 
     }

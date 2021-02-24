@@ -42,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
             s_renderer = eSpawner[randomSpawnPos].GetComponent<SpriteRenderer>();
 
             //if the player is not too close, not too far,
-            //and if the spawn point is within the camera frame
+            //and if the spawn point is out of the camera frame
             if (Vector3.Distance(player.transform.position, eSpawner[randomSpawnPos].transform.position) > minSpawnDistance &&
                     Vector3.Distance(player.transform.position, eSpawner[randomSpawnPos].transform.position) < maxSpawnDistance &&
                         !s_renderer.isVisible)
