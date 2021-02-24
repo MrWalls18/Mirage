@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        //will spawn enemies every x amount of seconds
         InvokeRepeating("SetSpawnPoint", 5f, eSpawnerTimer);
     }
 
@@ -35,19 +36,25 @@ public class EnemySpawner : MonoBehaviour
     {
         while (!didEnemySpawn)
         {
+            //Picks a random spawnPoint from the list of enemy spawn points
             randomSpawnPos = UnityEngine.Random.Range(0, eSpawner.Count);
 
             s_renderer = eSpawner[randomSpawnPos].GetComponent<SpriteRenderer>();
 
+            //if the player is not too close, not too far,
+            //and if the spawn point is within the camera frame
             if (Vector3.Distance(player.transform.position, eSpawner[randomSpawnPos].transform.position) > minSpawnDistance &&
                     Vector3.Distance(player.transform.position, eSpawner[randomSpawnPos].transform.position) < maxSpawnDistance &&
                         !s_renderer.isVisible)
             {
+                //If the player is hallucinating,
+                //spawn a "fake" enemy
                 if (player.GetComponent<PlayerStats>().isHallucinating)
                 {
                     enemyClone = Instantiate(hallucinatedEnemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
                     
                 }
+                //If not, spawn a real enemy
                 else
                 {
                     enemyClone = Instantiate(enemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);

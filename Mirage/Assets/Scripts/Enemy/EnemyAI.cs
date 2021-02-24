@@ -22,9 +22,12 @@ public class EnemyAI : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
 
+    private PlayerStats myStats;
+
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
+        myStats = GameObject.Find("Player").GetComponent<PlayerStats>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -93,6 +96,8 @@ public class EnemyAI : MonoBehaviour
         {
             Debug.Log("Fake Enemy Attack");
             Debug.Log("Damage sanity");
+            myStats.sanity -= 5f;
+            Destroy(this.gameObject);
         }
 
         else if (this.gameObject.tag == "Enemy")
