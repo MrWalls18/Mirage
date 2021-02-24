@@ -144,6 +144,7 @@ public class PlayerStats : MonoBehaviour
         //the higher chance of the player experiencing a hallucination
         if (sanityPercentage < 25f)
         {
+            //80% chance of hallucinating
             if (Random.value > 0.2f)
                 isHallucinating = true;
             else
@@ -151,6 +152,7 @@ public class PlayerStats : MonoBehaviour
         }
         else if (sanityPercentage < 50f)
         {
+            //70% chance of hallucinating
             if (Random.value > 0.3)
                 isHallucinating = true;
             else
@@ -158,6 +160,7 @@ public class PlayerStats : MonoBehaviour
         }
         else if (sanityPercentage < 75f)
         {
+            //60% chance at hallucinating
             if (Random.value > 0.4)
                 isHallucinating = true;
             else
@@ -165,6 +168,7 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
+            //50% chance at hallucinating
             if (Random.value > 0.5)
                 isHallucinating = true;
             else
