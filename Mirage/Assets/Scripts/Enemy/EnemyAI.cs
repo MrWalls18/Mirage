@@ -11,10 +11,19 @@ public class EnemyAI : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    //building speed for stalking player
+    public float minSpeed = 3;
+    public float maxSpeed = 6;
+    public float currentTime;
+    //time between speed ups
+    public float timeToIncrease = 5f;
+    //how much to speed up
+    public float speedIncrement = 0.2f;
+
     //roam
     public Vector3 walkTo;
     bool walkToSet;
-    public float walkToRange;
+    public float walkToRange = 4f;
 
     //attack
 
@@ -29,6 +38,7 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.Find("Player").transform;
         myStats = GameObject.Find("Player").GetComponent<PlayerStats>();
         agent = GetComponent<NavMeshAgent>();
+        currentTime = Time.time + timeToIncrease;
     }
 
 
@@ -40,14 +50,19 @@ public class EnemyAI : MonoBehaviour
 
         //state machine
         if (!playerInSight && !playerInAttackRange) Patrol();
-        if (playerInSight && !playerInAttackRange) StalkPlayer();
+        if (playerInSight && !playerInAttackRange)
+        {
+            StalkPlayer();
+            minSpeed += speedIncrement;
+            currentTime = Time.time + timeToIncrease;
+        }
         if (playerInAttackRange && playerInSight) Attack();
 
     }
 
     private void Patrol()
     {
-        if (walkToSet) SearchWalkPoint();
+        if (!walkToSet) SearchWalkPoint();
 
         if (walkToSet)
         {
@@ -79,15 +94,12 @@ public class EnemyAI : MonoBehaviour
     private void StalkPlayer()
     {
         agent.SetDestination(player.position);
-        Debug.Log("I see you, I'm stalking you");
     }
 
     private void Attack()
     {
         //melee attack goes here
-
         agent.SetDestination(transform.position);
-
         transform.LookAt(player);
 
         //Reggie's Code
@@ -101,7 +113,17 @@ public class EnemyAI : MonoBehaviour
         }
 
         else if (this.gameObject.tag == "Enemy")
-            Debug.Log("I've attacked");
+        {
+
+
+            Debug.Log("I've attacked, player is dead");
+        }
+            
+    }
+
+    private void Retreat()
+    {
+        //agent.SetDestination();
     }
 
     private void OnDrawGizmosSelected()

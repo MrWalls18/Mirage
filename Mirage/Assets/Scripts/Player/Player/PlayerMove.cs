@@ -12,7 +12,7 @@ public class PlayerMove : MonoBehaviour
     public float height = .5f;
     public float heightPadding = 0.05f;
     public LayerMask ground;
-    public float maxGroundAngle = 120;
+    public float maxGroundAngle = 140;
 
     //so we can see direction vector
     public bool debug;

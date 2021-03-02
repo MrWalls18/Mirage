@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: ed53bd3f756ab5745a9fc998878cf119, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 163c6f268be1ba14e9e1cdde27322e4c, type: 2}
 --- !u!1 &137186290
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +281,7 @@ MonoBehaviour:
   rb: {fileID: 210650599}
   player: {fileID: 438407209}
   rockContainer: {fileID: 137186291}
+  guide: {fileID: 0}
   coll: {fileID: 210650600}
   pickUpRange: 3
   throwForce: 7
@@ -369,7 +370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210650597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.478082, y: 0.11437082, z: -3.8537612}
+  m_LocalPosition: {x: -27.56, y: 0.11437082, z: -3.8537612}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
@@ -463,7 +464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236917824}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -13.9, y: 0, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1516908208}
@@ -485,9 +486,10 @@ GameObject:
   - component: {fileID: 314010849}
   - component: {fileID: 314010848}
   - component: {fileID: 314010847}
+  - component: {fileID: 314010853}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -534,9 +536,14 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
+  minSpeed: 0
+  maxSpeed: 0
+  currentTime: 0
+  timeToIncrease: 5
+  speedIncrement: 0.2
   walkTo: {x: 0, y: 0, z: 0}
   walkToRange: 7
-  sightRange: 10
+  sightRange: 15
   attackRange: 3
   playerInSight: 0
   playerInAttackRange: 0
@@ -615,6 +622,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &314010853
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314010846}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &325915987
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,16 +780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40356f83744d69743b03d6a7dee6a5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprintSpeedMultiplier: 0
-  sanityDepletionRate: 0
-  sprintTimer: 0
-  movePlayer: {fileID: 0}
-  sanity: 0
-  stamina: 0
-  maxStamina: 0
-  hallucinationTimer: 0
-  isRunning: 0
-  isHallucinating: 0
   moveSpeed: 5
   turnSpeed: 10
   height: 1
@@ -771,12 +787,12 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 4294967295
-  maxGroundAngle: 120
+  maxGroundAngle: 140
   debug: 0
   isGrounded: 0
   defaultSpeed: 0
   myStats: {fileID: 438407211}
-  mainCam: {fileID: 0}
+  mainCam: {fileID: 963194227}
 --- !u!114 &438407211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,6 +815,8 @@ MonoBehaviour:
   hallucinationTimer: 0
   isRunning: 0
   isHallucinating: 0
+  waterText: {fileID: 0}
+  waterSourceText: {fileID: 0}
 --- !u!1 &588924190
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,7 +834,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &588924191
 BoxCollider:
@@ -887,7 +905,7 @@ Transform:
   m_GameObject: {fileID: 588924190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 39.067783, y: 1.0566, z: 37.63769}
+  m_LocalScale: {x: 74.3499, y: 1.0566, z: 62.407055}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
