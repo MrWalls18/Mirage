@@ -11,7 +11,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     public Rigidbody rb;
-    public Transform player, rockContainer;
+    public Transform player, rockContainer, guide;
     public BoxCollider coll;
 
     //how far can the player reach to pick up a rock
@@ -40,7 +40,7 @@ public class Pickup : MonoBehaviour
     private void Update()
     {
         Vector3 distanceToPlayer = player.position - transform.position;
-        if(!hasRock && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.E) && !handFull)
+        if(!hasRock && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.F) && !handFull)
         {
             Equip();
         }
@@ -69,6 +69,8 @@ public class Pickup : MonoBehaviour
         hasRock = false;
         handFull = false;
 
+        guide.GetChild(0).gameObject.GetComponent<Rigidbody>().velocity = transform.forward * throwForce;
+
         transform.SetParent(null);
 
         rb.isKinematic = false;
@@ -77,8 +79,8 @@ public class Pickup : MonoBehaviour
         //setting rocks speed to players speed
         //rb.velocity = player.GetComponent<Rigidbody>().velocity;
 
-        rb.AddForce(rockContainer.forward * throwForce, ForceMode.Impulse);
-        rb.AddForce(rockContainer.up * throwForce, ForceMode.Impulse);
+        //rb.AddForce(rockContainer.forward * throwForce, ForceMode.Impulse);
+        //rb.AddForce(rockContainer.up * throwForce, ForceMode.Impulse);
 
         float random = Random.Range(-1f, 1f);
     }
