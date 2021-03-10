@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class AttackState : StateMachineBehaviour
 {
+    //kill the player
     EnemyAI enemy;
 
+    public bool playerInAttackRange;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        animator.SetBool("isPlayerInMinAttackRange", true);
+        //player dies, trigger death screen
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
