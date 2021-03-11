@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
     //roam
     public Vector3 walkTo;
     bool walkToSet;
-    public float walkToRange = 4f;
+    public float walkToRange = 10f;
 
     //attack
 
