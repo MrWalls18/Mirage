@@ -22,6 +22,9 @@ public class Pickup : MonoBehaviour
     public bool hasRock;
     public static bool handFull;
 
+    public GameObject item;
+    public GameObject tempParent;
+
     private void Start()
     {
         if (!hasRock)
