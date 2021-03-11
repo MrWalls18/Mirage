@@ -12,18 +12,20 @@ public class EnemyAI : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     //building speed for stalking player
-    public float minSpeed = 3;
-    public float maxSpeed = 6;
-    public float currentTime;
+    //public float minSpeed = 3;
+    //public float maxSpeed = 6;
+    public float speed = 5f;
+    //public float currentTime;
+
     //time between speed ups
     public float timeToIncrease = 5f;
     //how much to speed up
     public float speedIncrement = 0.2f;
 
     //roam
-    public Vector3 walkTo;
-    bool walkToSet;
-    public float walkToRange = 10f;
+    //public Vector3 walkTo;
+    //bool walkToSet;
+    //public float walkToRange = 10f;
 
     //attack
 
@@ -33,12 +35,20 @@ public class EnemyAI : MonoBehaviour
 
     private PlayerStats myStats;
 
+    public Animator animator;
+
     private void Awake()
     {
+        //find the player
         player = GameObject.Find("Player").transform;
         myStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        //make sure enemy is a navmesh agent
         agent = GetComponent<NavMeshAgent>();
-        currentTime = Time.time + timeToIncrease;
+
+        //start timer, may need to move this
+        //currentTime = Time.time + timeToIncrease;
+
+        //animator.Play(IdleState);
     }
 
 
@@ -49,18 +59,21 @@ public class EnemyAI : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         //state machine
-        if (!playerInSight && !playerInAttackRange) Patrol();
-        if (playerInSight && !playerInAttackRange)
+
+        //if (!playerInSight && !playerInAttackRange) Patrol();
+
+        /*if (playerInSight && !playerInAttackRange)
         {
             StalkPlayer();
             minSpeed += speedIncrement;
             currentTime = Time.time + timeToIncrease;
-        }
-        if (playerInAttackRange && playerInSight) Attack();
+        }*/
 
+        //if (playerInAttackRange && playerInSight) Attack();
     }
 
-    private void Patrol()
+    //patrol if you don't detect the player
+    /*private void Patrol()
     {
         if (!walkToSet) SearchWalkPoint();
 
@@ -75,9 +88,10 @@ public class EnemyAI : MonoBehaviour
         {
             walkToSet = false;
         }
-    }
+    }*/
 
-    private void SearchWalkPoint()
+    //find a walk point for the coyote to go to
+    /*private void SearchWalkPoint()
     {
         //calculate random point in your range
         float randomZ = Random.Range(-walkToRange, walkToRange);
@@ -89,14 +103,16 @@ public class EnemyAI : MonoBehaviour
         {
             walkToSet = true;
         }
-    }
+    }*/
 
-    private void StalkPlayer()
+    //follow the player
+    /*private void StalkPlayer()
     {
         agent.SetDestination(player.position);
-    }
+    }*/
 
-    private void Attack()
+    //attack the player, ending their game
+    /*private void Attack()
     {
         //melee attack goes here
         agent.SetDestination(transform.position);
@@ -104,27 +120,28 @@ public class EnemyAI : MonoBehaviour
 
         //Reggie's Code
         //Added 2/23/21 @ 11:42am
-        if (this.gameObject.tag == "FakeEnemy")
+        if (gameObject.tag == "FakeEnemy")
         {
             Debug.Log("Fake Enemy Attack");
             Debug.Log("Damage sanity");
             myStats.sanity -= 5f;
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
-        else if (this.gameObject.tag == "Enemy")
+        else if (gameObject.tag == "Enemy")
         {
 
 
             Debug.Log("I've attacked, player is dead");
         }
             
-    }
+    }*/
 
-    private void Retreat()
+    //retreat when hit by rock
+    /*private void Retreat()
     {
         //agent.SetDestination();
-    }
+    }*/
 
     private void OnDrawGizmosSelected()
     {

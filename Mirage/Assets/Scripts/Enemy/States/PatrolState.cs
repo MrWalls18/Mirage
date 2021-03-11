@@ -5,33 +5,59 @@ using UnityEngine;
 public class PatrolState : StateMachineBehaviour
 {
     //move around the scene so it looks more natural
-    EnemyAI enemy;
+    public EnemyAI reference;
+    public GameObject enemy;
+    public GameObject player;
+    public Animator anim;
 
     public bool playerInSight;
     public float sightRange;
+    public float minAgroRange = 20f;
+
+    public float minSpeed = 3;
+    public float maxSpeed = 6;
+    public float currentTime;
+
+    public float distanceToPlayer;
 
     public Vector3 walkTo;
     bool walkToSet;
     public float walkToRange = 10f;
 
+    private void Awake()
+    {
+        anim = enemy.GetComponent<Animator>();
+        
+        distanceToPlayer = Vector3.Distance(enemy.transform.position, player.transform.position);
+        //playerInSight = Physics.CheckSphere(reference.transform.position, sightRange, reference.whatIsPlayer);
+    }
+
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        playerInSight = Physics.CheckSphere(enemy.transform.position, sightRange, enemy.whatIsPlayer);
+        Debug.Log("I'm in the enter function of Patrol state");
+        
+        Patrol();
+        
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (playerInSight)
+        distanceToPlayer = Vector3.Distance(enemy.transform.position, player.transform.position);
+
+        if (distanceToPlayer < minAgroRange)
         {
+            Debug.Log("I see you");
             animator.SetBool("isPlayerInMinAgroRange", true);
         }
-        else if (!playerInSight)
+        else if (distanceToPlayer > minAgroRange)
         {
             //TODO: double check this logic
-            Patrol();
+            //Patrol();
+            Debug.Log("I pretend not to see");
             animator.SetBool("isIdleTimeOver", false);
         }
     }
@@ -56,11 +82,12 @@ public class PatrolState : StateMachineBehaviour
 
     private void Patrol()
     {
+        Debug.Log("I'm on patrol");
         if (!walkToSet) SearchWalkPoint();
 
         if (walkToSet)
         {
-            enemy.agent.SetDestination(walkTo);
+            reference.agent.SetDestination(walkTo);
         }
 
         Vector3 distanceToWalkTo = enemy.transform.position - walkTo;
@@ -73,13 +100,14 @@ public class PatrolState : StateMachineBehaviour
 
     private void SearchWalkPoint()
     {
+        Debug.Log("I'm looking for a walk point");
         //calculate random point in your range
         float randomZ = Random.Range(-walkToRange, walkToRange);
         float randomX = Random.Range(-walkToRange, walkToRange);
 
         walkTo = new Vector3(enemy.transform.position.x + randomX, enemy.transform.position.y, enemy.transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkTo, -enemy.transform.up, 2f, enemy.whatIsGround))
+        if (Physics.Raycast(walkTo, -enemy.transform.up, 2f, reference.whatIsGround))
         {
             walkToSet = true;
         }

@@ -7,8 +7,8 @@ public class IdleState : StateMachineBehaviour
     //control the idle time of the enemies
     EnemyAI enemy;
 
-    public float minIdleTime = 1f;
-    public float maxIdleTime = 3f;
+    public float minIdleTime = 3f;
+    public float maxIdleTime = 5f;
     public float startTime { get; protected set; }
 
     protected float idleTime;
@@ -16,6 +16,7 @@ public class IdleState : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log("I idled here");
         startTime = Time.time;
         animator.SetBool("isIdleTimeOver", false);
         SetRandomIdleTime();
@@ -24,9 +25,13 @@ public class IdleState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log("I went into update");
         if(Time.time >= startTime + idleTime)
         {
+            Debug.Log("i entered at" + startTime);
+            Debug.Log("idleTime is set to " + idleTime);
             animator.SetBool("isIdleTimeOver", true);
+            
         }
     }
 

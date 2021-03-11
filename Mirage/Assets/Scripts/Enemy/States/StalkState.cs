@@ -35,7 +35,7 @@ public class StalkState : StateMachineBehaviour
         {
             StalkPlayer();
             enemy.agent.SetDestination(enemy.player.position);
-            enemy.minSpeed += enemy.speedIncrement;
+            enemy.speed += enemy.speedIncrement;
             enterStalkTime = Time.time + increaseSpeedInterval;
         }
         else if (playerInAttackRange)
