@@ -126,6 +126,7 @@ MonoBehaviour:
   walkToRange: 7
   sightRange: 10
   attackRange: 3
+  contactTimer: 30
   playerInSight: 0
   playerInAttackRange: 0
 --- !u!195 &1634261151990827207

@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public List<GameObject> eSpawner;
-    [SerializeField]private GameObject player;
+    [SerializeField] private GameObject player;
     [SerializeField] private float minSpawnDistance;
     [SerializeField] private float maxSpawnDistance;
     [SerializeField] private float eSpawnerTimer;
@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject hallucinatedEnemyPrefab;
     private GameObject enemyClone;
     private int randomSpawnPos;
-    private SpriteRenderer s_renderer;
+    private MeshRenderer s_renderer;
 
     private bool didEnemySpawn = false;
 
@@ -24,6 +24,7 @@ public class EnemySpawner : MonoBehaviour
         eSpawner = new List<GameObject>();
 
         eSpawner.AddRange(GameObject.FindGameObjectsWithTag("eSpawner"));
+
     }
 
     void Start()
@@ -34,12 +35,12 @@ public class EnemySpawner : MonoBehaviour
 
     void SetSpawnPoint()
     {
-        while (!didEnemySpawn)
-        {
+       // while (!didEnemySpawn)
+       // {
             //Picks a random spawnPoint from the list of enemy spawn points
             randomSpawnPos = UnityEngine.Random.Range(0, eSpawner.Count);
 
-            s_renderer = eSpawner[randomSpawnPos].GetComponent<SpriteRenderer>();
+            s_renderer = eSpawner[randomSpawnPos].GetComponentInChildren<MeshRenderer>();
 
             //if the player is not too close, not too far,
             //and if the spawn point is out of the camera frame
@@ -59,8 +60,8 @@ public class EnemySpawner : MonoBehaviour
                 {
                     enemyClone = Instantiate(enemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
                 }
-                break;
+                //break;
             }
-        }
+        //}
     }
 }
