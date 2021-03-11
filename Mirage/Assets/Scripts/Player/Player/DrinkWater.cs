@@ -26,12 +26,14 @@ public class DrinkWater : MonoBehaviour
 
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit))
             {
-               // Debug.Log("Hit something");
-              //  Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.tag == "Water")
                 {
                     StartCoroutine(DrinkTimer());
                     myStats.DrinkWater(hit.collider.GetComponent<WaterSource>().waterPoints, hit.collider.name);
+                    if (hit.collider.name == "Lake")
+                    {
+                        hit.collider.transform.position = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y - 1f, hit.collider.transform.position.z);
+                    }
                 }
             }
         }
