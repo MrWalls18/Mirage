@@ -321,16 +321,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4992792426021103590}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d375c98ab910e9340a95aecae2b7e370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   eSpawner: []
-  player: {fileID: 0}
+  player: {fileID: 4992792426135781188}
   minSpawnDistance: 50
   maxSpawnDistance: 100
-  eSpawnerTimer: 10
+  eSpawnerTimer: 3
   enemyPrefab: {fileID: 1634261151990827206, guid: 5b17b950a5b2a434b85be55f4c349b41,
     type: 3}
   hallucinatedEnemyPrefab: {fileID: 1744633218906334519, guid: baefd774c9613974e9b41f7c954a2380,
@@ -1160,7 +1160,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5382778106928973833}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4992792426135781188}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 592e9815cbbad184291f9cc098e858af, type: 3}
@@ -1169,6 +1169,12 @@ MonoBehaviour:
 --- !u!4 &4992792426135781193 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1151389238472030016, guid: 5e3b0fe7e139bb641a057b5802469bf7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5382778106928973833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4992792426135781188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1151389238472030029, guid: 5e3b0fe7e139bb641a057b5802469bf7,
     type: 3}
   m_PrefabInstance: {fileID: 5382778106928973833}
   m_PrefabAsset: {fileID: 0}
