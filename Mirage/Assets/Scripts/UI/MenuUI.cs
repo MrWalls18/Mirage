@@ -9,7 +9,7 @@ public class MenuUI : SingletonPattern<MenuUI>
     [Header("Game UI Screens")]
     public GameObject[] gamePanels;
 
-    [SerializeField] private bool canPause = true;
+    public bool canPause = true;
     [HideInInspector] public bool isPaused = false;
 
     [SerializeField] private string formURL;
@@ -48,6 +48,7 @@ public class MenuUI : SingletonPattern<MenuUI>
 
     public void PauseGame()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         OpenPanel(0);
         isPaused = true;
         Time.timeScale = 0f;
@@ -55,6 +56,7 @@ public class MenuUI : SingletonPattern<MenuUI>
 
     public void UnpauseGame()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         ClosePanel(0);
         isPaused = false;
         Time.timeScale = 1.0f;
