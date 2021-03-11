@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3352907946451964064}
   - component: {fileID: 7529621162562660944}
   - component: {fileID: 6379052860290961385}
+  - component: {fileID: 3184748290109465023}
   m_Layer: 0
   m_Name: Pebble_3
   m_TagString: Untagged
@@ -94,3 +95,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6624821483748634073, guid: 8d647497ddec00a43b16fb917a415fcd, type: 3}
+--- !u!114 &3184748290109465023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040469822214187649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5b3b6ac56a82346815f0c80006fb74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  player: {fileID: 0}
+  rockContainer: {fileID: 0}
+  guide: {fileID: 0}
+  coll: {fileID: 0}
+  pickUpRange: 0
+  throwForce: 0
+  hasRock: 0
