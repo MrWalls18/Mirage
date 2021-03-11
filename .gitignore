@@ -49,3 +49,6 @@ Mirage/.vs/Mirage/v15/Server/sqlite3/storage.ide-shm
 Mirage/.vs/Mirage/v15/Server/sqlite3/storage.ide-wal
 *.ide-wal
 *.ide-shm
+*.ide-wal
+*.ide-shm
+*.ide
