@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     private int randomSpawnPos;
     private MeshRenderer s_renderer;
 
-    private bool didEnemySpawn = false;
+   // private bool didEnemySpawn = false;
 
     void Awake()
     {
