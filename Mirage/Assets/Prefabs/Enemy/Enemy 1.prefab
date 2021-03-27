@@ -129,6 +129,7 @@ MonoBehaviour:
   contactTimer: 30
   playerInSight: 0
   playerInAttackRange: 0
+  losePanel: {fileID: 0}
 --- !u!195 &1634261151990827207
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -330,6 +331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Coyote_Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: df59ef84537cc2744bd69c08921e96ef,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df59ef84537cc2744bd69c08921e96ef, type: 3}
