@@ -34,6 +34,8 @@ public class EnemyAI : MonoBehaviour
     private PlayerStats myStats;
     private float timer;
 
+    public GameObject losePanel;
+
 
     private void Awake()
     {
@@ -132,9 +134,8 @@ public class EnemyAI : MonoBehaviour
 
         else if (this.gameObject.tag == "Enemy")
         {
-
-
-            Debug.Log("I've attacked, player is dead");
+            Cursor.lockState = CursorLockMode.None;
+            MenuUI.Instance.OpenPanel(3);
         }
             
     }
