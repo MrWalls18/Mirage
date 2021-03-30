@@ -45,7 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gamePanels:
   - {fileID: 0}
-  - {fileID: 0}
-  canPause: 0
+  canPause: 1
   isPaused: 0
-  formURL: https://docs.unity3d.com/ScriptReference/Application.OpenURL.html
+  formURL: https://docs.google.com/forms/d/1ki_kkW5znqOjsrvwsJyUH-UVKnW_vquAkkzilKe4644/edit

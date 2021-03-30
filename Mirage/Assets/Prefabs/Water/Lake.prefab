@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: -3919886377522979326, guid: 3ee0eb098cb25864fb15aba807a93746,
         type: 3}
       propertyPath: waterPoints
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2819964003823803786, guid: 3ee0eb098cb25864fb15aba807a93746,
         type: 3}
@@ -22,6 +22,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b20d121b3ec19a047ace385c58e22529, type: 2}
+    - target: {fileID: 6374679020745260044, guid: 3ee0eb098cb25864fb15aba807a93746,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374679020745260044, guid: 3ee0eb098cb25864fb15aba807a93746,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374679020745260044, guid: 3ee0eb098cb25864fb15aba807a93746,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7815844143891527568, guid: 3ee0eb098cb25864fb15aba807a93746,
         type: 3}
       propertyPath: m_RootOrder
