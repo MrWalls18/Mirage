@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PatrolState : StateMachineBehaviour
 {
+    //if enemy exists for 30 seconds and doesn't detect the player, destroy the coyote
     //move around the scene so it looks more natural
     public EnemyAI reference;
     public GameObject enemy;
@@ -106,7 +107,7 @@ public class PatrolState : StateMachineBehaviour
         float randomX = Random.Range(-walkToRange, walkToRange);
 
         walkTo = new Vector3(enemy.transform.position.x + randomX, enemy.transform.position.y, enemy.transform.position.z + randomZ);
-
+        //
         if (Physics.Raycast(walkTo, -enemy.transform.up, 2f, reference.whatIsGround))
         {
             walkToSet = true;

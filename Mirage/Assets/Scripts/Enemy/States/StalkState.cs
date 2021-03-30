@@ -23,6 +23,7 @@ public class StalkState : StateMachineBehaviour
     {
         playerInSight = Physics.CheckSphere(enemy.transform.position, sightRange, enemy.whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(enemy.transform.position, enemy.attackRange, enemy.whatIsPlayer);
+        
         //set time coyote enters stalk state
         //may need to rework, player can lose coyote if they leave sight range rn
         enterStalkTime = Time.time;
@@ -31,6 +32,11 @@ public class StalkState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //have enemy speed match player speed,
+        //create variable for min follow distance, set to like 15,
+        //if player moves within 15 units, min follow distance gets updated to 
+        //that new value
+        //if player stops moving, start a timer, and after 5 seconds start creeping closer
         if (playerInSight && !playerInAttackRange)
         {
             StalkPlayer();

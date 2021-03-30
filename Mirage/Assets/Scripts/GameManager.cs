@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public Text maxStamina, stamina, sanity, coinFlip;
 
     public PlayerStats myStats;
+
+    bool isGameOver = false;
 
     private void Update()
     {
@@ -18,5 +21,14 @@ public class GameManager : MonoBehaviour
 
         
 
+    }
+    
+    public void EndGame()
+    {
+        if (isGameOver == false)
+        {
+            isGameOver = true;
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }
