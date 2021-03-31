@@ -7,7 +7,10 @@ public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
 
-    public Transform player;
+    //public Transform player;
+    public GameObject player;
+    public float distanceToPlayer;
+
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -40,10 +43,12 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         //find the player
-        player = GameObject.Find("Player").transform;
+        //player = GameObject.Find("Player").transform;
+        player = FindObjectOfType<PlayerMovement>().gameObject;
+        distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
         myStats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        //make sure enemy is a navmesh agent
-        agent = GetComponent<NavMeshAgent>();
+        
 
         //start timer, may need to move this
         //currentTime = Time.time + timeToIncrease;
@@ -51,12 +56,21 @@ public class EnemyAI : MonoBehaviour
         //animator.Play(IdleState);
     }
 
+    public void Start()
+    {
+        //make sure enemy is a navmesh agent
+        agent = GetComponent<NavMeshAgent>();
+
+    }
 
     private void Update()
     {
         //can you see/attack the player?
-        playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        //playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        //playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
 
         //state machine
 

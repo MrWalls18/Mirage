@@ -40,7 +40,7 @@ public class StalkState : StateMachineBehaviour
         if (playerInSight && !playerInAttackRange)
         {
             StalkPlayer();
-            enemy.agent.SetDestination(enemy.player.position);
+            //enemy.agent.SetDestination(enemy.player.transform.position);
             enemy.speed += enemy.speedIncrement;
             enterStalkTime = Time.time + increaseSpeedInterval;
         }
@@ -76,7 +76,7 @@ public class StalkState : StateMachineBehaviour
     {
         //simply targets and moves to player
         //TODO: modify this behaviour so it's more believable
-        enemy.agent.SetDestination(enemy.player.position);
+        enemy.agent.SetDestination(enemy.player.transform.position);
     }
 
     void OnTriggerEnter(Collider collider)

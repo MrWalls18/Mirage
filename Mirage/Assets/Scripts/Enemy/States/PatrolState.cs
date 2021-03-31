@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PatrolState : StateMachineBehaviour
 {
@@ -10,6 +11,7 @@ public class PatrolState : StateMachineBehaviour
     public GameObject enemy;
     public GameObject player;
     public Animator anim;
+    [HideInInspector] public NavMeshAgent agent;
 
     public bool playerInSight;
     public float sightRange;
@@ -17,6 +19,9 @@ public class PatrolState : StateMachineBehaviour
 
     public float minSpeed = 3;
     public float maxSpeed = 6;
+
+    float timeElapsed;
+    bool isStalking = false;
     public float currentTime;
 
     public float distanceToPlayer;
@@ -30,7 +35,6 @@ public class PatrolState : StateMachineBehaviour
         anim = enemy.GetComponent<Animator>();
         
         distanceToPlayer = Vector3.Distance(enemy.transform.position, player.transform.position);
-        //playerInSight = Physics.CheckSphere(reference.transform.position, sightRange, reference.whatIsPlayer);
     }
 
 
@@ -38,26 +42,30 @@ public class PatrolState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log("I'm in the enter function of Patrol state");
-        
-        Patrol();
-        
-        
+
+        //Patrol();
+        //get reference to the player and how far away they are
+        //player = FindObjectOfType<PlayerMovement>().gameObject;
+        distanceToPlayer = Vector3.Distance(enemy.transform.position, player.transform.position);
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        distanceToPlayer = Vector3.Distance(enemy.transform.position, player.transform.position);
+        
+        //patrol needs to be called every frame otherwise it will only find one point
+        Patrol();
 
         if (distanceToPlayer < minAgroRange)
         {
             Debug.Log("I see you");
+            isStalking = true;
             animator.SetBool("isPlayerInMinAgroRange", true);
         }
         else if (distanceToPlayer > minAgroRange)
         {
             //TODO: double check this logic
-            //Patrol();
             Debug.Log("I pretend not to see");
             animator.SetBool("isIdleTimeOver", false);
         }
@@ -113,4 +121,6 @@ public class PatrolState : StateMachineBehaviour
             walkToSet = true;
         }
     }
+
+
 }
