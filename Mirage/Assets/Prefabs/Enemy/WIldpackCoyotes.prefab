@@ -21,7 +21,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 350
+  MaxDistance: 99.8
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -111,6 +111,7 @@ MonoBehaviour:
   coyoteAgent: {fileID: 8416822817125367874}
   wildpackMeshDuration: 2
   coyoteMesh: {fileID: 3434260596591098748}
+  coyoteCollider: {fileID: 1697208069794124272}
 --- !u!1001 &7088806662144477317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,6 +225,12 @@ NavMeshAgent:
 --- !u!23 &3434260596591098748 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5604854843549529081, guid: 5b17b950a5b2a434b85be55f4c349b41,
+    type: 3}
+  m_PrefabInstance: {fileID: 7088806662144477317}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1697208069794124272 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 8497502663847057781, guid: 5b17b950a5b2a434b85be55f4c349b41,
     type: 3}
   m_PrefabInstance: {fileID: 7088806662144477317}
   m_PrefabAsset: {fileID: 0}
