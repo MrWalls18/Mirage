@@ -47,7 +47,7 @@ public class EnemyAI : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>().gameObject;
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        myStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        //myStats = GameObject.Find("Player").GetComponent<PlayerStats>();
         
 
         //start timer, may need to move this

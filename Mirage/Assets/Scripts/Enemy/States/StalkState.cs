@@ -14,25 +14,30 @@ public class StalkState : StateMachineBehaviour
     public float increaseSpeedInterval = 10f;
     public float enterStalkTime;
 
+    public bool playerStopped = true;
+
     //bool for when enemy gets hit by rock
     public bool hasHitRock;
+
+    private Transform player;
 
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        playerInSight = Physics.CheckSphere(enemy.transform.position, sightRange, enemy.whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(enemy.transform.position, enemy.attackRange, enemy.whatIsPlayer);
-        
+        //playerInSight = Physics.CheckSphere(enemy.transform.position, sightRange, enemy.whatIsPlayer);
+        //playerInAttackRange = Physics.CheckSphere(enemy.transform.position, enemy.attackRange, enemy.whatIsPlayer);
+
         //set time coyote enters stalk state
         //may need to rework, player can lose coyote if they leave sight range rn
-        enterStalkTime = Time.time;
+        enemy.agent.SetDestination(player.transform.position);
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //have enemy speed match player speed,
+        
         //create variable for min follow distance, set to like 15,
         //if player moves within 15 units, min follow distance gets updated to 
         //that new value
@@ -42,7 +47,7 @@ public class StalkState : StateMachineBehaviour
             StalkPlayer();
             //enemy.agent.SetDestination(enemy.player.transform.position);
             enemy.speed += enemy.speedIncrement;
-            enterStalkTime = Time.time + increaseSpeedInterval;
+            enterStalkTime = Time.deltaTime + increaseSpeedInterval;
         }
         else if (playerInAttackRange)
         {
@@ -75,8 +80,26 @@ public class StalkState : StateMachineBehaviour
     private void StalkPlayer()
     {
         //simply targets and moves to player
+
+        //set coyote speed to player speed
+
         //TODO: modify this behaviour so it's more believable
         enemy.agent.SetDestination(enemy.player.transform.position);
+
+        //if player stops, start timer
+        if (playerStopped)
+        {
+            enterStalkTime += Time.deltaTime;
+            if (enterStalkTime > 30)
+            {
+                //start creeping towards player
+            }
+        }
+        else if (!playerStopped)
+        {
+            //update min distance to player if needed
+            //set speed back to player speed
+        }
     }
 
     void OnTriggerEnter(Collider collider)
