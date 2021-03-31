@@ -9,6 +9,8 @@ public class WildPackCoyote : MonoBehaviour
 
     private Transform playerPosition;
 
+    
+
     private float timer;
     [SerializeField] private float wildpackMeshDuration;
 
@@ -39,7 +41,12 @@ public class WildPackCoyote : MonoBehaviour
         {
             coyoteAgent.enabled = false;
 
-            transform.position += transform.forward * Time.deltaTime * coyoteAgent.speed;
+            transform.position += transform.forward * Time.deltaTime * coyoteAgent.speed * 2;
+
+            if (Vector3.Distance(this.transform.position, playerPosition.position) > 75)
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         else
@@ -48,10 +55,6 @@ public class WildPackCoyote : MonoBehaviour
             coyoteAgent.SetDestination(playerPosition.position);
         }
 
-
-
-
-        
         
     }
 }
