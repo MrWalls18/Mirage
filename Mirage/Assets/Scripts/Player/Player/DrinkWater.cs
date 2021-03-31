@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrinkWater : MonoBehaviour
 {
     private PlayerStats myStats;
-    private PlayerMove movePlayer;
+    private PlayerMovement movePlayer;
     public float waterTimer;
     private float timer;
 
@@ -13,7 +13,7 @@ public class DrinkWater : MonoBehaviour
     void Awake()
     {
         myStats = this.GetComponent<PlayerStats>();
-        movePlayer = this.GetComponent<PlayerMove>();
+        movePlayer = this.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame

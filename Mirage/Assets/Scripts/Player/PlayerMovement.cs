@@ -5,8 +5,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]private CharacterController controller;
+    [SerializeField] private PlayerStats myStats;
 
-    [SerializeField]private float walkingSpeed; 
+    public float walkingSpeed;
+    private float defaultSpeed;
+
+    private void Awake()
+    {
+        defaultSpeed = walkingSpeed;
+    }
 
     // Update is called once per frame
     void Update()
@@ -16,7 +23,23 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * xInput + transform.forward * zInput + -transform.up;
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            myStats.isRunning = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            myStats.isRunning = false;
+            ResetSpeed();
+        }
+
         controller.Move(move * walkingSpeed * Time.deltaTime);
 
+
+    }
+
+    public void ResetSpeed()
+    {
+        walkingSpeed = defaultSpeed;
     }
 }

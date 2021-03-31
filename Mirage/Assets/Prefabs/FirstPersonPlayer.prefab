@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 298859884351686302}
   - component: {fileID: 298859884351686289}
   - component: {fileID: 298859884351686303}
+  - component: {fileID: 7844060896701211309}
+  - component: {fileID: 7256117851165226479}
+  - component: {fileID: 8419085051289899702}
+  - component: {fileID: 923355985636011165}
   m_Layer: 0
   m_Name: FirstPersonPlayer
   m_TagString: Player
@@ -26,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298859884351686288}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -22.078575, y: 1.5283, z: -45.476223}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 298859884812134688}
@@ -66,6 +70,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 298859884351686289}
   walkingSpeed: 20
+--- !u!114 &7844060896701211309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298859884351686288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592e9815cbbad184291f9cc098e858af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprintSpeedMultiplier: 1.5
+  sanityDepletionRate: 0.075
+  sprintTimer: 10
+  movePlayer: {fileID: 298859884351686303}
+  sanity: 0
+  stamina: 0
+  maxStamina: 0
+  hallucinationTimer: 20
+  isRunning: 0
+  isHallucinating: 0
+  waterText: {fileID: 0}
+  waterSourceText: {fileID: 0}
+--- !u!114 &7256117851165226479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298859884351686288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810652dad9af21d46901ac249dc22b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinFlip: {fileID: 8419085051289899702}
+--- !u!114 &8419085051289899702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298859884351686288}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007b0a975db96824d86956883fbe2558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin: {fileID: 6148608525721471659, guid: 4dafd336584385c42a4c6d0a91d8d623, type: 3}
+  coinDropTransform: {fileID: 0}
+  coinFlipDuration: 2
+  coinFlipText: {fileID: 0}
+  stats: {fileID: 7844060896701211309}
+  hasCoin: 1
+--- !u!114 &923355985636011165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298859884351686288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e66c8f4347414348875e12f298a311d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterTimer: 2
 --- !u!1 &298859884456760151
 GameObject:
   m_ObjectHideFlags: 0
