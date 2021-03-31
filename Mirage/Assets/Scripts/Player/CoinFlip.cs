@@ -12,9 +12,12 @@ public class CoinFlip : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && coinFlip.hasCoin)
         {
+            coinFlip.hasCoin = false;
             coinFlip.enabled = true;
+            
+            this.GetComponent<PlayerMovement>().enabled = false;
 
-            this.GetComponent<PlayerMove>().enabled = false;
+            this.enabled = false;
         }
 
 

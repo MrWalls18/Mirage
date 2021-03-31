@@ -44,6 +44,7 @@ public class SkillCheckTimer : MonoBehaviour
             if (maxCoinFlipTime > startAccurateCatchTime && maxCoinFlipTime < endAccurateCatchTime)
             {
                 coinCaught = true;
+                hasCoin = true;
             } 
 
 
@@ -75,8 +76,12 @@ public class SkillCheckTimer : MonoBehaviour
 
             coinCaught = false;
             maxCoinFlipTime = coinFlipDuration;
-            this.GetComponent<PlayerMove>().enabled = true;
-            this.enabled = false;
+            this.GetComponent<PlayerMovement>().enabled = true;
+           
+
+            this.GetComponent<CoinFlip>().enabled = true;
+
+             this.enabled = false;
         }
 
         if (maxCoinFlipTime <= 0)
@@ -85,8 +90,14 @@ public class SkillCheckTimer : MonoBehaviour
             coinFlipText.text = "Coin was dropped!";
             DropCoin();
             maxCoinFlipTime = coinFlipDuration;
-            this.GetComponent<PlayerMove>().enabled = true;
+            this.GetComponent<PlayerMovement>().enabled = true;
+
+
+            this.GetComponent<CoinFlip>().enabled = true;
+
             this.enabled = false;
+
+            
         }
         
     }
