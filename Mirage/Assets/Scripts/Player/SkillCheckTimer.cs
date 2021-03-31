@@ -80,6 +80,7 @@ public class SkillCheckTimer : MonoBehaviour
            
 
             this.GetComponent<CoinFlip>().enabled = true;
+            this.GetComponent<CoinFlip>().skillBar.SetActive(false);
 
              this.enabled = false;
         }
@@ -94,6 +95,8 @@ public class SkillCheckTimer : MonoBehaviour
 
 
             this.GetComponent<CoinFlip>().enabled = true;
+
+            this.GetComponent<CoinFlip>().skillBar.SetActive(false);
 
             this.enabled = false;
 

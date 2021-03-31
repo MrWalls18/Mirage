@@ -7,6 +7,13 @@ public class CoinFlip : MonoBehaviour
 {
     [SerializeField] SkillCheckTimer coinFlip;
 
+    public GameObject skillBar;
+
+    private void Start()
+    {
+        skillBar.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -16,6 +23,10 @@ public class CoinFlip : MonoBehaviour
             coinFlip.enabled = true;
             
             this.GetComponent<PlayerMovement>().enabled = false;
+
+            skillBar.SetActive(true);
+
+            skillBar.GetComponent<SkillCheckBar>().ResetBar();
 
             this.enabled = false;
         }
