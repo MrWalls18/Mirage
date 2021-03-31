@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ScriptedHallucination : MonoBehaviour
 {
-    [SerializeField] private GameObject scriptedEnemies, boulderBlockade;
+    [SerializeField] private GameObject coyotes
+        ;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            scriptedEnemies.SetActive(true);
+            coyotes.SetActive(true);
         }
     }
 }
