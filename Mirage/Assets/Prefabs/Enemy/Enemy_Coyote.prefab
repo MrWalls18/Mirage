@@ -47,8 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2565053931197002552}
-  animator: {fileID: 8293047081623948988, guid: 69de8a1043b57b148b116ddd1f271059,
-    type: 3}
+  animator: {fileID: 0}
   player: {fileID: 0}
   distanceToPlayer: 0
   walkTo: {x: 0, y: 0, z: 0}

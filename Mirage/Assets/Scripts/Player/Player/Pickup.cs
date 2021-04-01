@@ -12,23 +12,27 @@ public class Pickup : MonoBehaviour
 {
     //public Rigidbody rb;
 
-    public Transform player;
+    public Transform rockHolder;
+    public float throwForce;
+    public bool carryObject;
+    public GameObject rock;
+    public bool canPickUp; 
+
     //, rockContainer, guide;
     //collider to detect collisions with coyote
-    public BoxCollider coll;
+    //public BoxCollider coll;
 
-    public GameObject rock;
-    public GameObject rockParent;
+    //public GameObject rockParent;
 
     //how far can the player reach to pick up a rock
-    public float pickUpRange;
-    public float throwForce;
+    //public float pickUpRange;
+    
 
-    Vector3 rockPos;
+    //Vector3 rockPos;
 
     //player slot container
-    public bool canPickUp = true;
-    public static bool handFull = false;
+    
+    //public static bool handFull = false;
 
     //public GameObject item;
     //public GameObject tempParent;
@@ -51,34 +55,78 @@ public class Pickup : MonoBehaviour
     private void Update()
     {
         //check distance between player and pickup
-        Vector3 distanceToPlayer = player.position - transform.position;
+        //Vector3 distanceToPlayer = player.position - transform.position;
 
-        if(distanceToPlayer.magnitude < pickUpRange && Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            
-            if (!handFull)
+            RaycastHit hit;
+            Ray directionRay = new Ray(transform.position, transform.forward);
+
+            if(Physics.Raycast(directionRay, out hit, 2f))
+            {
+                if(hit.collider.tag == "Rock")
+                {
+                    carryObject = true;
+                    canPickUp = true;
+                    if(carryObject == true)
+                    {
+                        rock = hit.collider.gameObject;
+                        rock.transform.SetParent(rockHolder);
+                        rock.gameObject.transform.position = rockHolder.position;
+                        rock.GetComponent<Rigidbody>().isKinematic = true;
+                        rock.GetComponent<Rigidbody>().useGravity = false;
+                    }
+                }
+            }
+            #region delete later
+            /*if (!handFull)
             {
                 Debug.Log("i'm in the second if statement");
                 rock.transform.SetParent(rockParent.transform);
                 Debug.Log("my parent is " + rock.transform.parent);
+                GetComponent<Rigidbody>().isKinematic = true;
                 rock.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 rock.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
-                if (canPickUp && Input.GetKeyDown(KeyCode.Space))
+                if (canPickUp && Input.GetKeyDown(KeyCode.F))
                 {
                     //Throw();
+                    GetComponent<Rigidbody>().isKinematic = false;
+                    transform.parent = null;
                     rock.GetComponent<Rigidbody>().AddForce(rockParent.transform.forward * throwForce);
                     handFull = false;
                 }
-            }
+            }*/
             //Equip();
+            #endregion
         }
-        else
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            carryObject = false;
+            canPickUp = false;
+        }
+        if(carryObject == false)
+        {
+            rockHolder.DetachChildren();
+            rock.GetComponent<Rigidbody>().isKinematic = false;
+            rock.GetComponent<Rigidbody>().useGravity = true;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (canPickUp)
+            {
+                rockHolder.DetachChildren();
+                rock.GetComponent<Rigidbody>().isKinematic = false;
+                rock.GetComponent<Rigidbody>().useGravity = true;
+                rock.GetComponent<Rigidbody>().AddRelativeForce(transform.forward * throwForce);
+            }
+        }
+        /*else
         {
             rockPos = rock.transform.position;
             rock.transform.SetParent(null);
             rock.transform.position = rockPos;
-        }
+        }*/
         
     }
 
