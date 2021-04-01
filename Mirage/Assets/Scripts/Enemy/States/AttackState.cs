@@ -14,6 +14,7 @@ public class AttackState : StateMachineBehaviour
     {
         animator.SetBool("isPlayerInMinAttackRange", true);
         //player dies, trigger death screen
+        MenuUI.Instance.OpenPanel(3);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

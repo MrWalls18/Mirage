@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class RetreatState : StateMachineBehaviour
 {
     //if hit by rock, run from player for a time
-    EnemyAI enemy;
+    //EnemyAI enemy;
 
     float timeElapsed;
     public float retreatTime = 20f;

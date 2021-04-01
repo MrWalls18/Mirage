@@ -18,41 +18,45 @@ public class StalkState : StateMachineBehaviour
     public bool playerStopped = true;
 
     //bool for when enemy gets hit by rock
-    public bool hasHitRock;
-
-    private Transform player;
+    public bool hasHitRock = false;
 
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log("I'm stalking you");
+        base.OnStateEnter(animator, stateInfo, layerIndex);
+        enemy = animator.GetComponent<EnemyAI>();
+        playerInSight = true;
         //playerInSight = Physics.CheckSphere(enemy.transform.position, sightRange, enemy.whatIsPlayer);
         //playerInAttackRange = Physics.CheckSphere(enemy.transform.position, enemy.attackRange, enemy.whatIsPlayer);
 
         //set time coyote enters stalk state
         //may need to rework, player can lose coyote if they leave sight range rn
-        enemy.agent.SetDestination(player.transform.position);
+
+        //enemy.agent.SetDestination(player.transform.position);
 
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        //Debug.Log("updating...");
         //create variable for min follow distance, set to like 15,
         //if player moves within 15 units, min follow distance gets updated to 
         //that new value
         //if player stops moving, start a timer, and after 5 seconds start creeping closer
-        if (playerInSight && !playerInAttackRange)
+        if (playerInSight)
         {
             StalkPlayer();
+
+            if (playerInAttackRange)
+            {
+                animator.SetBool("isPlayerInMinAttackRange", true);
+            }
             //enemy.agent.SetDestination(enemy.player.transform.position);
-            enemy.speed += enemy.speedIncrement;
+            //enemy.speed += enemy.speedIncrement;
             enterStalkTime = Time.deltaTime + increaseSpeedInterval;
-        }
-        else if (playerInAttackRange)
-        {
-            animator.SetBool("isPlayerInMinAttackRange", true);
         }
         else if (hasHitRock)
         {
@@ -85,21 +89,24 @@ public class StalkState : StateMachineBehaviour
         //set coyote speed to player speed
 
         //TODO: modify this behaviour so it's more believable
+        Debug.Log("I got into the stalk function");
         enemy.agent.SetDestination(enemy.player.transform.position);
-
-        //if player stops, start timer
-        if (playerStopped)
+        if (!hasHitRock)
         {
-            enterStalkTime += Time.deltaTime;
-            if (enterStalkTime > 30)
+            //if player stops, start timer
+            if (playerStopped)
             {
-                //start creeping towards player
+                enterStalkTime += Time.deltaTime;
+                if (enterStalkTime > 30)
+                {
+                    //start creeping towards player
+                }
             }
-        }
-        else if (!playerStopped)
-        {
-            //update min distance to player if needed
-            //set speed back to player speed
+            else if (!playerStopped)
+            {
+                //update min distance to player if needed
+                //set speed back to player speed
+            }
         }
     }
 
@@ -107,7 +114,7 @@ public class StalkState : StateMachineBehaviour
     {
         if (collider.gameObject.CompareTag("Rock"))
         {
-            hasHitRock = true;
+            hasHitRock = true;   
         }
     }
 }

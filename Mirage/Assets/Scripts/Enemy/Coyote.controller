@@ -41,6 +41,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isPlayerInMinAgroRange
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: agroRange
+    m_EventTreshold: 30
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8263265610713685219}
   m_Solo: 0
@@ -132,6 +135,18 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: idleTime
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: agroRange
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -159,6 +174,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minIdleTime: 1
   maxIdleTime: 3
+  timeElapsed: 0
+  idleOver: 0
 --- !u!1102 &1952296682585018940
 AnimatorState:
   serializedVersion: 5
@@ -313,9 +330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc98cfd74381fa640ad25a1c03bf8137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reference: {fileID: 0}
   enemy: {fileID: 1634261151990827206, guid: 5b17b950a5b2a434b85be55f4c349b41, type: 3}
   player: {fileID: 298859884351686288, guid: 1f576f79fc9453b479cf9c94c02fd45f, type: 3}
+  speed: 5
+  agent: {fileID: 0}
   anim: {fileID: 0}
   playerInSight: 0
   sightRange: 0
