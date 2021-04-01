@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
+
 public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
@@ -46,9 +48,9 @@ public class EnemyAI : MonoBehaviour
         //player = GameObject.Find("Player").transform;
         player = FindObjectOfType<PlayerMovement>().gameObject;
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
+        agent = GetComponent<NavMeshAgent>();
         //myStats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        
+
 
         //start timer, may need to move this
         //currentTime = Time.time + timeToIncrease;
@@ -59,7 +61,7 @@ public class EnemyAI : MonoBehaviour
     public void Start()
     {
         //make sure enemy is a navmesh agent
-        agent = GetComponent<NavMeshAgent>();
+        
 
     }
 

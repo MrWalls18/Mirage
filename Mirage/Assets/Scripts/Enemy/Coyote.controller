@@ -246,6 +246,7 @@ MonoBehaviour:
   sightRange: 0
   increaseSpeedInterval: 10
   enterStalkTime: 0
+  playerStopped: 1
   hasHitRock: 0
 --- !u!1101 &4480792426214333162
 AnimatorStateTransition:
@@ -312,11 +313,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc98cfd74381fa640ad25a1c03bf8137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reference: {fileID: 0}
+  enemy: {fileID: 1634261151990827206, guid: 5b17b950a5b2a434b85be55f4c349b41, type: 3}
+  player: {fileID: 298859884351686288, guid: 1f576f79fc9453b479cf9c94c02fd45f, type: 3}
+  anim: {fileID: 0}
   playerInSight: 0
   sightRange: 0
-  minSpeed: 3
-  maxSpeed: 6
+  minAgroRange: 20
   currentTime: 0
+  distanceToPlayer: 0
   walkTo: {x: 0, y: 0, z: 0}
   walkToRange: 10
 --- !u!1107 &6565445470712403264

@@ -11,14 +11,14 @@ public class PatrolState : StateMachineBehaviour
     public GameObject enemy;
     public GameObject player;
     public Animator anim;
-    [HideInInspector] public NavMeshAgent agent;
+    //[HideInInspector] public NavMeshAgent agent;
 
     public bool playerInSight;
     public float sightRange;
     public float minAgroRange = 20f;
 
-    public float minSpeed = 3;
-    public float maxSpeed = 6;
+    //public float minSpeed = 3;
+    //public float maxSpeed = 6;
 
     float timeElapsed;
     bool isStalking = false;
@@ -28,24 +28,24 @@ public class PatrolState : StateMachineBehaviour
 
     public Vector3 walkTo;
     bool walkToSet;
-    public float walkToRange = 10f;
+    public float walkToRange = 30f;
 
     private void Awake()
     {
+        //enemy = reference.agent.gameObject;
         anim = enemy.GetComponent<Animator>();
-        
+        //reference = anim.GetComponent<EnemyAI>();
+        reference = enemy.GetComponent<EnemyAI>();
         distanceToPlayer = Vector3.Distance(enemy.transform.position, player.transform.position);
     }
 
-
+    
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log("I'm in the enter function of Patrol state");
 
-        //Patrol();
-        //get reference to the player and how far away they are
-        //player = FindObjectOfType<PlayerMovement>().gameObject;
+        reference.GetComponent<EnemyAI>();
         distanceToPlayer = Vector3.Distance(enemy.transform.position, player.transform.position);
 
     }
@@ -96,14 +96,21 @@ public class PatrolState : StateMachineBehaviour
 
         if (walkToSet)
         {
+            //set the destination to the walkpoint from searchwalkpoint
             reference.agent.SetDestination(walkTo);
-        }
-
-        Vector3 distanceToWalkTo = enemy.transform.position - walkTo;
-
-        if (distanceToWalkTo.magnitude < 1f)
-        {
-            walkToSet = false;
+            if (!reference.agent.pathPending)
+            {
+                //if you've reached your destination do something
+                if (reference.agent.remainingDistance <= reference.agent.stoppingDistance)
+                {
+                    walkToSet = false;
+                    //if the agent doesn't have a path to a point, or they are stopped
+                    if (!reference.agent.hasPath || reference.agent.velocity.sqrMagnitude == 0f)
+                    {
+                        walkToSet = false;
+                    }
+                }
+            }
         }
     }
 
@@ -111,7 +118,7 @@ public class PatrolState : StateMachineBehaviour
     {
         Debug.Log("I'm looking for a walk point");
         //calculate random point in your range
-        float randomZ = Random.Range(-walkToRange, walkToRange);
+        /*float randomZ = Random.Range(-walkToRange, walkToRange);
         float randomX = Random.Range(-walkToRange, walkToRange);
 
         walkTo = new Vector3(enemy.transform.position.x + randomX, enemy.transform.position.y, enemy.transform.position.z + randomZ);
@@ -119,6 +126,21 @@ public class PatrolState : StateMachineBehaviour
         if (Physics.Raycast(walkTo, -enemy.transform.up, 2f, reference.whatIsGround))
         {
             walkToSet = true;
+        }*/
+
+        //find a walk point after you've moved to one already
+        walkTo = new Vector3(Random.insideUnitSphere.x * walkToRange, enemy.transform.position.y, Random.insideUnitSphere.z * walkToRange);
+        walkToSet = true;
+        Debug.Log("i'm going to " + walkTo);
+
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+
+        if (NavMesh.SamplePosition(walkTo, out hit, walkToRange, 1))
+        {
+            //if walkPoint is on the NavMesh, go to it
+            finalPosition = hit.position;
+            walkTo = finalPosition;
         }
     }
 
