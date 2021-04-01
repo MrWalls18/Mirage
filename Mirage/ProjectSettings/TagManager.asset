@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - FakeEnemy
   - Water
+  - Rock
   layers:
   - Default
   - TransparentFX

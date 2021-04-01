@@ -133,34 +133,14 @@ GameObject:
   - component: {fileID: 5592018}
   - component: {fileID: 5592017}
   - component: {fileID: 5592016}
-  - component: {fileID: 5592015}
   - component: {fileID: 5592020}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5592015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5592014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5b3b6ac56a82346815f0c80006fb74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 228034217}
-  coll: {fileID: 5592016}
-  rock: {fileID: 5592014}
-  rockParent: {fileID: 1131404873}
-  pickUpRange: 5
-  throwForce: 10
-  canPickUp: 1
 --- !u!65 &5592016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -348,12 +328,6 @@ Transform:
 --- !u!1 &228034210 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6664215101143271344, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1299281991}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &228034217 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6664215101143271358, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
     type: 3}
   m_PrefabInstance: {fileID: 1299281991}
   m_PrefabAsset: {fileID: 0}
@@ -608,6 +582,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1001595003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1001595004}
+  m_Layer: 0
+  m_Name: Guide
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1001595004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001595003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.63, y: 0.15886116, z: -14.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1079260610
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,21 +742,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2133082945005065301, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.91
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133082945005065301, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133082945005065301, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.78
-      objectReference: {fileID: 0}
+    - target: {fileID: 1966413420, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
+      propertyPath: rock
+      value: 
+      objectReference: {fileID: 5592014}
     - target: {fileID: 4992792427298317581, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}
       propertyPath: m_Name
@@ -812,16 +805,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6664215101143271358, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 16.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6664215101143271358, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -15.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
