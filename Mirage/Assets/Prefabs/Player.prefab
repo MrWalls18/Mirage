@@ -85,14 +85,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprintSpeedMultiplier: 1.5
-  sanityDepletionRate: 0.075
+  sanityDepletionRate: 0.3
   sprintTimer: 10
   movePlayer: {fileID: 298859884351686303}
   sanity: 0
   maxSanity: 0
   stamina: 0
   maxStamina: 0
-  hallucinationTimer: 20
+  hallucinationTimer: 10
   isRunning: 0
   isHallucinating: 0
   waterText: {fileID: 0}
@@ -126,7 +126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 6148608525721471659, guid: 4dafd336584385c42a4c6d0a91d8d623, type: 3}
-  coinDropTransform: {fileID: 0}
+  headsUI: {fileID: 0}
+  tailsUI: {fileID: 0}
+  coinDropTransform: {fileID: 6299620274683705710}
   coinFlipDuration: 2
   maxCoinFlipTime: 0
   startAccurateCatchTime: 0
@@ -147,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterTimer: 2
+  waterUI: {fileID: 0}
 --- !u!1 &298859884456760151
 GameObject:
   m_ObjectHideFlags: 0

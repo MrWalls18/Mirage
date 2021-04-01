@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ScriptedHallucination : MonoBehaviour
 {
-    [SerializeField] private GameObject coyotes
+    [SerializeField] private GameObject hallucination
         ;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            coyotes.SetActive(true);
+            hallucination.SetActive(true);
         }
     }
 }

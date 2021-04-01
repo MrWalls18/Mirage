@@ -914,6 +914,7 @@ GameObject:
   - component: {fileID: 4992792426021103591}
   - component: {fileID: 4992792426021103589}
   - component: {fileID: 4992792426021103588}
+  - component: {fileID: 6602556665314060498}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -973,6 +974,23 @@ MonoBehaviour:
     type: 3}
   hallucinatedEnemyPrefab: {fileID: 1744633218906334519, guid: baefd774c9613974e9b41f7c954a2380,
     type: 3}
+--- !u!114 &6602556665314060498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992792426021103590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63d325d39275dde499ae6ecae62e409c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowSanity: {fileID: 1473661065095698826}
+  medLowSanity: {fileID: 6179902726917391442}
+  medHighSanity: {fileID: 6705726710632258544}
+  highSanity: {fileID: 3736410668074470894}
+  myStats: {fileID: 3783724055471694733}
 --- !u!1 &4992792426049249987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,6 +2177,26 @@ PrefabInstance:
       propertyPath: walkingSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 923355985636011165, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+        type: 3}
+      propertyPath: waterUI
+      value: 
+      objectReference: {fileID: 1475519062504565569}
+    - target: {fileID: 7256117851165226479, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+        type: 3}
+      propertyPath: marker
+      value: 
+      objectReference: {fileID: 4848894872214664905}
+    - target: {fileID: 7256117851165226479, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+        type: 3}
+      propertyPath: barReset
+      value: 
+      objectReference: {fileID: 7057744119251020993}
+    - target: {fileID: 7256117851165226479, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+        type: 3}
+      propertyPath: skillBar
+      value: 
+      objectReference: {fileID: 574482222906619283}
     - target: {fileID: 7844060896701211309, guid: 1f576f79fc9453b479cf9c94c02fd45f,
         type: 3}
       propertyPath: waterText
@@ -2169,6 +2207,16 @@ PrefabInstance:
       propertyPath: waterSourceText
       value: 
       objectReference: {fileID: 4992792425283141800}
+    - target: {fileID: 8419085051289899702, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+        type: 3}
+      propertyPath: headsUI
+      value: 
+      objectReference: {fileID: 2133669372963434218}
+    - target: {fileID: 8419085051289899702, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+        type: 3}
+      propertyPath: tailsUI
+      value: 
+      objectReference: {fileID: 6359383004855308229}
     - target: {fileID: 8419085051289899702, guid: 1f576f79fc9453b479cf9c94c02fd45f,
         type: 3}
       propertyPath: coinFlipText
@@ -2188,18 +2236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007b0a975db96824d86956883fbe2558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3783724055471694733 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7844060896701211309, guid: 1f576f79fc9453b479cf9c94c02fd45f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6366347320280596768}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6664215101143271344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 592e9815cbbad184291f9cc098e858af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6664215101143271358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 298859884351686302, guid: 1f576f79fc9453b479cf9c94c02fd45f,
@@ -2212,3 +2248,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6366347320280596768}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3783724055471694733 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7844060896701211309, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6366347320280596768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664215101143271344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592e9815cbbad184291f9cc098e858af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
