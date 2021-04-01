@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CoinFlip : MonoBehaviour
 {
     [SerializeField] SkillCheckTimer coinFlip;
+    [SerializeField] SkillCheckBar barReset;
 
     public GameObject skillBar;
 
@@ -26,7 +27,7 @@ public class CoinFlip : MonoBehaviour
 
             skillBar.SetActive(true);
 
-            skillBar.GetComponent<SkillCheckBar>().ResetBar();
+            barReset.ResetBar();
 
             this.enabled = false;
         }
