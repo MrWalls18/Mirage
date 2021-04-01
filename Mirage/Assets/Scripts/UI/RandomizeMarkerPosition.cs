@@ -37,9 +37,12 @@ public class RandomizeMarkerPosition : MonoBehaviour
         fillAmount = (myStats.sanity / myStats.maxSanity) * (MAX_FILL_AMOUNT - MIN_FILL_AMOUNT) + MIN_FILL_AMOUNT ;
         isClockwise = (Random.value > 0.5);
 
-        marker.fillOrigin = Random.Range(0, 5);
+       
         marker.fillAmount = fillAmount;
-        marker.fillClockwise = isClockwise;
+        marker.fillClockwise = isClockwise; 
+        marker.fillOrigin = Random.Range(0, 4);
+
+        
 
         if (isClockwise)
         {
@@ -57,6 +60,10 @@ public class RandomizeMarkerPosition : MonoBehaviour
                     break;
                 case (int)FillOrigin.Top:
                     marker.fillOrigin = (int)FillOrigin.Left;
+
+                    coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f);
+
+                    coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f - (coinTimer.coinFlipDuration * fillAmount));
                     break;
                 case (int)FillOrigin.Left:
                     coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f);
@@ -64,6 +71,7 @@ public class RandomizeMarkerPosition : MonoBehaviour
                     coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f - (coinTimer.coinFlipDuration * fillAmount));
                     break;
                 default:
+
                     break;
             }
         }
@@ -83,6 +91,10 @@ public class RandomizeMarkerPosition : MonoBehaviour
                     break;
                 case (int)FillOrigin.Top:
                     marker.fillOrigin = (int)FillOrigin.Left;
+
+                    coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - 0.5f;
+
+                    coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f + (coinTimer.coinFlipDuration * fillAmount));
                     break;
                 case (int)FillOrigin.Left:
                     coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - 0.5f;
@@ -90,12 +102,14 @@ public class RandomizeMarkerPosition : MonoBehaviour
                     coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f + (coinTimer.coinFlipDuration * fillAmount));
                     break;
                 default:
+
                     break;
             }
         }
 
         Debug.Log("Start timer: " + coinTimer.startAccurateCatchTime);
         Debug.Log("End timer: " + coinTimer.endAccurateCatchTime);
+        Debug.Log(marker.fillOrigin);
 
 
     }

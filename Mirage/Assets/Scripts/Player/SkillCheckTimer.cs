@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SkillCheckTimer : MonoBehaviour
 {
-    public GameObject coin;
+    public GameObject coin, headsUI, tailsUI;
     public Transform coinDropTransform;
 
     public float coinFlipDuration;
@@ -16,6 +16,8 @@ public class SkillCheckTimer : MonoBehaviour
     [SerializeField]private PlayerStats stats;
 
     [HideInInspector] public bool hasCoin = true;
+
+    bool isHeads, wasLastFlipHeads;
 
     // Start is called before the first frame update
     void Awake()
@@ -55,23 +57,52 @@ public class SkillCheckTimer : MonoBehaviour
             {
                 if (stats.isHallucinating)
                 {
-                    coinFlipText.text = "Coin: Heads";
+                    if (wasLastFlipHeads)
+                    {
+                        coinFlipText.text = "Coin: Heads";
+                        headsUI.SetActive(true);
+                        tailsUI.SetActive(false);
+                    }
+
+                    else
+                    {
+                        coinFlipText.text = "Coin: Tails";
+                        headsUI.SetActive(false);
+                        tailsUI.SetActive(true);
+                    }
+                    
+
+
+
+
                 }
                 else
                 {
                     if (Random.value > 0.5)
                     {
+                        headsUI.SetActive(true);
+                        tailsUI.SetActive(false);
                         coinFlipText.text = "Coin: Heads";
+
+                        isHeads = true;
+                        wasLastFlipHeads = true;
                     }
                     else
                     {
+                        headsUI.SetActive(false);
+                        tailsUI.SetActive(true);
                         coinFlipText.text = "Coin: Tails";
+
+                        isHeads = false;
+                        wasLastFlipHeads = false;
                     }
                 }
             }
 
             else
             {
+                headsUI.SetActive(false);
+                tailsUI.SetActive(false);
                 coinFlipText.text = "Coin was dropped!";
                 hasCoin = false;
                 DropCoin();
