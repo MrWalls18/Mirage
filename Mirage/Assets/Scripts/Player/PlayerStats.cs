@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private PlayerMovement movePlayer;
 
     [HideInInspector] public float sanity;
-    private float maxSanity;
+    [HideInInspector] public float maxSanity;
     [HideInInspector] public float stamina;
     [HideInInspector] public float maxStamina;
     private float minStamina;
@@ -67,6 +67,11 @@ public class PlayerStats : MonoBehaviour
     private void CalculateSanity(float depletionSpeed)
     {
         sanity -= Time.deltaTime * depletionSpeed;
+
+        if (sanity < 1f)
+        {
+            sanity = 1f;
+        }
 
         CalculateMaxStamina();
     }
