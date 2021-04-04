@@ -17,7 +17,7 @@ public class SkillCheckTimer : MonoBehaviour
 
     [HideInInspector] public bool hasCoin = true;
 
-    bool isHeads, wasLastFlipHeads;
+    bool wasLastFlipHeads;
 
     // Start is called before the first frame update
     void Awake()
@@ -84,7 +84,7 @@ public class SkillCheckTimer : MonoBehaviour
                         tailsUI.SetActive(false);
                         coinFlipText.text = "Coin: Heads";
 
-                        isHeads = true;
+                        //isHeads = true;
                         wasLastFlipHeads = true;
                     }
                     else
@@ -93,7 +93,7 @@ public class SkillCheckTimer : MonoBehaviour
                         tailsUI.SetActive(true);
                         coinFlipText.text = "Coin: Tails";
 
-                        isHeads = false;
+                       // isHeads = false;
                         wasLastFlipHeads = false;
                     }
                 }

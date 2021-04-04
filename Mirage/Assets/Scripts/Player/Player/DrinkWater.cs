@@ -53,6 +53,8 @@ public class DrinkWater : MonoBehaviour
 
     }
 
+    
+
     IEnumerator DrinkTimer()
     {
         movePlayer.enabled = false;
