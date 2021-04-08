@@ -26,16 +26,6 @@ public class Pickup : MonoBehaviour
 
     //how far can the player reach to pick up a rock
     //public float pickUpRange;
-    
-
-    //Vector3 rockPos;
-
-    //player slot container
-    
-    //public static bool handFull = false;
-
-    //public GameObject item;
-    //public GameObject tempParent;
 
     /*private void Start()
     {
@@ -104,15 +94,9 @@ public class Pickup : MonoBehaviour
                 rockHolder.DetachChildren();
                 rock.GetComponent<Rigidbody>().isKinematic = false;
                 rock.GetComponent<Rigidbody>().useGravity = true;
-                rock.GetComponent<Rigidbody>().AddRelativeForce(transform.forward * throwForce);
+                rock.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * throwForce);
             }
         }
-        /*else
-        {
-            rockPos = rock.transform.position;
-            rock.transform.SetParent(null);
-            rock.transform.position = rockPos;
-        }*/
         
     }
 
