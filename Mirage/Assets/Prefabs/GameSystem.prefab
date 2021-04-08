@@ -1079,7 +1079,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2133082945005065301}
-  - component: {fileID: 1966413420}
+  - component: {fileID: 1429746228}
   m_Layer: 0
   m_Name: RockContainer
   m_TagString: Untagged
@@ -1094,14 +1094,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7296060894807188203}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.9100001, y: -0.91999996, z: 0.7800007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.04, y: -0.91999996, z: 2.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6664215099437027954}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1966413420
+--- !u!114 &1429746228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockHolder: {fileID: 2133082945005065301}
-  throwForce: 20
+  throwForce: 1000
   carryObject: 0
   rock: {fileID: 0}
   canPickUp: 0
@@ -1148,7 +1148,7 @@ PrefabInstance:
     - target: {fileID: 298859884351686302, guid: 1f576f79fc9453b479cf9c94c02fd45f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.8
+      value: 15.12
       objectReference: {fileID: 0}
     - target: {fileID: 298859884351686302, guid: 1f576f79fc9453b479cf9c94c02fd45f,
         type: 3}
