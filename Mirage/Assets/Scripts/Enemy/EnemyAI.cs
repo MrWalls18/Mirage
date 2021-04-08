@@ -46,8 +46,7 @@ public class EnemyAI : MonoBehaviour
     {
         return player;
     }
-
-
+    
     private void Awake()
     {
         //find the player
