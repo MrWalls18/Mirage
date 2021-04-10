@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - FakeEnemy
   - Water
+  - CarKeySpawn
+  - FakeKey
   layers:
   - Default
   - TransparentFX

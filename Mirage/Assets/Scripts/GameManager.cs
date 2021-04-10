@@ -9,6 +9,19 @@ public class GameManager : MonoBehaviour
 
     public PlayerStats myStats;
 
+    private bool hasKey;
+    public bool HasKey
+    {
+        get
+        {
+            return hasKey;
+        }
+        set
+        {
+            hasKey = value;
+        }
+    }
+
     private void Update()
     {
         
@@ -18,5 +31,12 @@ public class GameManager : MonoBehaviour
 
         
 
+    }
+
+    public void DestroyCarKeySpawns()
+    {
+        GameObject keySpawnManager = GameObject.Find("CarKeySpawnManager");
+
+        Destroy(keySpawnManager);
     }
 }
