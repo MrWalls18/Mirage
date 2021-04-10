@@ -5,38 +5,52 @@ using UnityEngine;
 public class DrinkWater : MonoBehaviour
 {
     private PlayerStats myStats;
-    private PlayerMove movePlayer;
+    private PlayerMovement movePlayer;
     public float waterTimer;
     private float timer;
+
+    [SerializeField] private GameObject waterUI;
 
     // Start is called before the first frame update
     void Awake()
     {
         myStats = this.GetComponent<PlayerStats>();
-        movePlayer = this.GetComponent<PlayerMove>();
+        movePlayer = this.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            RaycastHit hit;
-           // Debug.Log("In E");
+        RaycastHit hitUI;
 
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitUI, 5f))
+        {
+            if (hitUI.collider.tag == "Water")
             {
-                if (hit.collider.tag == "Water")
+                waterUI.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     StartCoroutine(DrinkTimer());
-                    myStats.DrinkWater(hit.collider.GetComponent<WaterSource>().waterPoints, hit.collider.name);
-                    if (hit.collider.name == "Lake")
+                    myStats.DrinkWater(hitUI.collider.GetComponent<WaterSource>().waterPoints, hitUI.collider.name);
+
+
+                    hitUI.collider.gameObject.GetComponent<WaterSource>().waterPoints -= 1;
+                    if (hitUI.collider.gameObject.GetComponent<WaterSource>().waterPoints < 0)
+                        hitUI.collider.gameObject.GetComponent<WaterSource>().waterPoints = 0;
+
+                    if (hitUI.collider.name == "Lake")
                     {
-                        hit.collider.transform.position = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y - 1f, hit.collider.transform.position.z);
+                        hitUI.collider.transform.position = new Vector3(hitUI.collider.transform.position.x, hitUI.collider.transform.position.y - 1f, hitUI.collider.transform.position.z);
                     }
                 }
             }
+
         }
+        else
+        {
+            waterUI.SetActive(false);
+        }
+
     }
 
     IEnumerator DrinkTimer()

@@ -5,16 +5,19 @@ using UnityEngine.UI;
 
 public class SkillCheckTimer : MonoBehaviour
 {
-    public GameObject coin;
+    public GameObject coin, headsUI, tailsUI;
     public Transform coinDropTransform;
 
-    [SerializeField]private float coinFlipDuration;
-    private float maxCoinFlipTime, startAccurateCatchTime, endAccurateCatchTime;
+    public float coinFlipDuration;
+    [HideInInspector] public float maxCoinFlipTime;
+    [HideInInspector] public float startAccurateCatchTime, endAccurateCatchTime;
     private bool coinCaught;
     [SerializeField]private Text coinFlipText;
     [SerializeField]private PlayerStats stats;
 
     [HideInInspector] public bool hasCoin = true;
+
+    bool isHeads, wasLastFlipHeads;
 
     // Start is called before the first frame update
     void Awake()
@@ -23,8 +26,10 @@ public class SkillCheckTimer : MonoBehaviour
         coinCaught = false;
         maxCoinFlipTime = coinFlipDuration;
 
-        startAccurateCatchTime = coinFlipDuration * 0.45f;
-        endAccurateCatchTime = coinFlipDuration * 0.55f;
+        
+
+       // startAccurateCatchTime = coinFlipDuration * 0.45f;
+       // endAccurateCatchTime = coinFlipDuration * 0.55f;
 
     }
 
@@ -32,7 +37,7 @@ public class SkillCheckTimer : MonoBehaviour
     void Update()
     {
         coinFlipText.text = "Coin is flipped. . .";
-        Debug.Log(maxCoinFlipTime);
+       // Debug.Log(maxCoinFlipTime);
 
         if (maxCoinFlipTime > 0)
         {
@@ -41,9 +46,10 @@ public class SkillCheckTimer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (maxCoinFlipTime > startAccurateCatchTime && maxCoinFlipTime < endAccurateCatchTime)
+            if (maxCoinFlipTime < startAccurateCatchTime && maxCoinFlipTime > endAccurateCatchTime)
             {
                 coinCaught = true;
+                hasCoin = true;
             } 
 
 
@@ -51,23 +57,52 @@ public class SkillCheckTimer : MonoBehaviour
             {
                 if (stats.isHallucinating)
                 {
-                    coinFlipText.text = "Coin: Heads";
+                    if (wasLastFlipHeads)
+                    {
+                        coinFlipText.text = "Coin: Heads";
+                        headsUI.SetActive(true);
+                        tailsUI.SetActive(false);
+                    }
+
+                    else
+                    {
+                        coinFlipText.text = "Coin: Tails";
+                        headsUI.SetActive(false);
+                        tailsUI.SetActive(true);
+                    }
+                    
+
+
+
+
                 }
                 else
                 {
                     if (Random.value > 0.5)
                     {
+                        headsUI.SetActive(true);
+                        tailsUI.SetActive(false);
                         coinFlipText.text = "Coin: Heads";
+
+                        isHeads = true;
+                        wasLastFlipHeads = true;
                     }
                     else
                     {
+                        headsUI.SetActive(false);
+                        tailsUI.SetActive(true);
                         coinFlipText.text = "Coin: Tails";
+
+                        isHeads = false;
+                        wasLastFlipHeads = false;
                     }
                 }
             }
 
             else
             {
+                headsUI.SetActive(false);
+                tailsUI.SetActive(false);
                 coinFlipText.text = "Coin was dropped!";
                 hasCoin = false;
                 DropCoin();
@@ -75,8 +110,13 @@ public class SkillCheckTimer : MonoBehaviour
 
             coinCaught = false;
             maxCoinFlipTime = coinFlipDuration;
-            this.GetComponent<PlayerMove>().enabled = true;
-            this.enabled = false;
+            this.GetComponent<PlayerMovement>().enabled = true;
+           
+
+            this.GetComponent<CoinFlip>().enabled = true;
+            this.GetComponent<CoinFlip>().skillBar.SetActive(false);
+
+             this.enabled = false;
         }
 
         if (maxCoinFlipTime <= 0)
@@ -85,8 +125,16 @@ public class SkillCheckTimer : MonoBehaviour
             coinFlipText.text = "Coin was dropped!";
             DropCoin();
             maxCoinFlipTime = coinFlipDuration;
-            this.GetComponent<PlayerMove>().enabled = true;
+            this.GetComponent<PlayerMovement>().enabled = true;
+
+
+            this.GetComponent<CoinFlip>().enabled = true;
+
+            this.GetComponent<CoinFlip>().skillBar.SetActive(false);
+
             this.enabled = false;
+
+            
         }
         
     }
