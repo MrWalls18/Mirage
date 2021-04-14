@@ -4,22 +4,47 @@ using UnityEngine;
 
 public class CaveIn : MonoBehaviour
 {
-    [SerializeField] private GameObject rockPrefab, boulderPrefab;
-    private GameObject rockClone, boulderClone;
+    [SerializeField] private GameObject caveInFake, caveInAnim;
 
+    private List<Transform> caveInLayers = new List<Transform>();
+
+    private int index = 0;
+
+    private void Awake()
+    {
+        for (int i = 0; i < caveInFake.transform.childCount; i++)
+        {
+            caveInLayers.Add(caveInFake.transform.GetChild(i));
+
+            Debug.Log(caveInLayers[i].gameObject.name);
+        }
+               
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            StartCoroutine(SpawnRocks());
+            caveInAnim.SetActive(true);
+        }
+
+        InvokeRepeating("StackRockLayer", 1.5f, 1f);
+                
+    }
+
+
+    void StackRockLayer()
+    {
+        caveInLayers[index].gameObject.SetActive(true);
+
+        index++;
+
+        if (index >= caveInLayers.Count)
+        {
+            caveInAnim.SetActive(false);
+            
+            this.GetComponent<BoxCollider>().enabled = false;
+            CancelInvoke();
         }
     }
-
-    IEnumerator SpawnRocks()
-    {
-        rockClone = Instantiate(rockPrefab, transform.position, transform.rotation);
-        yield return new WaitForSeconds(0.5f);
-    }
-
 }
