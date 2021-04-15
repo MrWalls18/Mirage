@@ -21,7 +21,7 @@ public class TutorialText : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    /*private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -31,7 +31,7 @@ public class TutorialText : MonoBehaviour
                 textBox.gameObject.SetActive(false);
             }
         }
-    }
+    }*/
 
     private void Update()
     {
