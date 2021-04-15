@@ -59,7 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff7300d30734f241abb435aab7b1c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coyotes: {fileID: 4707646361734876310}
+  disappearingObject: {fileID: 0}
+  appearingObject: {fileID: 4707646361734876310}
 --- !u!54 &4707646360188100758
 Rigidbody:
   m_ObjectHideFlags: 0
