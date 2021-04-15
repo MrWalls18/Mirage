@@ -30,6 +30,8 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector] public bool isRunning = false;
     public bool isHallucinating;
 
+    [HideInInspector] public int bonesFound = 0;
+
     //Predetermines variables
     private void Awake()
     {
@@ -38,6 +40,8 @@ public class PlayerStats : MonoBehaviour
         maxSanity = sanity;
         maxStamina = 10f;
         minStamina = 5f;
+
+        bonesFound = 0;
 
         stamina = maxStamina;
         runSpeed = movePlayer.walkingSpeed * sprintSpeedMultiplier;

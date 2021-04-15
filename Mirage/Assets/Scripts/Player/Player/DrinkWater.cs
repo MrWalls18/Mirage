@@ -38,10 +38,11 @@ public class DrinkWater : MonoBehaviour
                     if (hitUI.collider.gameObject.GetComponent<WaterSource>().waterPoints < 0)
                         hitUI.collider.gameObject.GetComponent<WaterSource>().waterPoints = 0;
 
-                    if (hitUI.collider.name == "Lake")
+                  /*  if (hitUI.collider.name == "Lake")
                     {
                         hitUI.collider.transform.position = new Vector3(hitUI.collider.transform.position.x, hitUI.collider.transform.position.y - 1f, hitUI.collider.transform.position.z);
                     }
+                    */
                 }
             }
 

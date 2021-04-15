@@ -14,9 +14,9 @@ public class SamplePostion : MonoBehaviour
 
     [HideInInspector] public bool wasTriggered = false;
 
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    public bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 100; i++)
         {
             Vector3 randomPoint = center + Random.insideUnitSphere * range;
             NavMeshHit hit;
@@ -24,7 +24,7 @@ public class SamplePostion : MonoBehaviour
             if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
             {
                 result = hit.position;
-                coyoteCounter++;
+                
                 return true;
             }
         }
@@ -39,6 +39,7 @@ public class SamplePostion : MonoBehaviour
         {
 
             wildCoyoteClone = Instantiate(wildCoyotePrefab, point, transform.rotation);
+            coyoteCounter++;
 
 
             Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);

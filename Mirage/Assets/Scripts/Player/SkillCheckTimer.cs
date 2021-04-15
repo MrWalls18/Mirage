@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -139,13 +140,23 @@ public class SkillCheckTimer : MonoBehaviour
         
     }
 
+    [SerializeField] private SamplePostion checkNavMesh;
 
     void DropCoin()
     {
-        Vector3 randomRadius = Random.insideUnitSphere * 5;
+        float randomRadius = 5f;
 
-        Vector3 coinDropRadius = new Vector3(randomRadius.x + coinDropTransform.position.x, coinDropTransform.position.y, randomRadius.z + coinDropTransform.position.z);
+        Vector3 point;
 
-        Instantiate(coin, coinDropRadius, transform.rotation);
+        if (checkNavMesh.RandomPoint(this.transform.position, randomRadius, out point))
+        {
+            Instantiate(coin, point, transform.rotation);
+        }
+
+        //Vector3 coinDropRadius = new Vector3(randomRadius.x + coinDropTransform.position.x, coinDropTransform.position.y, randomRadius.z + coinDropTransform.position.z);
+
+
+
+       
     }
 }
