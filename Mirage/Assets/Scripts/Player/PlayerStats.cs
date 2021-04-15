@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private float sprintTimer;
     [SerializeField] private PlayerMovement movePlayer;
+    [SerializeField] private SamplePostion coyoteAmbush;
 
     [HideInInspector] public float sanity;
     [HideInInspector] public float maxSanity;
@@ -159,8 +161,15 @@ public class PlayerStats : MonoBehaviour
         if (sanityPercentage < 25f)
         {
             //80% chance of hallucinating
+            //CoyoteAmbush hallucination occurs if hallucinating
             if (Random.value > 0.2f)
+            {
                 isHallucinating = true;
+                if (!coyoteAmbush.wasTriggered)
+                {
+                    coyoteAmbush.enabled = true;
+                }
+            }
             else
                 isHallucinating = false;
         }
