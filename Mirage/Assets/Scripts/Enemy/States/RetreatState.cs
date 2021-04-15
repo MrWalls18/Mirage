@@ -21,7 +21,7 @@ public class RetreatState : StateMachineBehaviour
     {
         enemy = animator.GetComponent<EnemyAI>();
         retreatStartTime = Time.time;
-        Retreat();
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -30,7 +30,7 @@ public class RetreatState : StateMachineBehaviour
         //enemy.agent.SetDestination(enemy.retreat.transform.position);
         //after a certain amount of time, we want the AI to follow the player again
         timeElapsed += Time.time;
-        
+        Retreat();
         if (timeElapsed >= retreatTime && isRetreating)
         {
             Debug.Log("I'm waiting to stalk again");
@@ -48,8 +48,7 @@ public class RetreatState : StateMachineBehaviour
 
     public void Retreat()
     {
-        Debug.Log("I'm retreating from the function");
-        Vector3 retreatDirection = new Vector3(-1, .15f, -1);
+        Vector3 retreatDirection = enemy.transform.forward * -1;
         Debug.Log("I'm going in this direction " + retreatDirection);
         Vector3 firstDestination = enemy.transform.position + retreatDirection;
 
@@ -63,11 +62,14 @@ public class RetreatState : StateMachineBehaviour
 
         if(navMeshFound == true)
         {
+            Debug.Log("I've found a point on the navmesh");
             NavMeshPath path = new NavMeshPath();
             enemy.agent.CalculatePath(hit.position, path);
             if(path.status != NavMeshPathStatus.PathInvalid)
             {
+                Debug.Log("my path isn't invalid");
                 enemy.agent.SetDestination(hit.position);
+                Debug.Log("my destination is " + hit.position);
             }
         }
     }
