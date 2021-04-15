@@ -16,7 +16,7 @@ public class StalkState : StateMachineBehaviour
     public float enterStalkTime;
 
     private float distFromPlayer;
-    private float minAttackRange = 3f;
+    private float minAttackRange = 15f;
 
     public bool playerStopped = true;
 

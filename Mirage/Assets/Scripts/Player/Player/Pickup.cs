@@ -53,7 +53,7 @@ public class Pickup : MonoBehaviour
             RaycastHit hit;
             Ray directionRay = new Ray(transform.position, transform.forward);
             //OnDrawGizmos();
-            if (Physics.Raycast(directionRay, out hit, 50f))
+            if (Physics.Raycast(directionRay, out hit, 5000f))
             {
                 //Debug.DrawLine(transform.position, hit.point, Color.red);
                 if(hit.collider.tag == "Rock")

@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class WinTrigger : MonoBehaviour
 {
-    public int winPanel = 1;
+    public GameObject winPanel;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,8 +14,9 @@ public class WinTrigger : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Debug.Log("it is player");
-            MenuUI.Instance.OpenPanel(winPanel);
-            MenuUI.Instance.canPause = false;
+            winPanel.SetActive(true);
+           // MenuUI.Instance.OpenPanel(winPanel);
+           // MenuUI.Instance.canPause = false;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AttackState : StateMachineBehaviour
 {
@@ -16,8 +17,12 @@ public class AttackState : StateMachineBehaviour
         //Debug.Log("I'm in the attack state already");
         animator.SetBool("isPlayerInMinAttackRange", true);
         //player dies, trigger death screen
-        MenuUI.Instance.OpenPanel(0);
-        Destroy(enemy.gameObject);
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene(0);
+       // MenuUI.Instance.OpenPanel(0);
+       // Destroy(enemy.gameObject);
+
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
