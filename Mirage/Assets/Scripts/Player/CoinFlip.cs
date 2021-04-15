@@ -52,7 +52,7 @@ public class CoinFlip : MonoBehaviour
             //hacky solution to tutorial section; fix later
             IEnumerator TooltipTimer()
             {
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(2);
                 subtitle.text = "If you're hallucinating, the coin will always land on the same side. \n Otherwise, it behaves like a regular coin: 50-50 every flip.";
                 yield return new WaitForSeconds(15);
                 subtitle.gameObject.SetActive(false);
