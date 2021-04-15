@@ -9,10 +9,12 @@ public class RetreatState : StateMachineBehaviour
     EnemyAI enemy;
 
     float timeElapsed;
-    public float retreatTime = 5f;
+    //public float retreatTime = 5f;
     public float retreatStartTime { get; private set; }
 
-    private float retreatDistance = 10f;
+    private float retreatDistance = 20f;
+
+    private float distFromPlayer;
 
     bool isRetreating = true;
 
@@ -21,7 +23,8 @@ public class RetreatState : StateMachineBehaviour
     {
         enemy = animator.GetComponent<EnemyAI>();
         retreatStartTime = Time.time;
-        
+        distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+        //Retreat();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -29,15 +32,18 @@ public class RetreatState : StateMachineBehaviour
     {
         //enemy.agent.SetDestination(enemy.retreat.transform.position);
         //after a certain amount of time, we want the AI to follow the player again
-        timeElapsed += Time.time;
-        Retreat();
-        if (timeElapsed >= retreatTime && isRetreating)
+        if(distFromPlayer < retreatDistance)
+            Retreat();
+        //timeElapsed += Time.time;
+        else if (distFromPlayer > retreatDistance)
         {
-            Debug.Log("I'm waiting to stalk again");
+            Debug.Log("i'm waiting to stalk again");
             isRetreating = false;
             animator.SetBool("hitByRock", false);
-            timeElapsed = 0;
+            //timeElapsed = 0;
         }
+
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -48,7 +54,8 @@ public class RetreatState : StateMachineBehaviour
 
     public void Retreat()
     {
-        Vector3 retreatDirection = enemy.transform.forward * -1;
+        Vector3 retreatDirection = Vector3.MoveTowards(enemy.transform.position, enemy.player.transform.position, -enemy.speed * Time.deltaTime);
+        //Vector3 retreatDirection = enemy.transform.forward * -1 * retreatDistance;
         Debug.Log("I'm going in this direction " + retreatDirection);
         Vector3 firstDestination = enemy.transform.position + retreatDirection;
 
@@ -67,9 +74,13 @@ public class RetreatState : StateMachineBehaviour
             enemy.agent.CalculatePath(hit.position, path);
             if(path.status != NavMeshPathStatus.PathInvalid)
             {
-                Debug.Log("my path isn't invalid");
                 enemy.agent.SetDestination(hit.position);
                 Debug.Log("my destination is " + hit.position);
+                if(enemy.transform.position == hit.position)
+                {
+                    Debug.Log("this check isn't useless");
+                    enemy.animator.SetBool("hitByRock", false);
+                }   
             }
         }
     }

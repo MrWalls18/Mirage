@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public float speed = 5f;
+    public float speed = 45f;
     public bool hasHitRock = false;
 
     //time between speed ups

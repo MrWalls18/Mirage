@@ -61,7 +61,7 @@ public class StalkState : StateMachineBehaviour
         if (enemy.hasHitRock)
         {
             enemy.agent.SetDestination(enemy.transform.position);
-            Debug.Log("I'm should be going to the retreat state");
+
             animator.SetBool("hitByRock", true);
         }
     }
