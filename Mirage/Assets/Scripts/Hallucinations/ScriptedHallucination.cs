@@ -13,7 +13,8 @@ public class ScriptedHallucination : MonoBehaviour
             if (disappearingObject != null)
                 disappearingObject.SetActive(false);
 
-            appearingObject.SetActive(true);
+            if (appearingObject != null)
+                appearingObject.SetActive(true);
         }
     }
 }
