@@ -3,120 +3,178 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
+
 public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
+    public Animator animator;
 
-    public Transform player;
+    //public Transform player;
+    public GameObject player;
+    public float distanceToPlayer;
+
+    public Vector3 walkTo;
+    bool walkToSet;
+    public float walkToRange = 30f;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    //building speed for stalking player
-    public float minSpeed = 3;
-    public float maxSpeed = 6;
-    public float currentTime;
+    public float speed = 45f;
+    public bool hasHitRock = false;
+
     //time between speed ups
-    public float timeToIncrease = 5f;
+    /*public float timeToIncrease = 5f;
     //how much to speed up
-    public float speedIncrement = 0.2f;
+    public float speedIncrement = 0.2f;*/
 
     //roam
-    public Vector3 walkTo;
-    bool walkToSet;
-    public float walkToRange = 10f;
+    //public Vector3 walkTo;
+    //bool walkToSet;
+    //public float walkToRange = 10f;
 
     //attack
 
     //state
-    public float sightRange, attackRange, contactTimer;
+    public float sightRange;
+    public float attackRange = 30;
     public bool playerInSight, playerInAttackRange;
 
     private PlayerStats myStats;
-    private float timer;
 
-    public GameObject losePanel;
-
-
+    //used to get distance from player
+    public GameObject GetPlayer()
+    {
+        return player;
+    }
+    
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
-        myStats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        agent = GetComponent<NavMeshAgent>();
-        currentTime = Time.time + timeToIncrease;
+        //find the player
+        //player = GameObject.Find("Player").transform;
+        
+        //myStats = GameObject.Find("Player").GetComponent<PlayerStats>();
 
-        timer = Time.time + contactTimer;
+        //start timer, may need to move this
+        //currentTime = Time.time + timeToIncrease;
+
+        //animator.Play(IdleState);
     }
 
+    public void Start()
+    {
+        //get the animator and other necessities
+        animator = GetComponent<Animator>();
+
+        agent = GetComponent<NavMeshAgent>();
+        player = FindObjectOfType<PlayerMovement>().gameObject;
+
+        //distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+    }
 
     private void Update()
     {
-        if (this.gameObject != null)
+        #region old field of view checks
+        //can you see/attack the player?
+        //playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        //playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        //distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        //if distance is less than agroRange, go to other state
+        #endregion
+        //function to check the distance in the animator
+        animator.SetFloat("agroRange", Vector3.Distance(transform.position, player.transform.position));
+
+        #region old state machine
+        //state machine
+        //if (!playerInSight && !playerInAttackRange) Patrol();
+
+        /*if (playerInSight && !playerInAttackRange)
         {
-            //can you see/attack the player?
-            playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+            StalkPlayer();
+            minSpeed += speedIncrement;
+            currentTime = Time.time + timeToIncrease;
+        }*/
 
-            //state machine
-            if (!playerInSight && !playerInAttackRange) Patrol();
-            if (playerInSight && !playerInAttackRange)
-            {
-                StalkPlayer();
-                minSpeed += speedIncrement;
-                currentTime = Time.time + timeToIncrease;
-            }
-            if (playerInAttackRange && playerInSight) Attack();
-        }
-
+        //if (playerInAttackRange && playerInSight) Attack();
+        #endregion
     }
 
-    private void Patrol()
+
+    //patrol if you don't detect the player
+    public void Patrol()
     {
-        //Reggie's Edit
-        //despawn if no contact after x amount of seconds
-        if (timer < Time.time)
+        if (!walkToSet) SearchWalkPoint();
+
+        if (walkToSet)
         {
-            Destroy(this.gameObject);
-        }
-
-        if (this.gameObject != null)
-        {
-            if (!walkToSet) SearchWalkPoint();
-
-            if (walkToSet)
+            //set the destination to the walkpoint from searchwalkpoint
+            agent.SetDestination(walkTo);
+            if (!agent.pathPending)
             {
-                agent.SetDestination(walkTo);
-            }
-
-            Vector3 distanceToWalkTo = transform.position - walkTo;
-
-            if (distanceToWalkTo.magnitude < 1f)
-            {
-                walkToSet = false;
+                //if you've reached your destination do something
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    walkToSet = false;
+                    //if the agent doesn't have a path to a point, or they are stopped
+                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                    {
+                        walkToSet = false;
+                    }
+                }
             }
         }
     }
 
-    private void SearchWalkPoint()
+    //find a walk point for the coyote to go to
+    public void SearchWalkPoint()
     {
+        #region old walkpoint calculation
         //calculate random point in your range
-        float randomZ = Random.Range(-walkToRange, walkToRange);
+        /*float randomZ = Random.Range(-walkToRange, walkToRange);
         float randomX = Random.Range(-walkToRange, walkToRange);
 
-        walkTo = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkTo, -transform.up, 2f, whatIsGround))
+        walkTo = new Vector3(enemy.transform.position.x + randomX, enemy.transform.position.y, enemy.transform.position.z + randomZ);
+        //
+        if (Physics.Raycast(walkTo, -enemy.transform.up, 2f, reference.whatIsGround))
         {
             walkToSet = true;
+        }*/
+        #endregion
+        //find a walk point after you've moved to one already
+        walkTo = new Vector3(Random.insideUnitSphere.x * walkToRange, transform.position.y, Random.insideUnitSphere.z * walkToRange);
+        walkToSet = true;
+
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+
+        if (NavMesh.SamplePosition(walkTo, out hit, walkToRange, 1))
+        {
+            //if walkPoint is on the NavMesh, go to it
+            finalPosition = hit.position;
+            walkTo = finalPosition;
         }
     }
 
-    private void StalkPlayer()
+    void OnCollisionEnter(Collision collision)
     {
-        agent.SetDestination(player.position);
-        timer = Time.time + contactTimer;
+
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            
+            hasHitRock = true;
+
+        }
     }
 
-    private void Attack()
+    //follow the player
+    /*private void StalkPlayer()
+    {
+        agent.SetDestination(player.position);
+    }*/
+
+    //attack the player, ending their game
+    /*private void Attack()
     {
         //melee attack goes here
         agent.SetDestination(transform.position);
@@ -124,26 +182,28 @@ public class EnemyAI : MonoBehaviour
 
         //Reggie's Code
         //Added 2/23/21 @ 11:42am
-        if (this.gameObject.tag == "FakeEnemy")
+        if (gameObject.tag == "FakeEnemy")
         {
             Debug.Log("Fake Enemy Attack");
             Debug.Log("Damage sanity");
             myStats.sanity -= 5f;
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
-        else if (this.gameObject.tag == "Enemy")
+        else if (gameObject.tag == "Enemy")
         {
-            Cursor.lockState = CursorLockMode.None;
-            MenuUI.Instance.OpenPanel(3);
+
+
+            Debug.Log("I've attacked, player is dead");
         }
             
-    }
+    }*/
 
-    private void Retreat()
+    //retreat when hit by rock
+    /*private void Retreat()
     {
         //agent.SetDestination();
-    }
+    }*/
 
     private void OnDrawGizmosSelected()
     {

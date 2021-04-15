@@ -10,66 +10,121 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    public Rigidbody rb;
-    public Transform player, rockContainer, guide;
-    public BoxCollider coll;
+    //public Rigidbody rb;
+
+    public Transform rockHolder;
+    public float throwForce;
+    public bool carryObject;
+    public GameObject rock;
+    public bool canPickUp; 
+
+    //, rockContainer, guide;
+    //collider to detect collisions with coyote
+    //public BoxCollider coll;
+
+    //public GameObject rockParent;
 
     //how far can the player reach to pick up a rock
-    public float pickUpRange;
-    public float throwForce;
+    //public float pickUpRange;
 
-    //player slot container
-    public bool hasRock;
-    public static bool handFull;
-
-    private void Start()
+    /*private void Start()
     {
-        if (!hasRock)
+        if (!canPickUp)
         {
             rb.isKinematic = false;
             coll.isTrigger = false;
         }
-        if (hasRock)
+        if (canPickUp)
         {
             rb.isKinematic = true;
             coll.isTrigger = true;
             handFull = true;
         }
-    }
+    }*/
 
     private void Update()
     {
-        Vector3 distanceToPlayer = player.position - transform.position;
-        if(!hasRock && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.F) && !handFull)
+        //check distance between player and pickup
+        //Vector3 distanceToPlayer = player.position - transform.position;
+
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            Equip();
+            
+            RaycastHit hit;
+            Ray directionRay = new Ray(transform.position, transform.forward);
+            //OnDrawGizmos();
+            if (Physics.Raycast(directionRay, out hit, 50f))
+            {
+                //Debug.DrawLine(transform.position, hit.point, Color.red);
+                if(hit.collider.tag == "Rock")
+                {
+                    carryObject = true;
+                    canPickUp = true;
+                    if(carryObject == true)
+                    {
+                        rock = hit.collider.gameObject;
+                        rock.transform.SetParent(rockHolder);
+                        rock.gameObject.transform.position = rockHolder.position;
+                        rock.GetComponent<Rigidbody>().isKinematic = true;
+                        rock.GetComponent<Rigidbody>().useGravity = false;
+                    }
+                }
+            }
+           
         }
-        if(hasRock && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            Throw();
+            carryObject = false;
+            canPickUp = false;
         }
+        if(carryObject == false)
+        {
+            rockHolder.DetachChildren();
+            rock.GetComponent<Rigidbody>().isKinematic = false;
+            rock.GetComponent<Rigidbody>().useGravity = true;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (canPickUp)
+            {
+                rockHolder.DetachChildren();
+                rock.GetComponent<Rigidbody>().isKinematic = false;
+                rock.GetComponent<Rigidbody>().useGravity = true;
+                rock.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * throwForce);
+            }
+        }
+        
     }
 
-    private void Equip()
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward);
+    }
+
+    /*private void Equip()
     {
         //check if hands are full
-        hasRock = true;
+        canPickUp = true;
         handFull = true;
         //set rock as child of player, and add to hand
-        transform.SetParent(rockContainer);
+        Debug.Log("my parent is " + transform.parent);
+        //transform.SetParent(rockContainer);
+        Debug.Log("is my parent the rock container? " + transform.parent);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(Vector3.zero);
 
         rb.isKinematic = true;
         coll.isTrigger = true;
-    }
+    }*/
 
-    private void Throw()
+    /*private void Throw()
     {
-        hasRock = false;
+        canPickUp = false;
         handFull = false;
 
-        guide.GetChild(0).gameObject.GetComponent<Rigidbody>().velocity = transform.forward * throwForce;
+        //throw the rock
+        rockContainer.GetComponent<Rigidbody>().AddForce(rockContainer.transform.forward * throwForce);
 
         transform.SetParent(null);
 
@@ -83,5 +138,5 @@ public class Pickup : MonoBehaviour
         //rb.AddForce(rockContainer.up * throwForce, ForceMode.Impulse);
 
         float random = Random.Range(-1f, 1f);
-    }
+    }*/
 }

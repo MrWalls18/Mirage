@@ -111,25 +111,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1634261151990827207}
   player: {fileID: 0}
+  distanceToPlayer: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
-  minSpeed: 3
-  maxSpeed: 6
-  currentTime: 0
+  speed: 5
   timeToIncrease: 5
   speedIncrement: 0.2
-  walkTo: {x: 0, y: 0, z: 0}
-  walkToRange: 7
   sightRange: 10
   attackRange: 3
-  contactTimer: 30
   playerInSight: 0
   playerInAttackRange: 0
-  losePanel: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!195 &1634261151990827207
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -149,7 +145,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.5
+  m_BaseOffset: 0.6
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &1634261152004845899

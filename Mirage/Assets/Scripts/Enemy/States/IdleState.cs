@@ -5,29 +5,43 @@ using UnityEngine;
 public class IdleState : StateMachineBehaviour
 {
     //control the idle time of the enemies
-    EnemyAI enemy;
+    //EnemyAI enemy;
 
-    public float minIdleTime = 1f;
-    public float maxIdleTime = 3f;
+    public float minIdleTime = 3f;
+    public float maxIdleTime = 5f;
     public float startTime { get; protected set; }
 
-    protected float idleTime;
+    protected float idleTime = 3f;
+    public float timeElapsed;
+    
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        startTime = Time.time;
+        startTime = Time.deltaTime;
+        //timeElapsed += Time.deltaTime;
         animator.SetBool("isIdleTimeOver", false);
+        
         SetRandomIdleTime();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if(Time.time >= startTime + idleTime)
+    {   
+        
+        timeElapsed += Time.deltaTime;
+        //Debug.Log("idleOver is set to " + idleOver);
+        //Debug.Log("timeElapsed is set to " + timeElapsed);
+        if (timeElapsed >= startTime + idleTime)
         {
+            //Debug.Log("i entered at" + startTime);
+            //Debug.Log("idleTime is set to " + idleTime);
             animator.SetBool("isIdleTimeOver", true);
+            //animator.SetFloat("idleTime", 5f);
+            //idleOver = true;
+            timeElapsed = 0;
         }
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -41,15 +55,4 @@ public class IdleState : StateMachineBehaviour
         idleTime = Random.Range(minIdleTime, maxIdleTime);
     }
 
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }
