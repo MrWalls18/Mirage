@@ -110,8 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coyoteAgent: {fileID: 8416822817125367874}
   wildpackMeshDuration: 2
-  coyoteMesh: {fileID: 3434260596591098748}
-  coyoteCollider: {fileID: 1697208069794124272}
+  coyoteMesh: {fileID: 664810474567477125}
+  coyoteCollider: {fileID: 5592332311312801599}
 --- !u!1001 &7088806662144477317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119,6 +119,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 347220697392035725, guid: 5b17b950a5b2a434b85be55f4c349b41,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1634261151990827206, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}
       propertyPath: m_Name
@@ -194,6 +199,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3457485242564499386, guid: 5b17b950a5b2a434b85be55f4c349b41,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5604854843549529081, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}
       propertyPath: m_Enabled
@@ -202,6 +212,26 @@ PrefabInstance:
     - target: {fileID: 6253403908208202284, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027315572448679108, guid: 5b17b950a5b2a434b85be55f4c349b41,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242152135560932240, guid: 5b17b950a5b2a434b85be55f4c349b41,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735321051613556480, guid: 5b17b950a5b2a434b85be55f4c349b41,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868091021060789456, guid: 5b17b950a5b2a434b85be55f4c349b41,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -222,15 +252,15 @@ NavMeshAgent:
     type: 3}
   m_PrefabInstance: {fileID: 7088806662144477317}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &3434260596591098748 stripped
+--- !u!23 &664810474567477125 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5604854843549529081, guid: 5b17b950a5b2a434b85be55f4c349b41,
+  m_CorrespondingSourceObject: {fileID: 7735321051613556480, guid: 5b17b950a5b2a434b85be55f4c349b41,
     type: 3}
   m_PrefabInstance: {fileID: 7088806662144477317}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1697208069794124272 stripped
+--- !u!64 &5592332311312801599 stripped
 MeshCollider:
-  m_CorrespondingSourceObject: {fileID: 8497502663847057781, guid: 5b17b950a5b2a434b85be55f4c349b41,
+  m_CorrespondingSourceObject: {fileID: 3457485242564499386, guid: 5b17b950a5b2a434b85be55f4c349b41,
     type: 3}
   m_PrefabInstance: {fileID: 7088806662144477317}
   m_PrefabAsset: {fileID: 0}

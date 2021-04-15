@@ -9,7 +9,7 @@ public class Interact : MonoBehaviour
     private PlayerMovement movePlayer;
     public float waterTimer;
     public float boneTextTimer = 3;
-    public float raycastDistance = 5f;
+    public float raycastDistance = 20f;
     private float timer;
 
     private Text boneText;
@@ -44,10 +44,12 @@ public class Interact : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, raycastDistance))
+        if (Physics.Raycast(Camera.main.transform.position + Vector3.forward, Camera.main.transform.forward, out hit, raycastDistance))
         {
+            Debug.Log(hit.collider.name);
             if (hit.collider.tag == "Water")
             {
+                Debug.Log("Hit water");
                 E_Tooltip.gameObject.SetActive(true);
 
                 ActivateDrinkWater(hit);
