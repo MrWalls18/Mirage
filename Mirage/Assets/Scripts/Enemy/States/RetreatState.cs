@@ -12,7 +12,7 @@ public class RetreatState : StateMachineBehaviour
     public float retreatTime = 5f;
     public float retreatStartTime { get; private set; }
 
-    public float retreatDistance = 10f;
+    private float retreatDistance = 10f;
 
     bool isRetreating = true;
 
@@ -30,6 +30,7 @@ public class RetreatState : StateMachineBehaviour
         //enemy.agent.SetDestination(enemy.retreat.transform.position);
         //after a certain amount of time, we want the AI to follow the player again
         timeElapsed += Time.time;
+        
         if (timeElapsed >= retreatTime && isRetreating)
         {
             Debug.Log("I'm waiting to stalk again");
@@ -48,8 +49,7 @@ public class RetreatState : StateMachineBehaviour
     public void Retreat()
     {
         Debug.Log("I'm retreating from the function");
-        //Debug.Log("I'm going in this direction first " + retreatDirection);
-        Vector3 retreatDirection = enemy.transform.forward * -1 * retreatDistance;
+        Vector3 retreatDirection = new Vector3(-1, .15f, -1);
         Debug.Log("I'm going in this direction " + retreatDirection);
         Vector3 firstDestination = enemy.transform.position + retreatDirection;
 

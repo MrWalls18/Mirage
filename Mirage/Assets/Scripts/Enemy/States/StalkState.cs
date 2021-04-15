@@ -60,7 +60,7 @@ public class StalkState : StateMachineBehaviour
         //this will transition the coyote to the retreatState
         if (enemy.hasHitRock)
         {
-            //enemy.agent.SetDestination(enemy.transform.position);
+            enemy.agent.SetDestination(enemy.transform.position);
             Debug.Log("I'm should be going to the retreat state");
             animator.SetBool("hitByRock", true);
         }
