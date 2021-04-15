@@ -107,7 +107,7 @@ public class PlayerStats : MonoBehaviour
         if (isRunning)
         {
             //Sanity depletes faster when sprinting
-            CalculateSanity(sanityDepletionRate * 2);
+            CalculateSanity(sanityDepletionRate);
             movePlayer.walkingSpeed = runSpeed;
 
             //Stamina deplete as you are running

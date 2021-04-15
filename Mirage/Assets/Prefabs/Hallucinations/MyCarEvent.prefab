@@ -126,6 +126,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8004617826287384282, guid: adeb740a4a752464cb4ef1f3c23bb8dd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: adeb740a4a752464cb4ef1f3c23bb8dd, type: 3}
+--- !u!1 &4054354459464573521 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1119223084254642390, guid: adeb740a4a752464cb4ef1f3c23bb8dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 4020503430287221383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8717090707107029386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5706871348789986061, guid: adeb740a4a752464cb4ef1f3c23bb8dd,
@@ -216,6 +222,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f37f3d65e5697246a23e5f3091266db, type: 3}
+--- !u!1 &4960213252846489342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5f37f3d65e5697246a23e5f3091266db,
+    type: 3}
+  m_PrefabInstance: {fileID: 5194724589213889455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5736995490892469316 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f37f3d65e5697246a23e5f3091266db,
@@ -289,6 +301,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyCarEvent
       objectReference: {fileID: 0}
+    - target: {fileID: 7399907683792086055, guid: a25ce411c3f0a9444b0dea96eebc0bfc,
+        type: 3}
+      propertyPath: appearingObject
+      value: 
+      objectReference: {fileID: 4960213252846489342}
+    - target: {fileID: 7399907683792086055, guid: a25ce411c3f0a9444b0dea96eebc0bfc,
+        type: 3}
+      propertyPath: disappearingObject
+      value: 
+      objectReference: {fileID: 4054354459464573521}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a25ce411c3f0a9444b0dea96eebc0bfc, type: 3}
 --- !u!4 &1681353565685622644 stripped
