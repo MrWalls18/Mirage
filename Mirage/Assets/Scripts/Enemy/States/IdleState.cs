@@ -27,9 +27,7 @@ public class IdleState : StateMachineBehaviour
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        Debug.Log("I'm in Idle's update");
-        
+    {   
         
         timeElapsed += Time.deltaTime;
         //Debug.Log("idleOver is set to " + idleOver);

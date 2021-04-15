@@ -52,18 +52,14 @@ public class Pickup : MonoBehaviour
             
             RaycastHit hit;
             Ray directionRay = new Ray(transform.position, transform.forward);
-            Debug.Log("hit is equal to " + directionRay);
             //OnDrawGizmos();
-            if (Physics.Raycast(directionRay, out hit, 20f))
+            if (Physics.Raycast(directionRay, out hit, 50f))
             {
                 //Debug.DrawLine(transform.position, hit.point, Color.red);
-                Debug.Log("did i hit the rock? i hit " + hit.collider.tag);
                 if(hit.collider.tag == "Rock")
                 {
                     carryObject = true;
                     canPickUp = true;
-                    Debug.Log("carryObject = " + carryObject);
-                    Debug.Log("canPickUp = " + canPickUp);
                     if(carryObject == true)
                     {
                         rock = hit.collider.gameObject;

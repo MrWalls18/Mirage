@@ -67,16 +67,13 @@ public class PatrolState : EnemyBase_FSM
 
         if (distanceToPlayer < minAgroRange)
         {
-            Debug.Log("I see you");
+
             isStalking = true;
             animator.SetBool("isPlayerInMinAgroRange", true);
         }
         else if (distanceToPlayer > minAgroRange)
         {
-            //TODO: double check this logic
-            Debug.Log("I pretend not to see");
             animator.SetBool("isIdleTimeOver", false);
-
         }
     }
 

@@ -18,13 +18,13 @@ public class StalkState : StateMachineBehaviour
     public bool playerStopped = true;
 
     //bool for when enemy gets hit by rock
-    public bool hasHitRock = false;
+    //public bool hasHitRock = false;
 
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("I'm stalking you");
+
         base.OnStateEnter(animator, stateInfo, layerIndex);
         enemy = animator.GetComponent<EnemyAI>();
         playerInSight = true;
@@ -41,7 +41,6 @@ public class StalkState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //Debug.Log("updating...");
         //create variable for min follow distance, set to like 15,
         //if player moves within 15 units, min follow distance gets updated to 
         //that new value
@@ -58,8 +57,11 @@ public class StalkState : StateMachineBehaviour
             //enemy.speed += enemy.speedIncrement;
             enterStalkTime = Time.deltaTime + increaseSpeedInterval;
         }
-        else if (hasHitRock)
+        //this will transition the coyote to the retreatState
+        if (enemy.hasHitRock)
         {
+            //enemy.agent.SetDestination(enemy.transform.position);
+            Debug.Log("I'm should be going to the retreat state");
             animator.SetBool("hitByRock", true);
         }
     }
@@ -89,9 +91,8 @@ public class StalkState : StateMachineBehaviour
         //set coyote speed to player speed
 
         //TODO: modify this behaviour so it's more believable
-        Debug.Log("I got into the stalk function");
         enemy.agent.SetDestination(enemy.player.transform.position);
-        if (!hasHitRock)
+        if (!enemy.hasHitRock)
         {
             //if player stops, start timer
             if (playerStopped)
@@ -110,11 +111,22 @@ public class StalkState : StateMachineBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collider)
+    /*void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("i've collided with something");
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            Debug.Log("i got hit by a rock");
+            enemy.hasHitRock = true;
+        }
+    }*?
+
+    /*void OnTriggerEnter(Collider collider)
+    {
+        //flip the bool if Rock hits coyote
         if (collider.gameObject.CompareTag("Rock"))
         {
-            hasHitRock = true;   
+            hasHitRock = true; 
         }
-    }
+    }*/
 }

@@ -21,6 +21,7 @@ public class EnemyAI : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public float speed = 5f;
+    public bool hasHitRock = false;
 
     //time between speed ups
     /*public float timeToIncrease = 5f;
@@ -119,7 +120,6 @@ public class EnemyAI : MonoBehaviour
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                     {
                         walkToSet = false;
-                        Debug.Log("I reached my destination");
                     }
                 }
             }
@@ -129,7 +129,6 @@ public class EnemyAI : MonoBehaviour
     //find a walk point for the coyote to go to
     public void SearchWalkPoint()
     {
-        Debug.Log("I'm looking for a walk point");
         #region old walkpoint calculation
         //calculate random point in your range
         /*float randomZ = Random.Range(-walkToRange, walkToRange);
@@ -145,7 +144,6 @@ public class EnemyAI : MonoBehaviour
         //find a walk point after you've moved to one already
         walkTo = new Vector3(Random.insideUnitSphere.x * walkToRange, transform.position.y, Random.insideUnitSphere.z * walkToRange);
         walkToSet = true;
-        Debug.Log("i'm going to " + walkTo);
 
         NavMeshHit hit;
         Vector3 finalPosition = Vector3.zero;
@@ -155,6 +153,17 @@ public class EnemyAI : MonoBehaviour
             //if walkPoint is on the NavMesh, go to it
             finalPosition = hit.position;
             walkTo = finalPosition;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            
+            hasHitRock = true;
+
         }
     }
 

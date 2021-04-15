@@ -12,6 +12,7 @@ public class AttackState : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log("I'm in the attack state already");
         animator.SetBool("isPlayerInMinAttackRange", true);
         //player dies, trigger death screen
         MenuUI.Instance.OpenPanel(3);
