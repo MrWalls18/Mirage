@@ -15,6 +15,9 @@ public class StalkState : StateMachineBehaviour
     public float increaseSpeedInterval = 10f;
     public float enterStalkTime;
 
+    private float distFromPlayer;
+    private float minAttackRange = 3f;
+
     public bool playerStopped = true;
 
     //bool for when enemy gets hit by rock
@@ -27,6 +30,9 @@ public class StalkState : StateMachineBehaviour
 
         base.OnStateEnter(animator, stateInfo, layerIndex);
         enemy = animator.GetComponent<EnemyAI>();
+
+        //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+
         playerInSight = true;
         //playerInSight = Physics.CheckSphere(enemy.transform.position, sightRange, enemy.whatIsPlayer);
         //playerInAttackRange = Physics.CheckSphere(enemy.transform.position, enemy.attackRange, enemy.whatIsPlayer);
@@ -45,14 +51,18 @@ public class StalkState : StateMachineBehaviour
         //if player moves within 15 units, min follow distance gets updated to 
         //that new value
         //if player stops moving, start a timer, and after 5 seconds start creeping closer
+        distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+
         if (playerInSight)
         {
             StalkPlayer();
-
-            if (playerInAttackRange)
+            Debug.Log("i'm this far away " + distFromPlayer);
+            if(distFromPlayer < minAttackRange)
             {
+                Debug.Log("i'm in the right if statement");
                 animator.SetBool("isPlayerInMinAttackRange", true);
             }
+            
             //enemy.agent.SetDestination(enemy.player.transform.position);
             //enemy.speed += enemy.speedIncrement;
             enterStalkTime = Time.deltaTime + increaseSpeedInterval;

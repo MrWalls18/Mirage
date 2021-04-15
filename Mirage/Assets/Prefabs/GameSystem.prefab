@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 4992792426021103591}
   - component: {fileID: 4992792426021103589}
   - component: {fileID: 4992792426021103588}
+  - component: {fileID: 675690953}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -335,6 +336,23 @@ MonoBehaviour:
     type: 3}
   hallucinatedEnemyPrefab: {fileID: 1744633218906334519, guid: baefd774c9613974e9b41f7c954a2380,
     type: 3}
+--- !u!114 &675690953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992792426021103590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1368699acc266845b1c628e41efb2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamePanels:
+  - {fileID: 0}
+  canPause: 0
+  isPaused: 0
+  formURL: 
 --- !u!1 &4992792426049249987
 GameObject:
   m_ObjectHideFlags: 0
