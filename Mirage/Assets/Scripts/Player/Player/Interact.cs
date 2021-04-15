@@ -1,13 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Interact : MonoBehaviour
 {
     private PlayerStats myStats;
     private PlayerMovement movePlayer;
     public float waterTimer;
+    public float boneTextTimer = 3;
+    public float raycastDistance = 5f;
     private float timer;
+
+    private Text boneText;
+    private Text E_Tooltip;
+
+
+
 
     [SerializeField] private GameObject waterUI;
 
@@ -20,6 +29,14 @@ public class Interact : MonoBehaviour
 
         myStats = this.GetComponent<PlayerStats>();
         movePlayer = this.GetComponent<PlayerMovement>();
+
+        boneText = GameObject.Find("BoneText").GetComponent<Text>();
+        if (boneText.gameObject.activeSelf == true) boneText.gameObject.SetActive(false);
+
+        E_Tooltip = GameObject.Find("E_Tooltip").GetComponent<Text>();
+        if (boneText.gameObject.activeSelf == true) boneText.gameObject.SetActive(false);
+
+
     }
 
     // Update is called once per frame
@@ -27,34 +44,59 @@ public class Interact : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 5f))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, raycastDistance))
         {
             if (hit.collider.tag == "Water")
             {
+                E_Tooltip.gameObject.SetActive(true);
+
                 ActivateDrinkWater(hit);
             }
+            else E_Tooltip.gameObject.SetActive(false);
 
             if (hit.collider.tag == "FakeKey")
             {
-                if(Input.GetKeyDown(KeyCode.E))
+                E_Tooltip.gameObject.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.GetComponent<FakeKey>().ResetKeyLocations();
                 }
             }
+            else E_Tooltip.gameObject.SetActive(false);
 
             if (hit.collider.name == "CarKey")
             {
-                if(Input.GetKeyDown(KeyCode.E))
+                E_Tooltip.gameObject.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     myGM.HasKey = true;
                     myGM.DestroyCarKeySpawns();
                 }
                 
             }
+            else E_Tooltip.gameObject.SetActive(false);
+
+
+            if (hit.collider.tag == "Bone")
+            {
+                E_Tooltip.gameObject.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    //disable bone
+                    hit.collider.gameObject.SetActive(false);
+
+                    StartCoroutine("BoneTextTimer");
+                }
+            }
+            else E_Tooltip.gameObject.SetActive(false);
         }
         else
-        {
+        {            
             waterUI.SetActive(false);
+            E_Tooltip.gameObject.SetActive(false);
         }
 
     }
@@ -86,5 +128,17 @@ public class Interact : MonoBehaviour
         yield return new WaitForSeconds(waterTimer);
         Debug.Log("Player is done.");
         movePlayer.enabled = true;
+    }
+
+    //controls bone find UI
+    IEnumerator BoneTextTimer()
+    {
+        myStats.bonesFound++;
+        boneText.text = "Bones Found: " + myStats.bonesFound + "/8";
+
+        boneText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(boneTextTimer);
+
+        boneText.gameObject.SetActive(false);
     }
 }

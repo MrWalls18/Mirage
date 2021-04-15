@@ -10,7 +10,7 @@ TagManager:
   - Water
   - CarKeySpawn
   - FakeKey
-  - Rock
+  - Bone
   layers:
   - Default
   - TransparentFX
