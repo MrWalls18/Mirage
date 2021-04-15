@@ -11,6 +11,7 @@ TagManager:
   - CarKeySpawn
   - FakeKey
   - Bone
+  - Rock
   layers:
   - Default
   - TransparentFX
