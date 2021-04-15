@@ -11,10 +11,10 @@ public class PlayerStats : MonoBehaviour
     public float sanityDepletionRate;
 
     [SerializeField] private float sprintTimer;
-    [SerializeField] private PlayerMove movePlayer;
+    [SerializeField] private PlayerMovement movePlayer;
 
     [HideInInspector] public float sanity;
-    private float maxSanity;
+    [HideInInspector] public float maxSanity;
     [HideInInspector] public float stamina;
     [HideInInspector] public float maxStamina;
     private float minStamina;
@@ -38,7 +38,7 @@ public class PlayerStats : MonoBehaviour
         minStamina = 5f;
 
         stamina = maxStamina;
-        runSpeed = movePlayer.moveSpeed * sprintSpeedMultiplier;
+        runSpeed = movePlayer.walkingSpeed * sprintSpeedMultiplier;
 
         hallucinationCountdown = hallucinationTimer;
 
@@ -68,6 +68,11 @@ public class PlayerStats : MonoBehaviour
     {
         sanity -= Time.deltaTime * depletionSpeed;
 
+        if (sanity < 1f)
+        {
+            sanity = 1f;
+        }
+
         CalculateMaxStamina();
     }
 
@@ -92,11 +97,12 @@ public class PlayerStats : MonoBehaviour
    
     public void Sprint()
     {
+       
         if (isRunning)
         {
             //Sanity depletes faster when sprinting
             CalculateSanity(sanityDepletionRate * 2);
-            movePlayer.moveSpeed = runSpeed;
+            movePlayer.walkingSpeed = runSpeed;
 
             //Stamina deplete as you are running
             stamina -= Time.deltaTime;
@@ -104,14 +110,14 @@ public class PlayerStats : MonoBehaviour
             {
                 stamina = 0;
                 isRunning = false;
-                movePlayer.moveSpeed = movePlayer.defaultSpeed;
+               movePlayer.ResetSpeed();
             }
         }
 
         //Regenerates stamina if player isn't running
         else if (stamina < maxStamina)
         {
-            movePlayer.moveSpeed = movePlayer.defaultSpeed;
+            movePlayer.ResetSpeed();
             stamina += Time.deltaTime / 2f;
         }
 
@@ -119,7 +125,7 @@ public class PlayerStats : MonoBehaviour
         //They revert back to their walking speed
         else
         {
-            movePlayer.moveSpeed = movePlayer.defaultSpeed;
+            movePlayer.ResetSpeed();
         }
     }
 

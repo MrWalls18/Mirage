@@ -28,10 +28,14 @@ public class EnemyAI : MonoBehaviour
     //attack
 
     //state
-    public float sightRange, attackRange;
+    public float sightRange, attackRange, contactTimer;
     public bool playerInSight, playerInAttackRange;
 
     private PlayerStats myStats;
+    private float timer;
+
+    public GameObject losePanel;
+
 
     private void Awake()
     {
@@ -39,41 +43,56 @@ public class EnemyAI : MonoBehaviour
         myStats = GameObject.Find("Player").GetComponent<PlayerStats>();
         agent = GetComponent<NavMeshAgent>();
         currentTime = Time.time + timeToIncrease;
+
+        timer = Time.time + contactTimer;
     }
 
 
     private void Update()
     {
-        //can you see/attack the player?
-        playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        //state machine
-        if (!playerInSight && !playerInAttackRange) Patrol();
-        if (playerInSight && !playerInAttackRange)
+        if (this.gameObject != null)
         {
-            StalkPlayer();
-            minSpeed += speedIncrement;
-            currentTime = Time.time + timeToIncrease;
+            //can you see/attack the player?
+            playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+            //state machine
+            if (!playerInSight && !playerInAttackRange) Patrol();
+            if (playerInSight && !playerInAttackRange)
+            {
+                StalkPlayer();
+                minSpeed += speedIncrement;
+                currentTime = Time.time + timeToIncrease;
+            }
+            if (playerInAttackRange && playerInSight) Attack();
         }
-        if (playerInAttackRange && playerInSight) Attack();
 
     }
 
     private void Patrol()
     {
-        if (!walkToSet) SearchWalkPoint();
-
-        if (walkToSet)
+        //Reggie's Edit
+        //despawn if no contact after x amount of seconds
+        if (timer < Time.time)
         {
-            agent.SetDestination(walkTo);
+            Destroy(this.gameObject);
         }
 
-        Vector3 distanceToWalkTo = transform.position - walkTo;
-
-        if(distanceToWalkTo.magnitude < 1f)
+        if (this.gameObject != null)
         {
-            walkToSet = false;
+            if (!walkToSet) SearchWalkPoint();
+
+            if (walkToSet)
+            {
+                agent.SetDestination(walkTo);
+            }
+
+            Vector3 distanceToWalkTo = transform.position - walkTo;
+
+            if (distanceToWalkTo.magnitude < 1f)
+            {
+                walkToSet = false;
+            }
         }
     }
 
@@ -94,6 +113,7 @@ public class EnemyAI : MonoBehaviour
     private void StalkPlayer()
     {
         agent.SetDestination(player.position);
+        timer = Time.time + contactTimer;
     }
 
     private void Attack()
@@ -114,9 +134,8 @@ public class EnemyAI : MonoBehaviour
 
         else if (this.gameObject.tag == "Enemy")
         {
-
-
-            Debug.Log("I've attacked, player is dead");
+            Cursor.lockState = CursorLockMode.None;
+            MenuUI.Instance.OpenPanel(3);
         }
             
     }
