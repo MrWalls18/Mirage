@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8293047080162153397}
   - component: {fileID: 2565053931197002552}
   - component: {fileID: 1272599021}
+  - component: {fileID: 1077411767}
+  - component: {fileID: 1077411762}
   m_Layer: 0
   m_Name: Enemy_Coyote
   m_TagString: Enemy
@@ -58,7 +60,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
-  speed: 5
+  speed: 45
   hasHitRock: 0
   sightRange: 0
   attackRange: 0
@@ -105,6 +107,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &1077411767
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293047080162153394}
+  serializedVersion: 2
+  m_Mass: 10000000
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1077411762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293047080162153394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1420746, y: 1.908431, z: 2.9337597}
+  m_Center: {x: -0.02481842, y: 0.45421553, z: -0.03949642}
 --- !u!1001 &8293047081840817716
 PrefabInstance:
   m_ObjectHideFlags: 0
