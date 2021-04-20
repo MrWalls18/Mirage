@@ -16,14 +16,13 @@ public class AttackState : StateMachineBehaviour
     {
         //Debug.Log("I'm in the attack state already");
         animator.SetBool("isPlayerInMinAttackRange", true);
-
         //player dies, trigger death screen
-
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(0);
        // MenuUI.Instance.OpenPanel(0);
        // Destroy(enemy.gameObject);
-       
+
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -38,5 +37,15 @@ public class AttackState : StateMachineBehaviour
         
     }
 
-    
+    // OnStateMove is called right after Animator.OnAnimatorMove()
+    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    // Implement code that processes and affects root motion
+    //}
+
+    // OnStateIK is called right after Animator.OnAnimatorIK()
+    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    // Implement code that sets up animation IK (inverse kinematics)
+    //}
 }
