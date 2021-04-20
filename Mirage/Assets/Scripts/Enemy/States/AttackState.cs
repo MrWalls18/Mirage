@@ -18,17 +18,12 @@ public class AttackState : StateMachineBehaviour
         animator.SetBool("isPlayerInMinAttackRange", true);
 
         //player dies, trigger death screen
-<<<<<<< HEAD
-        MenuUI.Instance.OpenPanel(0);
-        //Destroy(enemy.gameObject);
-=======
+
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(0);
        // MenuUI.Instance.OpenPanel(0);
        // Destroy(enemy.gameObject);
-
-        
->>>>>>> main
+       
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
