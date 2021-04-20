@@ -42,12 +42,6 @@ public class EnemyAI : MonoBehaviour
 
     private PlayerStats myStats;
 
-    //used to get distance from player
-    public GameObject GetPlayer()
-    {
-        return player;
-    }
-    
     private void Awake()
     {
         //find the player
@@ -100,6 +94,12 @@ public class EnemyAI : MonoBehaviour
         #endregion
     }
 
+
+    //used to get distance from player
+    public GameObject GetPlayer()
+    {
+        return player;
+    }
 
     //patrol if you don't detect the player
     public void Patrol()
