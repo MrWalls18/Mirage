@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +9,18 @@ public class GameManager : MonoBehaviour
 
     public PlayerStats myStats;
 
-    bool isGameOver = false;
+    private bool hasKey;
+    public bool HasKey
+    {
+        get
+        {
+            return hasKey;
+        }
+        set
+        {
+            hasKey = value;
+        }
+    }
 
     private void Update()
     {
@@ -22,13 +32,11 @@ public class GameManager : MonoBehaviour
         
 
     }
-    
-    public void EndGame()
+
+    public void DestroyCarKeySpawns()
     {
-        if (isGameOver == false)
-        {
-            isGameOver = true;
-            SceneManager.LoadScene("GameOver");
-        }
+        GameObject keySpawnManager = GameObject.Find("CarKeySpawnManager");
+
+        Destroy(keySpawnManager);
     }
 }

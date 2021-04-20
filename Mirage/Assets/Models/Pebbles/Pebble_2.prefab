@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 250653922178177819}
   - component: {fileID: 8720902611026800289}
   - component: {fileID: 6080485630564142378}
+  - component: {fileID: 3962973456164072974}
   m_Layer: 0
   m_Name: Pebble_2
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6523273633806380069
 Transform:
@@ -91,6 +92,22 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4995205360634072733, guid: 8d647497ddec00a43b16fb917a415fcd, type: 3}
+--- !u!54 &3962973456164072974
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663816289556326473}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

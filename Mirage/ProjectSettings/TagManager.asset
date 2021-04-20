@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - FakeEnemy
   - Water
+  - CarKeySpawn
+  - FakeKey
+  - Bone
   - Rock
   layers:
   - Default

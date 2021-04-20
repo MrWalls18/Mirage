@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+//using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,9 +13,10 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private float sprintTimer;
     [SerializeField] private PlayerMovement movePlayer;
+    [SerializeField] private SamplePostion coyoteAmbush;
 
     [HideInInspector] public float sanity;
-    private float maxSanity;
+    [HideInInspector] public float maxSanity;
     [HideInInspector] public float stamina;
     [HideInInspector] public float maxStamina;
     private float minStamina;
@@ -28,6 +30,8 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector] public bool isRunning = false;
     public bool isHallucinating;
 
+    [HideInInspector] public int bonesFound = 0;
+
     //Predetermines variables
     private void Awake()
     {
@@ -36,6 +40,8 @@ public class PlayerStats : MonoBehaviour
         maxSanity = sanity;
         maxStamina = 10f;
         minStamina = 5f;
+
+        bonesFound = 0;
 
         stamina = maxStamina;
         runSpeed = movePlayer.walkingSpeed * sprintSpeedMultiplier;
@@ -68,6 +74,11 @@ public class PlayerStats : MonoBehaviour
     {
         sanity -= Time.deltaTime * depletionSpeed;
 
+        if (sanity < 1f)
+        {
+            sanity = 1f;
+        }
+
         CalculateMaxStamina();
     }
 
@@ -96,7 +107,7 @@ public class PlayerStats : MonoBehaviour
         if (isRunning)
         {
             //Sanity depletes faster when sprinting
-            CalculateSanity(sanityDepletionRate * 2);
+            CalculateSanity(sanityDepletionRate);
             movePlayer.walkingSpeed = runSpeed;
 
             //Stamina deplete as you are running
@@ -154,8 +165,15 @@ public class PlayerStats : MonoBehaviour
         if (sanityPercentage < 25f)
         {
             //80% chance of hallucinating
+            //CoyoteAmbush hallucination occurs if hallucinating
             if (Random.value > 0.2f)
+            {
                 isHallucinating = true;
+                if (!coyoteAmbush.wasTriggered)
+                {
+                    coyoteAmbush.enabled = true;
+                }
+            }
             else
                 isHallucinating = false;
         }

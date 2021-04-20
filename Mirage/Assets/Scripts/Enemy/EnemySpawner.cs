@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject hallucinatedEnemyPrefab;
     private GameObject enemyClone;
     private int randomSpawnPos;
-    private MeshRenderer s_renderer;
+ //   private MeshRenderer s_renderer;
 
    // private bool didEnemySpawn = false;
 
@@ -40,28 +40,33 @@ public class EnemySpawner : MonoBehaviour
             //Picks a random spawnPoint from the list of enemy spawn points
             randomSpawnPos = UnityEngine.Random.Range(0, eSpawner.Count);
 
-            s_renderer = eSpawner[randomSpawnPos].GetComponentInChildren<MeshRenderer>();
+        //      s_renderer = eSpawner[randomSpawnPos].GetComponentInChildren<MeshRenderer>();
 
-            //if the player is not too close, not too far,
-            //and if the spawn point is out of the camera frame
-            if (Vector3.Distance(player.transform.position, eSpawner[randomSpawnPos].transform.position) > minSpawnDistance &&
-                    Vector3.Distance(player.transform.position, eSpawner[randomSpawnPos].transform.position) < maxSpawnDistance &&
-                        !s_renderer.isVisible)
+        //if the player is not too close, not too far,
+        //and if the spawn point is out of the camera frame
+        RaycastHit hit;
+        if (Vector3.Distance(eSpawner[randomSpawnPos].transform.position, player.transform.position) < maxSpawnDistance)
+        {
+            if (Physics.Raycast(eSpawner[randomSpawnPos].transform.position, (player.transform.position - eSpawner[randomSpawnPos].transform.position), out hit, maxSpawnDistance))
             {
-                //If the player is hallucinating,
-                //spawn a "fake" enemy
-                if (player.GetComponent<PlayerStats>().isHallucinating)
+                if (hit.collider.tag != "Player")
                 {
-                    enemyClone = Instantiate(hallucinatedEnemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
-                    
+                    //If the player is hallucinating,
+                    //spawn a "fake" enemy
+                    if (player.GetComponent<PlayerStats>().isHallucinating)
+                    {
+                        enemyClone = Instantiate(hallucinatedEnemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
+
+                    }
+                    //If not, spawn a real enemy
+                    else
+                    {
+                        enemyClone = Instantiate(enemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
+                    }
+                    //break;
                 }
-                //If not, spawn a real enemy
-                else
-                {
-                    enemyClone = Instantiate(enemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
-                }
-                //break;
             }
+        }
         //}
     }
 }

@@ -21,11 +21,11 @@ ScriptedImporter:
     shaderName: Universal Render Pipeline/Lit
     materialProperties:
       shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-      shaderKeywords: _HEIGHTMAP _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP _ROUGHNESSMAP
+      shaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP
       lightmapFlags: 4
       enableInstancingVariants: 0
       doubleSidedGI: 0
-      customRenderQueue: -1
+      customRenderQueue: 2000
       texEnvs:
       - name: _BaseMap
         texture: {fileID: 9216961270979920557, guid: 1c8f6f645ba6fb74faca5a7849f96331,
