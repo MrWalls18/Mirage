@@ -34,8 +34,6 @@ public class StalkState : StateMachineBehaviour
         //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
 
         playerInSight = true;
-        //playerInSight = Physics.CheckSphere(enemy.transform.position, sightRange, enemy.whatIsPlayer);
-        //playerInAttackRange = Physics.CheckSphere(enemy.transform.position, enemy.attackRange, enemy.whatIsPlayer);
 
         //set time coyote enters stalk state
         //may need to rework, player can lose coyote if they leave sight range rn
@@ -52,11 +50,16 @@ public class StalkState : StateMachineBehaviour
         //that new value
         //if player stops moving, start a timer, and after 5 seconds start creeping closer
         distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
-
+        //if the player gets too far away, return to patrol
+        if (distFromPlayer > 40f)
+        {
+            playerInSight = false;
+            animator.SetBool("isPlayerInMinAgroRange", false);
+        }
         if (playerInSight)
         {
             StalkPlayer();
-            Debug.Log("i'm this far away " + distFromPlayer);
+            //Debug.Log("i'm this far away " + distFromPlayer);
             if(distFromPlayer < minAttackRange)
             {
                 Debug.Log("i'm in the right if statement");
