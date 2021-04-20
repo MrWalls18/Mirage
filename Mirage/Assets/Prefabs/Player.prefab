@@ -116,6 +116,7 @@ MonoBehaviour:
   coinFlip: {fileID: 8419085051289899702}
   barReset: {fileID: 0}
   marker: {fileID: 0}
+  subtitle: {fileID: 0}
   skillBar: {fileID: 0}
 --- !u!114 &8419085051289899702
 MonoBehaviour:
@@ -187,7 +188,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5212997391500161300}
   m_Father: {fileID: 298859884351686302}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -444,6 +446,54 @@ MonoBehaviour:
   wildCoyotePrefab: {fileID: 8416822817125367875, guid: 0340fe19052e17e4a968d824f5007867,
     type: 3}
   wasTriggered: 0
+--- !u!1 &8155208125344653212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5212997391500161300}
+  - component: {fileID: 2172941542841600629}
+  m_Layer: 0
+  m_Name: RockContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5212997391500161300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155208125344653212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.851, z: 0.625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 298859884456760146}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2172941542841600629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155208125344653212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5b3b6ac56a82346815f0c80006fb74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockHolder: {fileID: 5212997391500161300}
+  throwForce: 1000
+  carryObject: 0
+  rock: {fileID: 8994613785420990979, guid: 77e002834f5e7614f98d4970b40c81b3, type: 3}
+  canPickUp: 0
 --- !u!1001 &2244117101244397594
 PrefabInstance:
   m_ObjectHideFlags: 0
