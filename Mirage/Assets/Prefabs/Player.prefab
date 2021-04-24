@@ -141,7 +141,7 @@ MonoBehaviour:
   coinFlipText: {fileID: 0}
   stats: {fileID: 7844060896701211309}
   hasCoin: 1
-  checkNavMesh: {fileID: 0}
+  checkNavMesh: {fileID: 3609929174099901618}
 --- !u!114 &923355985636011165
 MonoBehaviour:
   m_ObjectHideFlags: 0
