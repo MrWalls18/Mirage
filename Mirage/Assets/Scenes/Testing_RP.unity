@@ -614,7 +614,7 @@ Transform:
   m_GameObject: {fileID: 588924190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 150, y: 1, z: 150}
+  m_LocalScale: {x: 200, y: 1, z: 200}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -2257,6 +2257,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1185087722}
+    - target: {fileID: 8930557314806407112, guid: d3e89df2f9805a34d86ce0c39e2ef12a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8930557314806407112, guid: d3e89df2f9805a34d86ce0c39e2ef12a,
         type: 3}
       propertyPath: getCoyotePosition
