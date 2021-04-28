@@ -1152,6 +1152,7 @@ GameObject:
   - component: {fileID: 4992792426021103591}
   - component: {fileID: 4992792426021103589}
   - component: {fileID: 4992792426021103588}
+  - component: {fileID: 1039015826100781069}
   - component: {fileID: 6602556665314060498}
   m_Layer: 0
   m_Name: Game Manager
@@ -1199,7 +1200,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4992792426021103590}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d375c98ab910e9340a95aecae2b7e370, type: 3}
   m_Name: 
@@ -1214,6 +1215,20 @@ MonoBehaviour:
   maxNumOfEnemies: 5
   timeText: {fileID: 816793227783080115}
   maxEnemiesMultiplier: 1.487
+--- !u!114 &1039015826100781069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992792426021103590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7074548146694a40aaa345db21c023b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fakeEnemyPrefab: {fileID: 0}
+  timeBetweenSpawns: 10
 --- !u!114 &6602556665314060498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2632,12 +2647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592e9815cbbad184291f9cc098e858af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6664215101143271344 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 298859884351686288, guid: 1f576f79fc9453b479cf9c94c02fd45f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6366347320280596768}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3210879717095396246 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8419085051289899702, guid: 1f576f79fc9453b479cf9c94c02fd45f,
@@ -2653,6 +2662,12 @@ MonoBehaviour:
 --- !u!4 &6664215101143271358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 298859884351686302, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6366347320280596768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6664215101143271344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 298859884351686288, guid: 1f576f79fc9453b479cf9c94c02fd45f,
     type: 3}
   m_PrefabInstance: {fileID: 6366347320280596768}
   m_PrefabAsset: {fileID: 0}

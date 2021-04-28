@@ -1118,6 +1118,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1039015826100781069, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: fakeEnemyPrefab
+      value: 
+      objectReference: {fileID: 1927417663}
     - target: {fileID: 2054383459066808746, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1127,6 +1132,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 56.90001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783724055471694733, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: hallucinationTimer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783724055471694733, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: sanityDepletionRate
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 4992792425283141802, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}
@@ -1939,6 +1954,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3b257fbcf77a6b4586ac5e2ff017ea3, type: 3}
+--- !u!1 &1927417663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1744633218906334519, guid: baefd774c9613974e9b41f7c954a2380,
+    type: 3}
+  m_PrefabInstance: {fileID: 1676068992}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4059635613152444698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2260,7 +2281,7 @@ PrefabInstance:
     - target: {fileID: 8930557314806407112, guid: d3e89df2f9805a34d86ce0c39e2ef12a,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8930557314806407112, guid: d3e89df2f9805a34d86ce0c39e2ef12a,
         type: 3}
