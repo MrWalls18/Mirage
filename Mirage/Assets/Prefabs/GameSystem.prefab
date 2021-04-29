@@ -1154,6 +1154,7 @@ GameObject:
   - component: {fileID: 4992792426021103588}
   - component: {fileID: 1039015826100781069}
   - component: {fileID: 6602556665314060498}
+  - component: {fileID: 554671640}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1207,9 +1208,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eSpawner: []
   farEnemies: []
+  timeRemaining: 900
   player: {fileID: 6664215101143271344}
   maxSpawnDistance: 100
-  timeRemaining: 900
   enemyPrefab: {fileID: 1634261151990827206, guid: 5b17b950a5b2a434b85be55f4c349b41,
     type: 3}
   maxNumOfEnemies: 5
@@ -1246,6 +1247,43 @@ MonoBehaviour:
   medHighSanity: {fileID: 6705726710632258544}
   highSanity: {fileID: 3736410668074470894}
   myStats: {fileID: 3783724055471694733}
+--- !u!114 &554671640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992792426021103590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb75d810bc8f0d4aa82920401239e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Coyote_running
+    clip: {fileID: 8300000, guid: 21c29c019f36ed946989cd18135ed2b1, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Coyote_growl
+    clip: {fileID: 8300000, guid: 92d0f3b7870e3ca439b181d31c0eee4a, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Coyote_howl_day
+    clip: {fileID: 8300000, guid: 05b0e2e245febf743af1706660b65007, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Coyote_howl_night
+    clip: {fileID: 8300000, guid: c98dad57a6bf6f643837965a50d083a0, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &4992792426049249987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,14 +2623,29 @@ PrefabInstance:
       objectReference: {fileID: 3783724055471694733}
     - target: {fileID: 298859884351686303, guid: 1f576f79fc9453b479cf9c94c02fd45f,
         type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 8898739252637686581}
+    - target: {fileID: 298859884351686303, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+        type: 3}
       propertyPath: walkingSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 298859884351686303, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+        type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 923355985636011165, guid: 1f576f79fc9453b479cf9c94c02fd45f,
         type: 3}
       propertyPath: waterUI
       value: 
       objectReference: {fileID: 1475519062504565569}
+    - target: {fileID: 3609929174099901618, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7256117851165226479, guid: 1f576f79fc9453b479cf9c94c02fd45f,
         type: 3}
       propertyPath: marker
@@ -2635,6 +2688,24 @@ PrefabInstance:
       objectReference: {fileID: 4992792426669586483}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f576f79fc9453b479cf9c94c02fd45f, type: 3}
+--- !u!4 &6664215101143271358 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 298859884351686302, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6366347320280596768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6664215101143271344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 298859884351686288, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6366347320280596768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8898739252637686581 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2533102285859232277, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6366347320280596768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3783724055471694733 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7844060896701211309, guid: 1f576f79fc9453b479cf9c94c02fd45f,
@@ -2659,15 +2730,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007b0a975db96824d86956883fbe2558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &6664215101143271358 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 298859884351686302, guid: 1f576f79fc9453b479cf9c94c02fd45f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6366347320280596768}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6664215101143271344 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 298859884351686288, guid: 1f576f79fc9453b479cf9c94c02fd45f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6366347320280596768}
-  m_PrefabAsset: {fileID: 0}
