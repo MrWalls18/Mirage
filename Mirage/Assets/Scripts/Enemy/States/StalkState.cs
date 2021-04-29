@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class StalkState : StateMachineBehaviour
 {
@@ -20,9 +21,17 @@ public class StalkState : StateMachineBehaviour
 
     public bool playerStopped = true;
 
+    private AudioSource audiosource;
+
+    public float volume = 1f;
+
     //bool for when enemy gets hit by rock
     //public bool hasHitRock = false;
 
+    private void Start()
+    {
+        //audiosource = enemy.GetComponent<AudioSource>();
+    }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -30,6 +39,10 @@ public class StalkState : StateMachineBehaviour
 
         base.OnStateEnter(animator, stateInfo, layerIndex);
         enemy = animator.GetComponent<EnemyAI>();
+
+        audiosource = enemy.GetComponent<AudioSource>();
+
+        enemy.PlayAudio(0);
 
         //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
 
@@ -63,6 +76,7 @@ public class StalkState : StateMachineBehaviour
             if(distFromPlayer < minAttackRange)
             {
                 Debug.Log("i'm in the right if statement");
+
                 animator.SetBool("isPlayerInMinAttackRange", true);
             }
             

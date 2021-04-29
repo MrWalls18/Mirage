@@ -42,6 +42,8 @@ public class EnemyAI : MonoBehaviour
 
     private PlayerStats myStats;
 
+    public AudioClip[] audioClips;
+
     private void Awake()
     {
         //find the player
@@ -165,6 +167,14 @@ public class EnemyAI : MonoBehaviour
             hasHitRock = true;
 
         }
+    }
+
+    public void PlayAudio(int clipNumber)
+    {
+        //play audio based on what number in array is chosen
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.clip = audioClips[clipNumber];
+        audio.Play();
     }
 
     //follow the player
