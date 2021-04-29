@@ -46,7 +46,7 @@ public class Interact : MonoBehaviour
 
         if (Physics.Raycast(Camera.main.transform.position + Vector3.forward, Camera.main.transform.forward, out hit, raycastDistance))
         {
-            Debug.Log(hit.collider.name);
+           // Debug.Log(hit.collider.name);
             if (hit.collider.tag == "Water")
             {
                 Debug.Log("Hit water");

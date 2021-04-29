@@ -45,7 +45,7 @@ public class SkillCheckTimer : MonoBehaviour
             maxCoinFlipTime -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             if (maxCoinFlipTime < startAccurateCatchTime && maxCoinFlipTime > endAccurateCatchTime)
             {

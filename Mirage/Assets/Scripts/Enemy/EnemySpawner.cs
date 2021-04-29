@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : SingletonPattern<EnemySpawner>
 {
+
     public List<GameObject> eSpawner, farEnemies;
     [SerializeField] private GameObject player;
     [SerializeField] private float maxSpawnDistance;
@@ -26,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
     public float maxEnemiesMultiplier;
 
 
-    void Awake()
+    private void Start()
     {
         eSpawner = new List<GameObject>();
 
@@ -34,10 +35,6 @@ public class EnemySpawner : MonoBehaviour
 
         timerIsRunning = true;
 
-    }
-
-    private void Start()
-    {
         StartCoroutine(SpawnMultiplier());
     }
 
@@ -125,6 +122,8 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
+    //After each min that passes, the Max number of enemies increases
+    //by multiplying the current max and the maxEnemy multiplier
     IEnumerator SpawnMultiplier()
     {
         while (true)
@@ -141,15 +140,15 @@ public class EnemySpawner : MonoBehaviour
         Debug.Log("In Coroutine");
         while (true)
         {
-            Debug.Log("Waiting...");
+            Debug.Log("Waiting for " + waitTime + " seconds");
             yield return new WaitForSeconds(waitTime);            
             Debug.Log("Wait time passed");
 
-            SetSpawnPoint();
+            SetSpawnPoint(enemyPrefab, enemyClone);
         }
     }
 
-    void SetSpawnPoint()
+    public void SetSpawnPoint(GameObject enemyToSpawn, GameObject clone)
     {
         //Picks a random spawnPoint from the list of enemy spawn points
         randomSpawnPos = UnityEngine.Random.Range(0, eSpawner.Count);
@@ -165,7 +164,9 @@ public class EnemySpawner : MonoBehaviour
             {
                 if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy") && !hit.collider.CompareTag("FakeEnemy"))
                 {                    
-                    enemyClone = Instantiate(enemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
+                    clone = Instantiate(enemyToSpawn, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
+                    clone.SetActive(true);
+                    clone.GetComponent<Animator>().enabled = true;
                 }
             }
         }

@@ -622,6 +622,84 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3419711044016681206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7024980917786000071}
+  - component: {fileID: 4283074825885553092}
+  - component: {fileID: 816793227783080115}
+  m_Layer: 5
+  m_Name: TimerText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7024980917786000071
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3419711044016681206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4992792425588095976}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 197.9594}
+  m_SizeDelta: {x: 204.33289, y: 54.081207}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4283074825885553092
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3419711044016681206}
+  m_CullTransparentMesh: 0
+--- !u!114 &816793227783080115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3419711044016681206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 48
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 48
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 00:00
 --- !u!1 &3736410668074470894
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +994,7 @@ RectTransform:
   - {fileID: 3518876876040368541}
   - {fileID: 1237074804678585617}
   - {fileID: 6613683166547940258}
+  - {fileID: 7024980917786000071}
   m_Father: {fileID: 4992792427298317586}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1073,6 +1152,7 @@ GameObject:
   - component: {fileID: 4992792426021103591}
   - component: {fileID: 4992792426021103589}
   - component: {fileID: 4992792426021103588}
+  - component: {fileID: 1039015826100781069}
   - component: {fileID: 6602556665314060498}
   m_Layer: 0
   m_Name: Game Manager
@@ -1112,6 +1192,7 @@ MonoBehaviour:
   sanity: {fileID: 4992792425653646616}
   coinFlip: {fileID: 4992792426669586483}
   myStats: {fileID: 3783724055471694733}
+  coyoteLooming: {fileID: 0}
 --- !u!114 &4992792426021103588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,20 +1200,35 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4992792426021103590}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d375c98ab910e9340a95aecae2b7e370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   eSpawner: []
+  farEnemies: []
   player: {fileID: 6664215101143271344}
-  minSpawnDistance: 50
   maxSpawnDistance: 100
-  eSpawnerTimer: 3
+  timeRemaining: 900
   enemyPrefab: {fileID: 1634261151990827206, guid: 5b17b950a5b2a434b85be55f4c349b41,
     type: 3}
-  hallucinatedEnemyPrefab: {fileID: 1744633218906334519, guid: baefd774c9613974e9b41f7c954a2380,
-    type: 3}
+  maxNumOfEnemies: 5
+  timeText: {fileID: 816793227783080115}
+  maxEnemiesMultiplier: 1.487
+--- !u!114 &1039015826100781069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992792426021103590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7074548146694a40aaa345db21c023b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fakeEnemyPrefab: {fileID: 0}
+  timeBetweenSpawns: 10
 --- !u!114 &6602556665314060498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2551,12 +2647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592e9815cbbad184291f9cc098e858af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &6664215101143271358 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 298859884351686302, guid: 1f576f79fc9453b479cf9c94c02fd45f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6366347320280596768}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3210879717095396246 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8419085051289899702, guid: 1f576f79fc9453b479cf9c94c02fd45f,
@@ -2569,6 +2659,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007b0a975db96824d86956883fbe2558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &6664215101143271358 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 298859884351686302, guid: 1f576f79fc9453b479cf9c94c02fd45f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6366347320280596768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6664215101143271344 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 298859884351686288, guid: 1f576f79fc9453b479cf9c94c02fd45f,

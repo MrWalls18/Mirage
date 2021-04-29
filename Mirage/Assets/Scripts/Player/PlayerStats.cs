@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : SingletonPattern<PlayerStats>
 {
 
     public float sprintSpeedMultiplier;
@@ -15,6 +15,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private PlayerMovement movePlayer;
     [SerializeField] private SamplePostion coyoteAmbush;
 
+    private float sanityPercent;
+    public float SanityPercent { get { return sanityPercent; } }
     [HideInInspector] public float sanity;
     [HideInInspector] public float maxSanity;
     [HideInInspector] public float stamina;
@@ -40,6 +42,7 @@ public class PlayerStats : MonoBehaviour
         maxSanity = sanity;
         maxStamina = 10f;
         minStamina = 5f;
+        sanityPercent = 100f;
 
         bonesFound = 0;
 
@@ -160,6 +163,8 @@ public class PlayerStats : MonoBehaviour
 
         sanityPercentage = (sanity / maxSanity) * 100;
 
+        sanityPercent = sanityPercentage;
+
         //The lower the sanity percentage,
         //the higher chance of the player experiencing a hallucination
         if (sanityPercentage < 25f)
@@ -176,14 +181,19 @@ public class PlayerStats : MonoBehaviour
             }
             else
                 isHallucinating = false;
+            //Fake enemy spawner now take 1/4 of the original time to spawn 
+            FakeEnemySpawner.Instance.ChangeFakeEnemySpawnRate(FakeEnemySpawner.Instance.timeBetweenSpawns / 4f);
         }
         else if (sanityPercentage < 50f)
         {
             //70% chance of hallucinating
             if (Random.value > 0.3)
-                isHallucinating = true;
+                isHallucinating = true;            
             else
                 isHallucinating = false;
+
+            //Fake enemy spawner now take 1/3 of the original time to spawn 
+            FakeEnemySpawner.Instance.ChangeFakeEnemySpawnRate(FakeEnemySpawner.Instance.timeBetweenSpawns / 3f);
         }
         else if (sanityPercentage < 75f)
         {
@@ -192,6 +202,9 @@ public class PlayerStats : MonoBehaviour
                 isHallucinating = true;
             else
                 isHallucinating = false;
+
+            //Fake enemy spawner now take 1/2 of the original time to spawn 
+            FakeEnemySpawner.Instance.ChangeFakeEnemySpawnRate(FakeEnemySpawner.Instance.timeBetweenSpawns / 2f);
         }
         else
         {
@@ -200,6 +213,9 @@ public class PlayerStats : MonoBehaviour
                 isHallucinating = true;
             else
                 isHallucinating = false;
+
+            //Fake enemy spawner is set to the original time to spawn 
+            FakeEnemySpawner.Instance.ChangeFakeEnemySpawnRate(FakeEnemySpawner.Instance.timeBetweenSpawns);
         }
 
     }
