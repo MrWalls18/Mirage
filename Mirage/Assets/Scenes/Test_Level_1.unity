@@ -738,8 +738,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6664215101143271359, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 1911335248}
+    - target: {fileID: 6664215101143271359, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
       propertyPath: walkingSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664215101143271359, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 7656335271996095890, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}
@@ -776,6 +786,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634261151990827256, guid: 5b17b950a5b2a434b85be55f4c349b41,
+        type: 3}
+      propertyPath: animator
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1634261151990827256, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}
@@ -859,6 +874,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b17b950a5b2a434b85be55f4c349b41, type: 3}
+--- !u!4 &1911335248 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8898739252637686581, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1299281991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7537008997946368678
 PrefabInstance:
   m_ObjectHideFlags: 0
