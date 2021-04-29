@@ -331,49 +331,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1299281991}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &554671635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4992792426021103590, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1299281991}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &554671640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554671635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdb75d810bc8f0d4aa82920401239e5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: Coyote_running
-    clip: {fileID: 8300000, guid: 21c29c019f36ed946989cd18135ed2b1, type: 3}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
-  - name: Coyote_growl
-    clip: {fileID: 8300000, guid: 92d0f3b7870e3ca439b181d31c0eee4a, type: 3}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
-  - name: Coyote_howl_day
-    clip: {fileID: 8300000, guid: 05b0e2e245febf743af1706660b65007, type: 3}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
-  - name: Coyote_howl_night
-    clip: {fileID: 8300000, guid: c98dad57a6bf6f643837965a50d083a0, type: 3}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
 --- !u!1 &588924190
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,12 +516,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &721697174 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8844224374174489731, guid: 56ef0642a88f4f94d95adb980227047f,
-    type: 3}
-  m_PrefabInstance: {fileID: 7537008997946368678}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &732390090
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,14 +619,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 675690953, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
-      propertyPath: gamePanels.Array.data[0]
-      value: 
-      objectReference: {fileID: 721697174}
-    - target: {fileID: 1429746228, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
-      propertyPath: rock
-      value: 
-      objectReference: {fileID: 5592014}
+    - target: {fileID: 554671640, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554671640, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554671640, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554671640, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
+      propertyPath: sounds.Array.data[3].volume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4992792427298317581, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}
       propertyPath: m_Name
@@ -736,28 +695,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6664215101143271359, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-        type: 3}
-      propertyPath: groundCheck
-      value: 
-      objectReference: {fileID: 1911335248}
-    - target: {fileID: 6664215101143271359, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-        type: 3}
-      propertyPath: walkingSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6664215101143271359, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-        type: 3}
-      propertyPath: groundMask.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 7656335271996095890, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 675690953, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
 --- !u!1001 &1458261348
 PrefabInstance:
@@ -766,6 +704,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 682292085, guid: 5b17b950a5b2a434b85be55f4c349b41, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 682292085, guid: 5b17b950a5b2a434b85be55f4c349b41, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 682292085, guid: 5b17b950a5b2a434b85be55f4c349b41, type: 3}
+      propertyPath: BypassListenerEffects
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1634261151990827206, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}
       propertyPath: m_Name
@@ -828,12 +778,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b17b950a5b2a434b85be55f4c349b41, type: 3}
---- !u!4 &1911335248 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8898739252637686581, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1299281991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7537008997946368678
 PrefabInstance:
   m_ObjectHideFlags: 0

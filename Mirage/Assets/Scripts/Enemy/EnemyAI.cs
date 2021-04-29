@@ -172,7 +172,9 @@ public class EnemyAI : MonoBehaviour
     public void PlayAudio(int clipNumber)
     {
         //play audio based on what number in array is chosen
+        
         AudioSource audio = GetComponent<AudioSource>();
+        audio.Stop();
         audio.clip = audioClips[clipNumber];
         audio.Play();
     }
