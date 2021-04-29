@@ -75,12 +75,13 @@ MonoBehaviour:
   controller: {fileID: 298859884351686289}
   myStats: {fileID: 0}
   walkingSpeed: 20
-  gravity: -9.81
-  groundCheck: {fileID: 0}
+  gravity: -20
+  groundCheck: {fileID: 2533102285859232277}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
+  jumpHeight: 5
 --- !u!114 &7844060896701211309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprintSpeedMultiplier: 1.5
-  sanityDepletionRate: 0.3
+  sanityDepletionRate: 0.01
   sprintTimer: 10
   movePlayer: {fileID: 298859884351686303}
   coyoteAmbush: {fileID: 3609929174099901618}
@@ -102,7 +103,7 @@ MonoBehaviour:
   maxSanity: 0
   stamina: 0
   maxStamina: 0
-  hallucinationTimer: 10
+  hallucinationTimer: 15
   isRunning: 0
   isHallucinating: 0
   bonesFound: 0
