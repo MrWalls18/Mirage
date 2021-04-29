@@ -140,7 +140,7 @@ public class EnemySpawner : SingletonPattern<EnemySpawner>
         Debug.Log("In Coroutine");
         while (true)
         {
-            Debug.Log("Waiting...");
+            Debug.Log("Waiting for " + waitTime + " seconds");
             yield return new WaitForSeconds(waitTime);            
             Debug.Log("Wait time passed");
 

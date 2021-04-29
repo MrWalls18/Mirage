@@ -1111,6 +1111,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b17b950a5b2a434b85be55f4c349b41, type: 3}
+--- !u!4 &1227996598 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8898739252637686581, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1251544982}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1251544982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1167,6 +1173,11 @@ PrefabInstance:
         type: 3}
       propertyPath: percentSlider
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992792426021103588, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: maxNumOfEnemies
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4992792426021103589, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}
@@ -1401,7 +1412,7 @@ PrefabInstance:
     - target: {fileID: 6664215101143271358, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.4
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6664215101143271358, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}
@@ -1411,7 +1422,27 @@ PrefabInstance:
     - target: {fileID: 6664215101143271358, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.2
+      value: -8.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664215101143271359, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: gravity
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664215101143271359, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664215101143271359, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 1227996598}
+    - target: {fileID: 6664215101143271359, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 7656335271996095890, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
         type: 3}

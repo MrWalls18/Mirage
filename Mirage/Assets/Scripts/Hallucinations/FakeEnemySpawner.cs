@@ -33,8 +33,7 @@ public class FakeEnemySpawner : SingletonPattern<FakeEnemySpawner>
     {
         while (true)
         {
-           // Debug.Log("Sanity: " + PlayerStats.Instance.SanityPercent);
-            Debug.Log("Timer: " + timer);
+            Debug.Log("Timer for fake enemy spawn: " + timer);
             yield return new WaitForSeconds(timer);
 
             EnemySpawner.Instance.SetSpawnPoint(fakeEnemyPrefab, fakeEnemyClone);

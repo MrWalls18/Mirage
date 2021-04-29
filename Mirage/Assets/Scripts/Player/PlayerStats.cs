@@ -181,7 +181,7 @@ public class PlayerStats : SingletonPattern<PlayerStats>
             }
             else
                 isHallucinating = false;
-
+            //Fake enemy spawner now take 1/4 of the original time to spawn 
             FakeEnemySpawner.Instance.ChangeFakeEnemySpawnRate(FakeEnemySpawner.Instance.timeBetweenSpawns / 4f);
         }
         else if (sanityPercentage < 50f)
@@ -192,7 +192,8 @@ public class PlayerStats : SingletonPattern<PlayerStats>
             else
                 isHallucinating = false;
 
-           FakeEnemySpawner.Instance.ChangeFakeEnemySpawnRate(FakeEnemySpawner.Instance.timeBetweenSpawns / 3f);
+            //Fake enemy spawner now take 1/3 of the original time to spawn 
+            FakeEnemySpawner.Instance.ChangeFakeEnemySpawnRate(FakeEnemySpawner.Instance.timeBetweenSpawns / 3f);
         }
         else if (sanityPercentage < 75f)
         {
@@ -202,6 +203,7 @@ public class PlayerStats : SingletonPattern<PlayerStats>
             else
                 isHallucinating = false;
 
+            //Fake enemy spawner now take 1/2 of the original time to spawn 
             FakeEnemySpawner.Instance.ChangeFakeEnemySpawnRate(FakeEnemySpawner.Instance.timeBetweenSpawns / 2f);
         }
         else
@@ -212,6 +214,7 @@ public class PlayerStats : SingletonPattern<PlayerStats>
             else
                 isHallucinating = false;
 
+            //Fake enemy spawner is set to the original time to spawn 
             FakeEnemySpawner.Instance.ChangeFakeEnemySpawnRate(FakeEnemySpawner.Instance.timeBetweenSpawns);
         }
 
