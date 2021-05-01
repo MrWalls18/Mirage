@@ -42,12 +42,8 @@ public class EnemyAI : MonoBehaviour
 
     private PlayerStats myStats;
 
-    //used to get distance from player
-    public GameObject GetPlayer()
-    {
-        return player;
-    }
-    
+    public AudioClip[] audioClips;
+
     private void Awake()
     {
         //find the player
@@ -100,6 +96,12 @@ public class EnemyAI : MonoBehaviour
         #endregion
     }
 
+
+    //used to get distance from player
+    public GameObject GetPlayer()
+    {
+        return player;
+    }
 
     //patrol if you don't detect the player
     public void Patrol()
@@ -165,6 +167,14 @@ public class EnemyAI : MonoBehaviour
             hasHitRock = true;
 
         }
+    }
+
+    public void PlayAudio(int clipNumber)
+    {
+        //play audio based on what number in array is chosen
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.clip = audioClips[clipNumber];
+        audio.Play();
     }
 
     //follow the player

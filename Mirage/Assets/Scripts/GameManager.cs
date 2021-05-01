@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public PlayerStats myStats;
 
+    [SerializeField] private GameObject coyoteLooming;
+
     private bool hasKey;
     public bool HasKey
     {
@@ -29,7 +31,10 @@ public class GameManager : MonoBehaviour
         stamina.text = myStats.stamina.ToString();
         sanity.text = myStats.sanity.ToString();
 
-        
+        if ((myStats.sanity / myStats.maxSanity) < 0.8f)
+        {
+            coyoteLooming.SetActive(true);
+        }
 
     }
 

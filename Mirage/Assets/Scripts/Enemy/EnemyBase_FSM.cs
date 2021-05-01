@@ -6,7 +6,7 @@ public class EnemyBase_FSM : StateMachineBehaviour
 {
     public GameObject enemy;
     public GameObject player;
-    public float speed = 5f;
+    public float speed = 20f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

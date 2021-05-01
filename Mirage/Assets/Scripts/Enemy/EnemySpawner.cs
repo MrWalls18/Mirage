@@ -2,66 +2,173 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : SingletonPattern<EnemySpawner>
 {
-    public List<GameObject> eSpawner;
+    public float timeRemaining;
+    public List<GameObject> eSpawner, farEnemies;
     [SerializeField] private GameObject player;
-    [SerializeField] private float minSpawnDistance;
-    [SerializeField] private float maxSpawnDistance;
-    [SerializeField] private float eSpawnerTimer;
-
+    [SerializeField] private float maxSpawnDistance;    
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private GameObject hallucinatedEnemyPrefab;
+    [SerializeField] private float maxNumOfEnemies;
+
+    private int currentNumOfEnemies;
     private GameObject enemyClone;
     private int randomSpawnPos;
-    private MeshRenderer s_renderer;
+    private bool timerIsRunning = false;
 
-   // private bool didEnemySpawn = false;
+    public Text timeText;
 
-    void Awake()
+    private float waitTime = Mathf.FloorToInt(900f / 60f);
+
+    [Range(1.1f, 2.0f)]
+    public float maxEnemiesMultiplier;
+
+
+    private void Start()
     {
         eSpawner = new List<GameObject>();
 
         eSpawner.AddRange(GameObject.FindGameObjectsWithTag("eSpawner"));
 
+        timerIsRunning = true;
+
+        StartCoroutine(SpawnMultiplier());
     }
 
-    void Start()
+    private void FixedUpdate()
     {
-        //will spawn enemies every x amount of seconds
-        InvokeRepeating("SetSpawnPoint", 5f, eSpawnerTimer);
+        TimerCountdown();
+        DestroyFarAwayEnemies();
     }
 
-    void SetSpawnPoint()
+
+    //Counts down timer for the game
+    void TimerCountdown()
     {
-       // while (!didEnemySpawn)
-       // {
-            //Picks a random spawnPoint from the list of enemy spawn points
-            randomSpawnPos = UnityEngine.Random.Range(0, eSpawner.Count);
-
-            s_renderer = eSpawner[randomSpawnPos].GetComponentInChildren<MeshRenderer>();
-
-            //if the player is not too close, not too far,
-            //and if the spawn point is out of the camera frame
-            if (Vector3.Distance(player.transform.position, eSpawner[randomSpawnPos].transform.position) > minSpawnDistance &&
-                    Vector3.Distance(player.transform.position, eSpawner[randomSpawnPos].transform.position) < maxSpawnDistance &&
-                        !s_renderer.isVisible)
+        if (timerIsRunning)
+        {
+            if (timeRemaining > 0)
             {
-                //If the player is hallucinating,
-                //spawn a "fake" enemy
-                if (player.GetComponent<PlayerStats>().isHallucinating)
-                {
-                    enemyClone = Instantiate(hallucinatedEnemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
-                    
-                }
-                //If not, spawn a real enemy
-                else
-                {
-                    enemyClone = Instantiate(enemyPrefab, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
-                }
-                //break;
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining);
             }
-        //}
+            else
+            {
+                timeRemaining = 0;
+                timerIsRunning = false;
+            }
+        }
+    }
+
+    //Destroys enemies that are too far from the player
+    void DestroyFarAwayEnemies()
+    {
+        List<GameObject> tempList = new List<GameObject>();
+        farEnemies = new List<GameObject>();
+
+        farEnemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        farEnemies.AddRange(GameObject.FindGameObjectsWithTag("FakeEnemy"));
+
+        int enemyCounter = farEnemies.Count;
+
+        if (farEnemies.Count > 0)
+        {
+            foreach (GameObject enemy in farEnemies)
+            {
+                if (Vector3.Distance(enemy.transform.position, player.transform.position) > maxSpawnDistance)
+                {
+                    //farEnemies.Remove(enemy);
+                    tempList.Add(enemy);
+                    Destroy(enemy);
+                }
+            }
+
+            enemyCounter -= tempList.Count;
+
+            foreach (GameObject enemy in tempList)
+            {
+                Destroy(enemy);
+            }
+
+            currentNumOfEnemies = enemyCounter;
+
+            farEnemies.Clear();
+            tempList.Clear();
+        }
+    }
+    
+    //Displays how much time is left in the game
+    void DisplayTime(float timeToDisplay)
+    {
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        if (seconds == 59f)
+        {
+            StopCoroutine("SpawnEnemy");
+            waitTime = minutes;
+            
+            if (waitTime < 3f)
+            {
+                waitTime = 3f;
+            }
+            StartCoroutine("SpawnEnemy");
+        }
+
+        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+    }
+
+    //After each min that passes, the Max number of enemies increases
+    //by multiplying the current max and the maxEnemy multiplier
+    IEnumerator SpawnMultiplier()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(60f);
+            maxNumOfEnemies = Mathf.CeilToInt(maxNumOfEnemies * maxEnemiesMultiplier);
+        }
+    }
+
+    //Spawns enemy after x amount of seconds
+    IEnumerator SpawnEnemy()
+    {
+        
+        Debug.Log("In Coroutine");
+        while (true)
+        {
+            Debug.Log("Waiting for " + waitTime + " seconds");
+            yield return new WaitForSeconds(waitTime);            
+            Debug.Log("Wait time passed");
+
+            SetSpawnPoint(enemyPrefab, enemyClone);
+        }
+    }
+
+    public void SetSpawnPoint(GameObject enemyToSpawn, GameObject clone)
+    {
+        //Picks a random spawnPoint from the list of enemy spawn points
+        randomSpawnPos = UnityEngine.Random.Range(0, eSpawner.Count);
+
+
+        //Sends out a Raycast from the spawn point to the player
+        //If there is something in between the player and the spawn point,
+        // safe to spawn an enemy there
+        RaycastHit hit;
+        if (currentNumOfEnemies < maxNumOfEnemies && Vector3.Distance(eSpawner[randomSpawnPos].transform.position, player.transform.position) < maxSpawnDistance)
+        {
+            if (Physics.Raycast(eSpawner[randomSpawnPos].transform.position, (player.transform.position - eSpawner[randomSpawnPos].transform.position), out hit, maxSpawnDistance))
+            {
+                if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy") && !hit.collider.CompareTag("FakeEnemy"))
+                {                    
+                    clone = Instantiate(enemyToSpawn, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
+                    clone.SetActive(true);
+                    clone.GetComponent<Animator>().enabled = true;
+                }
+            }
+        }
+        
     }
 }

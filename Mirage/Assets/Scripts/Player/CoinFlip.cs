@@ -25,7 +25,7 @@ public class CoinFlip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && coinFlip.hasCoin)
+        if (Input.GetKeyDown(KeyCode.T) && coinFlip.hasCoin)
         {
             
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class StalkState : StateMachineBehaviour
 {
@@ -16,13 +17,18 @@ public class StalkState : StateMachineBehaviour
     public float enterStalkTime;
 
     private float distFromPlayer;
-    private float minAttackRange = 15f;
+    private float minAttackRange = 3f;
 
     public bool playerStopped = true;
+
 
     //bool for when enemy gets hit by rock
     //public bool hasHitRock = false;
 
+    private void Start()
+    {
+        //audiosource = enemy.GetComponent<AudioSource>();
+    }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -31,11 +37,12 @@ public class StalkState : StateMachineBehaviour
         base.OnStateEnter(animator, stateInfo, layerIndex);
         enemy = animator.GetComponent<EnemyAI>();
 
+        //plays stalk audio
+        enemy.PlayAudio(0);
+
         //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
 
         playerInSight = true;
-        //playerInSight = Physics.CheckSphere(enemy.transform.position, sightRange, enemy.whatIsPlayer);
-        //playerInAttackRange = Physics.CheckSphere(enemy.transform.position, enemy.attackRange, enemy.whatIsPlayer);
 
         //set time coyote enters stalk state
         //may need to rework, player can lose coyote if they leave sight range rn
@@ -52,14 +59,30 @@ public class StalkState : StateMachineBehaviour
         //that new value
         //if player stops moving, start a timer, and after 5 seconds start creeping closer
         distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
-
+        //if the player gets too far away, return to patrol, and howl
+        if (distFromPlayer > 40f && EnemySpawner.Instance.timeRemaining < 700f)
+        {
+            playerInSight = false;
+            animator.SetBool("isPlayerInMinAgroRange", false);
+            enemy.PlayAudio(1);
+        }
+        else if(distFromPlayer > 40f && EnemySpawner.Instance.timeRemaining > 700f)
+        {
+            //go to patrol and howl night time
+            playerInSight = false;
+            animator.SetBool("isPlayerInMinAgroRange", false);
+            enemy.PlayAudio(2);
+        }
+        //play growl audio if you get close enough
+        if (distFromPlayer > 10f)
+            enemy.PlayAudio(3);
         if (playerInSight)
         {
             StalkPlayer();
-            Debug.Log("i'm this far away " + distFromPlayer);
+            //Debug.Log("i'm this far away " + distFromPlayer);
             if(distFromPlayer < minAttackRange)
             {
-                Debug.Log("i'm in the right if statement");
+                //kill the player
                 animator.SetBool("isPlayerInMinAttackRange", true);
             }
             
@@ -81,18 +104,6 @@ public class StalkState : StateMachineBehaviour
     {
         
     }
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 
     private void StalkPlayer()
     {
