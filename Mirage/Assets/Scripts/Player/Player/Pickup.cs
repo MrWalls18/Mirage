@@ -16,7 +16,8 @@ public class Pickup : MonoBehaviour
     public float throwForce;
     public bool carryObject;
     public GameObject rock;
-    public bool canPickUp; 
+    public bool canPickUp;
+    
 
     //, rockContainer, guide;
     //collider to detect collisions with coyote
@@ -52,6 +53,8 @@ public class Pickup : MonoBehaviour
             
             RaycastHit hit;
             Ray directionRay = new Ray(transform.position, transform.forward);
+            Vector3 tempSize = transform.localScale;
+             
             //OnDrawGizmos();
             if (Physics.Raycast(directionRay, out hit, 5000f))
             {
@@ -65,6 +68,7 @@ public class Pickup : MonoBehaviour
                         rock = hit.collider.gameObject;
                         rock.transform.SetParent(rockHolder);
                         rock.gameObject.transform.position = rockHolder.position;
+                        
                         rock.GetComponent<Rigidbody>().isKinematic = true;
                         rock.GetComponent<Rigidbody>().useGravity = false;
                     }

@@ -8,9 +8,9 @@ public class RetreatState : StateMachineBehaviour
     //if hit by rock, run from player for a time
     EnemyAI enemy;
 
-    float timeElapsed;
+    //float timeElapsed;
     //public float retreatTime = 5f;
-    public float retreatStartTime { get; private set; }
+    //public float retreatStartTime { get; private set; }
 
     private float retreatDistance = 20f;
 
@@ -22,20 +22,22 @@ public class RetreatState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy = animator.GetComponent<EnemyAI>();
-        retreatStartTime = Time.time;
-        distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
-        //Retreat();
+        //retreatStartTime = Time.time;
+        //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+        Retreat();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+
         //enemy.agent.SetDestination(enemy.retreat.transform.position);
         //after a certain amount of time, we want the AI to follow the player again
-        if(distFromPlayer < retreatDistance)
-            Retreat();
+        //if (distFromPlayer < retreatDistance)
+        //    Retreat();
         //timeElapsed += Time.time;
-        else if (distFromPlayer > retreatDistance)
+        if (distFromPlayer > retreatDistance)
         {
             Debug.Log("i'm waiting to stalk again");
             isRetreating = false;
@@ -59,15 +61,26 @@ public class RetreatState : StateMachineBehaviour
         Debug.Log("I'm going in this direction " + retreatDirection);
         Vector3 firstDestination = enemy.transform.position + retreatDirection;
 
+        //Debug.Log("Run away!!");
+
         SetPath(firstDestination);
     }
 
     private void SetPath(Vector3 destination)
     {
         NavMeshHit hit;
-        bool navMeshFound = NavMesh.SamplePosition(destination, out hit, 1.0f, NavMesh.AllAreas);
+        //destination = enemy.transform.position;
 
-        if(navMeshFound == true)
+
+        bool navMeshFound = NavMesh.SamplePosition(destination, out hit, 1.0f, NavMesh.AllAreas);
+        //bool navMeshFound = NavMesh.SamplePosition(destination, out hit, 1.0f, NavMesh.AllAreas);
+        //Debug.Log("Setting my path");
+        Debug.Log("navMeshFound is " + navMeshFound);
+
+        Debug.Log("destination is set to " + destination);
+
+
+        if (navMeshFound == true)
         {
             Debug.Log("I've found a point on the navmesh");
             NavMeshPath path = new NavMeshPath();

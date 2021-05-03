@@ -8,6 +8,7 @@ public class StalkState : StateMachineBehaviour
 {
     //once player is detected, start following them
     EnemyAI enemy;
+    //AudioManager manager;
 
     public bool playerInAttackRange;
     public bool playerInSight;
@@ -21,12 +22,15 @@ public class StalkState : StateMachineBehaviour
 
     public bool playerStopped = true;
 
+    public AudioClip[] audioClips;
 
+    //public AudioClip newClip;
     //bool for when enemy gets hit by rock
     //public bool hasHitRock = false;
 
     private void Start()
     {
+        //manager = FindObjectOfType<AudioManager>();
         //audiosource = enemy.GetComponent<AudioSource>();
     }
 
@@ -38,8 +42,12 @@ public class StalkState : StateMachineBehaviour
         enemy = animator.GetComponent<EnemyAI>();
 
         //plays stalk audio
+        enemy.audioManager.Play("Coyote_running");
+        
+        
+
         //AudioManager.Instance.Play("Coyote_running");
-        enemy.PlayAudio(0);
+        //enemy.PlayAudio(0);
 
         //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
 
@@ -65,23 +73,26 @@ public class StalkState : StateMachineBehaviour
         {
             playerInSight = false;
             animator.SetBool("isPlayerInMinAgroRange", false);
-            //AudioManager.Instance.Play("Coyote_howl_day");
-            enemy.PlayAudio(1);
+            //manager.ChangeAudio("Coyote_howl_day");
+            enemy.audioManager.vfx.Stop();
+            enemy.audioManager.Play("Coyote_howl_day");
+            //enemy.PlayAudio(1);
         }
         else if(distFromPlayer > 40f && EnemySpawner.Instance.timeRemaining > 700f)
         {
             //go to patrol and howl night time
             playerInSight = false;
             animator.SetBool("isPlayerInMinAgroRange", false);
-            //AudioManager.Instance.Play("Coyote_howl_night");
-            enemy.PlayAudio(2);
+            enemy.audioManager.vfx.Stop();
+            enemy.audioManager.Play("Coyote_howl_night");
+            //enemy.PlayAudio(2);
         }
         //play growl audio if you get close enough
         if (distFromPlayer > 10f)
         {
-            //AudioManager.Instance.Play("Coyote_growl");
-            //enemy.PlayAudio(2);
-            enemy.PlayAudio(3);
+            enemy.audioManager.vfx.Stop();
+            enemy.audioManager.Play("Coyote_growl");
+            //enemy.PlayAudio(3);
         }
         if (playerInSight)
         {

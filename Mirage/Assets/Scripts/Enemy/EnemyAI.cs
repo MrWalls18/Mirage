@@ -7,6 +7,8 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    //this is the base script from which all enemy
+    //scripts derive from
     public NavMeshAgent agent;
     public Animator animator;
 
@@ -42,7 +44,9 @@ public class EnemyAI : MonoBehaviour
 
     private PlayerStats myStats;
 
-    public AudioClip[] audioClips;
+    public AudioManager audioManager;
+
+    //public AudioClip[] audioClips;
 
     private void Awake()
     {
@@ -64,6 +68,7 @@ public class EnemyAI : MonoBehaviour
 
         agent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerMovement>().gameObject;
+        audioManager = FindObjectOfType<AudioManager>();
 
         //distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
     }
@@ -169,16 +174,15 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void PlayAudio(int clipNumber)
+    /*public void PlayAudio(int clipNumber)
     {
         //play audio based on what number in array is chosen
-        
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.Stop();
-        audio.clip = audioClips[clipNumber];
-        audio.Play();
-    }
+        sound.clip = audioClips[clipNumber];
+        sound.Play();
+        Debug.Log("i am playing " + sound.clip);
+    }*/
 
+    
     //follow the player
     /*private void StalkPlayer()
     {
