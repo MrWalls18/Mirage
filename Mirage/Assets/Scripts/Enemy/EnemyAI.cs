@@ -165,13 +165,19 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-
+        Debug.Log("i hit something");
         if (collision.gameObject.CompareTag("Rock"))
         {
             
             hasHitRock = true;
-
+            Debug.Log("hashitrock is " + hasHitRock);
         }
+    }
+
+    public IEnumerator HeadTowardsRetreatDirection(Vector3 direction)
+    {
+
+        yield return null;
     }
 
     /*public void PlayAudio(int clipNumber)

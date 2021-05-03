@@ -52,6 +52,7 @@ public class PatrolState : EnemyBase_FSM
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         enemy = animator.GetComponent<EnemyAI>();
+        enemy.agent.isStopped = false;
         //reference = GetComponent<EnemyAI>();
         //agent = GetComponent<NavMeshAgent>();
 

@@ -8,6 +8,8 @@ public class StalkState : StateMachineBehaviour
 {
     //once player is detected, start following them
     EnemyAI enemy;
+    AudioManager manager;
+
 
     public bool playerInAttackRange;
     public bool playerInSight;
@@ -38,7 +40,8 @@ public class StalkState : StateMachineBehaviour
         enemy = animator.GetComponent<EnemyAI>();
 
         //plays stalk audio
-        enemy.PlayAudio(0);
+        //enemy.PlayAudio(0);
+        enemy.audioManager.Play("Coyote_running");
 
         //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
 
@@ -64,26 +67,29 @@ public class StalkState : StateMachineBehaviour
         {
             playerInSight = false;
             animator.SetBool("isPlayerInMinAgroRange", false);
-            enemy.PlayAudio(1);
+            enemy.audioManager.Play("Coyote_howl_day");
         }
         else if(distFromPlayer > 40f && EnemySpawner.Instance.timeRemaining > 700f)
         {
             //go to patrol and howl night time
             playerInSight = false;
             animator.SetBool("isPlayerInMinAgroRange", false);
-            enemy.PlayAudio(2);
+            enemy.audioManager.Play("Coyote_howl_night");
+            //enemy.PlayAudio(2);
         }
         //play growl audio if you get close enough
-        if (distFromPlayer > 10f)
-            enemy.PlayAudio(3);
+        //if (distFromPlayer > 10f)
+            //enemy.PlayAudio(3);
 
         if (enemy.hasHitRock)
         {
             enemy.agent.SetDestination(enemy.transform.position);
+            enemy.agent.isStopped = true;
+            enemy.agent.ResetPath();
 
             animator.SetBool("hitByRock", true);
 
-            enemy.hasHitRock = false;
+            //enemy.hasHitRock = false;
         }
 
         if (playerInSight)
@@ -93,6 +99,7 @@ public class StalkState : StateMachineBehaviour
             if(distFromPlayer < minAttackRange)
             {
                 //kill the player
+                enemy.audioManager.Play("Coyote_growl");
                 animator.SetBool("isPlayerInMinAttackRange", true);
             }
             
@@ -101,7 +108,7 @@ public class StalkState : StateMachineBehaviour
             enterStalkTime = Time.deltaTime + increaseSpeedInterval;
         }
         //this will transition the coyote to the retreatState
-
+        Debug.Log("hashitrock in stalkstate is " + enemy.hasHitRock);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -113,12 +120,17 @@ public class StalkState : StateMachineBehaviour
     private void StalkPlayer()
     {
         //simply targets and moves to player
-
         //set coyote speed to player speed
 
         //TODO: modify this behaviour so it's more believable
         enemy.agent.SetDestination(enemy.player.transform.position);
-        if (!enemy.hasHitRock)
+        if (enemy.hasHitRock)
+        {
+            enemy.agent.isStopped = true;
+            enemy.animator.SetBool("hitByRock", true);
+        }
+
+        /*if (!enemy.hasHitRock)
         {
             //if player stops, start timer
             if (playerStopped)
@@ -134,7 +146,8 @@ public class StalkState : StateMachineBehaviour
                 //update min distance to player if needed
                 //set speed back to player speed
             }
-        }
+        }*/
+
     }
 
     /*void OnCollisionEnter(Collision collision)

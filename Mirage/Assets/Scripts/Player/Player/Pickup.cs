@@ -68,7 +68,7 @@ public class Pickup : MonoBehaviour
                         rock = hit.collider.gameObject;
                         rock.transform.SetParent(rockHolder);
                         rock.gameObject.transform.position = rockHolder.position;
-                        
+                        //rock.gameObject.transform.localScale
                         rock.GetComponent<Rigidbody>().isKinematic = true;
                         rock.GetComponent<Rigidbody>().useGravity = false;
                     }
