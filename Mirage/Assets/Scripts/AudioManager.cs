@@ -6,6 +6,10 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
+    public AudioSource vfx;
+
+    public AudioClip newClip;
+
     public static AudioManager instance;
 
     // Start is called before the first frame update
@@ -21,7 +25,7 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-
+        //create an audioSource for each sound
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -33,12 +37,32 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /*public void Start()
+    {
+        vfx = GetComponent<AudioSource>();
+    }*/
+
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
             return;
 
+        //Debug.Log("I made it to the audiomanager Play function");
+
         s.source.Play();
     }
+
+    public void ChangeAudio(AudioClip clip)
+    {
+        //check so audio clip doesn't get restarted if triggered again
+        if (vfx.clip.name == clip.name)
+            return;
+
+        //function to stop and switch sounds
+        vfx.Stop();
+        //vfx.clip = clip;
+        //vfx.Play();
+    }
+
 }
