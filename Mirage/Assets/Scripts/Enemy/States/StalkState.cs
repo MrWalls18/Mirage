@@ -76,6 +76,16 @@ public class StalkState : StateMachineBehaviour
         //play growl audio if you get close enough
         if (distFromPlayer > 10f)
             enemy.PlayAudio(3);
+
+        if (enemy.hasHitRock)
+        {
+            enemy.agent.SetDestination(enemy.transform.position);
+
+            animator.SetBool("hitByRock", true);
+
+            enemy.hasHitRock = false;
+        }
+
         if (playerInSight)
         {
             StalkPlayer();
@@ -91,12 +101,7 @@ public class StalkState : StateMachineBehaviour
             enterStalkTime = Time.deltaTime + increaseSpeedInterval;
         }
         //this will transition the coyote to the retreatState
-        if (enemy.hasHitRock)
-        {
-            enemy.agent.SetDestination(enemy.transform.position);
 
-            animator.SetBool("hitByRock", true);
-        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

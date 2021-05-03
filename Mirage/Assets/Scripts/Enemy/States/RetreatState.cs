@@ -22,8 +22,7 @@ public class RetreatState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy = animator.GetComponent<EnemyAI>();
-        retreatStartTime = Time.time;
-        distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+        //retreatStartTime = Time.time;
         //Retreat();
     }
 
@@ -32,10 +31,11 @@ public class RetreatState : StateMachineBehaviour
     {
         //enemy.agent.SetDestination(enemy.retreat.transform.position);
         //after a certain amount of time, we want the AI to follow the player again
-        if(distFromPlayer < retreatDistance)
-            Retreat();
+        
+        distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+
         //timeElapsed += Time.time;
-        else if (distFromPlayer > retreatDistance)
+        if (distFromPlayer > retreatDistance)
         {
             Debug.Log("i'm waiting to stalk again");
             isRetreating = false;
@@ -49,7 +49,7 @@ public class RetreatState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+       
     }
 
     public void Retreat()
