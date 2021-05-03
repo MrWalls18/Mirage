@@ -16,7 +16,7 @@ public class RattleSnakeHallucination : MonoBehaviour
     public float rattleRangeSize;
     public float rattleAttackSize;
 
-
+    public bool attacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +27,7 @@ public class RattleSnakeHallucination : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (!rattlingSound.isPlaying && !attackSound.isPlaying)
-        {
-            rattleWarning();
-        }
+        snakeBehavior();
 
 
     }
@@ -49,34 +45,52 @@ public class RattleSnakeHallucination : MonoBehaviour
     public void rattleWarning()
     {
         //if (PlayerStats.Instance.isHallucinating == true)
-       // {
+        // {
+
+        if (attacking == false && !rattlingSound.isPlaying)
+        {
             Collider[] attackPlayer = Physics.OverlapSphere(transform.position, 40f, player);
             //plays audio for rattling
             foreach (Collider targetPlayer in attackPlayer)
             {
-           
-                rattlingSound.Play();
-            Debug.Log("I played");
-
+                    rattlingSound.Play();
             }
+        }
        // }
     }
 
     public void rattleAttack()
     {
-      //  if (PlayerStats.Instance.isHallucinating == true)
+       // if (PlayerStats.Instance.isHallucinating == true)
        // {
-            // detect player within range
-            Collider2D[] attackPlayer = Physics2D.OverlapCircleAll(transform.position, 15f, player);
-            foreach (Collider2D targetPlayer in attackPlayer)
-            {
-                //Rattlesnake appears.
-                //Attack Animation function goes here when rattlesnake gets the function
-                //attempted attack function goes here
-               attackSound.Play();
-            }
-     //   }
+                // detect player within range
+                Collider[] attackPlayer = Physics.OverlapSphere(transform.position, 15f, player);
+                foreach (Collider targetPlayer in attackPlayer)
+                {
+                   if (!attackSound.isPlaying)
+                   {
+                     attacking = true;
+                     rattlingSound.Stop();
+                     //Rattlesnake appears.
+                     //Attack Animation function goes here when rattlesnake gets the function
+                     //attempted attack function goes here
+                     attackSound.Play();
+                     //Debug.Log("In the process of working things out");
+                   }
+
+                }
+
+      //  }
     }
+
+    //This function is made to compile all of it's behaviors into one action. More will be added on this later.
+    public void snakeBehavior()
+    {
+        rattleWarning();
+        rattleAttack();
+    }
+
+
 
     void facePlayer()
     {
