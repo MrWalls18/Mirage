@@ -6,11 +6,10 @@ using UnityEngine.UI;
 
 public class EnemySpawner : SingletonPattern<EnemySpawner>
 {
-
+    public float timeRemaining;
     public List<GameObject> eSpawner, farEnemies;
     [SerializeField] private GameObject player;
-    [SerializeField] private float maxSpawnDistance;
-    [SerializeField] private float timeRemaining;
+    [SerializeField] private float maxSpawnDistance;    
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float maxNumOfEnemies;
 

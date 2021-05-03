@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SamplePostion : MonoBehaviour
+public class SamplePostion : SingletonPattern<SamplePostion>
 {
     public float range = 10.0f;
     public int coyoteCount = 5;

@@ -14,6 +14,11 @@ public class MenuUI : SingletonPattern<MenuUI>
 
     [SerializeField] private string formURL;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Application.targetFrameRate = 60;
+    }
 
     private void Update()
     {
@@ -37,6 +42,11 @@ public class MenuUI : SingletonPattern<MenuUI>
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void ChangeScene(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 
     // Quits game, does not work in play mode in editor

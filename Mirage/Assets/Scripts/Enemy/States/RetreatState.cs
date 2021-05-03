@@ -22,9 +22,8 @@ public class RetreatState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy = animator.GetComponent<EnemyAI>();
-        retreatStartTime = Time.time;
-        distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
-        //Retreat();
+        //retreatStartTime = Time.time;
+        Retreat();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -32,10 +31,11 @@ public class RetreatState : StateMachineBehaviour
     {
         //enemy.agent.SetDestination(enemy.retreat.transform.position);
         //after a certain amount of time, we want the AI to follow the player again
-        if(distFromPlayer < retreatDistance)
-            Retreat();
+        //Retreat();
+        distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+
         //timeElapsed += Time.time;
-        else if (distFromPlayer > retreatDistance)
+        if (distFromPlayer > retreatDistance)
         {
             Debug.Log("i'm waiting to stalk again");
             isRetreating = false;
@@ -49,41 +49,55 @@ public class RetreatState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+       
     }
 
     public void Retreat()
     {
-        Vector3 retreatDirection = Vector3.MoveTowards(enemy.transform.position, enemy.player.transform.position, -enemy.speed * Time.deltaTime);
+        Vector3 runDirection;
+        enemy.agent.ResetPath();
+
+        if(SamplePostion.Instance.RandomPoint(enemy.transform.position, retreatDistance, out runDirection))
+        {
+            enemy.agent.isStopped = false;
+            enemy.agent.SetDestination(runDirection);
+            
+        }
+
+        /*Vector3 retreatDirection = Vector3.MoveTowards(enemy.transform.position, enemy.player.transform.position, -enemy.speed * Time.deltaTime);
         //Vector3 retreatDirection = enemy.transform.forward * -1 * retreatDistance;
         Debug.Log("I'm going in this direction " + retreatDirection);
         Vector3 firstDestination = enemy.transform.position + retreatDirection;
 
-        SetPath(firstDestination);
+        SetPath(firstDestination);*/
     }
 
-    private void SetPath(Vector3 destination)
+    /*private void SetPath(Vector3 destination)
     {
         NavMeshHit hit;
         bool navMeshFound = NavMesh.SamplePosition(destination, out hit, 1.0f, NavMesh.AllAreas);
+        //NavMesh.FindClosestEdge(enemy.transform.position, out hit, NavMesh.AllAreas);
+        Debug.Log("Setting a path");
 
         if(navMeshFound == true)
         {
             Debug.Log("I've found a point on the navmesh");
             NavMeshPath path = new NavMeshPath();
             enemy.agent.CalculatePath(hit.position, path);
+
             if(path.status != NavMeshPathStatus.PathInvalid)
             {
                 enemy.agent.SetDestination(hit.position);
                 Debug.Log("my destination is " + hit.position);
-                if(enemy.transform.position == hit.position)
+                if (enemy.transform.position == hit.position)
                 {
                     Debug.Log("this check isn't useless");
                     enemy.animator.SetBool("hitByRock", false);
-                }   
+                }
             }
         }
-    }
+
+    }*/
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -35,8 +35,10 @@ public class PlayerStats : SingletonPattern<PlayerStats>
     [HideInInspector] public int bonesFound = 0;
 
     //Predetermines variables
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         isHallucinating = false;
         sanity = 20f;
         maxSanity = sanity;
