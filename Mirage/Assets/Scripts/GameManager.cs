@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonPattern<GameManager>
 {
     public Text maxStamina, stamina, sanity, coinFlip;
 
@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
         {
             hasKey = value;
         }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
     }
 
     private void Update()
