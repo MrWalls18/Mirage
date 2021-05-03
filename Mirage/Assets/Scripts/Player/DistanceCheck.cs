@@ -26,7 +26,6 @@ public class DistanceCheck : SingletonPattern<DistanceCheck>
         float distance = Vector3.Distance(lastPosition, playerPos.position);
         totalDistance += distance;
         lastPosition = playerPos.position;
-        Debug.Log(totalDistance);
     }
 
     public float DistanceToEnd()
