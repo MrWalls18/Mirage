@@ -8,7 +8,6 @@ public class StalkState : StateMachineBehaviour
 {
     //once player is detected, start following them
     EnemyAI enemy;
-    //AudioManager manager;
 
     public bool playerInAttackRange;
     public bool playerInSight;
@@ -22,15 +21,12 @@ public class StalkState : StateMachineBehaviour
 
     public bool playerStopped = true;
 
-    public AudioClip[] audioClips;
 
-    //public AudioClip newClip;
     //bool for when enemy gets hit by rock
     //public bool hasHitRock = false;
 
     private void Start()
     {
-        //manager = FindObjectOfType<AudioManager>();
         //audiosource = enemy.GetComponent<AudioSource>();
     }
 
@@ -42,12 +38,7 @@ public class StalkState : StateMachineBehaviour
         enemy = animator.GetComponent<EnemyAI>();
 
         //plays stalk audio
-        enemy.audioManager.Play("Coyote_running");
-        
-        
-
-        //AudioManager.Instance.Play("Coyote_running");
-        //enemy.PlayAudio(0);
+        enemy.PlayAudio(0);
 
         //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
 
@@ -73,27 +64,28 @@ public class StalkState : StateMachineBehaviour
         {
             playerInSight = false;
             animator.SetBool("isPlayerInMinAgroRange", false);
-            //manager.ChangeAudio("Coyote_howl_day");
-            enemy.audioManager.vfx.Stop();
-            enemy.audioManager.Play("Coyote_howl_day");
-            //enemy.PlayAudio(1);
+            enemy.PlayAudio(1);
         }
         else if(distFromPlayer > 40f && EnemySpawner.Instance.timeRemaining > 700f)
         {
             //go to patrol and howl night time
             playerInSight = false;
             animator.SetBool("isPlayerInMinAgroRange", false);
-            enemy.audioManager.vfx.Stop();
-            enemy.audioManager.Play("Coyote_howl_night");
-            //enemy.PlayAudio(2);
+            enemy.PlayAudio(2);
         }
         //play growl audio if you get close enough
         if (distFromPlayer > 10f)
+            enemy.PlayAudio(3);
+
+        if (enemy.hasHitRock)
         {
-            enemy.audioManager.vfx.Stop();
-            enemy.audioManager.Play("Coyote_growl");
-            //enemy.PlayAudio(3);
+            enemy.agent.SetDestination(enemy.transform.position);
+
+            animator.SetBool("hitByRock", true);
+
+            enemy.hasHitRock = false;
         }
+
         if (playerInSight)
         {
             StalkPlayer();
@@ -109,12 +101,7 @@ public class StalkState : StateMachineBehaviour
             enterStalkTime = Time.deltaTime + increaseSpeedInterval;
         }
         //this will transition the coyote to the retreatState
-        if (enemy.hasHitRock)
-        {
-            enemy.agent.SetDestination(enemy.transform.position);
 
-            animator.SetBool("hitByRock", true);
-        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -131,8 +118,6 @@ public class StalkState : StateMachineBehaviour
 
         //TODO: modify this behaviour so it's more believable
         enemy.agent.SetDestination(enemy.player.transform.position);
-        //play footstep audio
-        //enemy.PlayAudio(0);
         if (!enemy.hasHitRock)
         {
             //if player stops, start timer
