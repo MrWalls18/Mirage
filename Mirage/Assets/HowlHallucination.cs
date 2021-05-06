@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HowlHallucination : MonoBehaviour
 {
+    [SerializeField] AudioSource coyoteHowl;
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Entered Howl");
@@ -11,6 +12,7 @@ public class HowlHallucination : MonoBehaviour
         {
             Debug.Log("Should play sound");
             AudioManager.instance.Play("Coyote_howl_day");
+           // coyoteHowl.Play();
         }
     }
 }
