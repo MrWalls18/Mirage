@@ -19,7 +19,7 @@ public class CoyoteLooming : MonoBehaviour
     {
         Vector3 coyotePosition;
 
-        if(!isSpawned && getCoyotePosition.RandomPoint(player.position, rangeToSpawn, out coyotePosition))
+        if(!isSpawned && getCoyotePosition.RandomPoint(player.position, rangeToSpawn, out coyotePosition)) //Note: getCoyotePosition is NULL
         {
             if (Vector3.Distance(player.position, coyotePosition) > rangeToSpawn - 5)
             {
