@@ -11,9 +11,11 @@ public class TutorialText : MonoBehaviour
     public TMP_Text textBox;
     public float timer = 5f;
 
+    public bool alreadyTriggered = false;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && alreadyTriggered == false)
         {
             textBox.gameObject.SetActive(true);
             timer = 5f;
@@ -44,6 +46,7 @@ public class TutorialText : MonoBehaviour
             if (textBox.gameObject.activeInHierarchy)
             {
                 textBox.gameObject.SetActive(false);
+                alreadyTriggered = true;
             }
         }
     }
