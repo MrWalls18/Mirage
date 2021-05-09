@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillCheckTimer : MonoBehaviour
+public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
 {
     public GameObject coin, headsUI, tailsUI;
     public Transform coinDropTransform;
@@ -21,8 +21,9 @@ public class SkillCheckTimer : MonoBehaviour
     bool wasLastFlipHeads;
 
     // Start is called before the first frame update
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         hasCoin = true;
         coinCaught = false;
         maxCoinFlipTime = coinFlipDuration;

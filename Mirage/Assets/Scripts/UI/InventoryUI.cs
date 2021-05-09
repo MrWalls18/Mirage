@@ -6,18 +6,20 @@ using UnityEngine.UI;
 [System.Serializable]
 public class InventoryItem
 {
-    public bool isUnlocked;
     public GameObject item;
-    public Sprite inventorySprite;
+    public Image inventorySprite;
 }
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : SingletonPattern<InventoryUI>
 {
     public List<InventoryItem> inventory = new List<InventoryItem>();
+    [Header("Index")]
     public int index;
     public GameObject equippedItem;
     [SerializeField] private float panelScale = 1.4f;
     public List<GameObject> panels = new List<GameObject>();
+    [SerializeField] private Color greyed;
+    public bool hasKeys;
 
     private void Start()
     {
@@ -25,6 +27,12 @@ public class InventoryUI : MonoBehaviour
     }
 
     private void Update()
+    {
+        ReadInput();
+        CheckItems();
+    }
+
+    private void ReadInput()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -41,10 +49,6 @@ public class InventoryUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             setIndex(3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            setIndex(4);
         }
     }
 
@@ -98,6 +102,94 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    
+    private void CheckItems()
+    {
+        // Coin Check
+        if (SkillCheckTimer.Instance.hasCoin)
+        {
+            inventory[0].inventorySprite.color = Color.white;
+            if (index == 0)
+            {
+                inventory[0].item.SetActive(true);
+            }
+            else
+            {
+                inventory[0].item.SetActive(false);
+            }
+        }
+        else
+        {
+            inventory[0].inventorySprite.color = greyed;
+            inventory[0].item.SetActive(false);
+        }
+
+
+        // Check Rock
+        if (Pickup.Instance.carryObject)
+        {
+            inventory[1].inventorySprite.color = Color.white;
+            if (index == 1)
+            {
+                inventory[1].item.SetActive(true);
+            }
+            else
+            {
+                inventory[1].item.SetActive(false);
+            }
+        }
+        else
+        {
+            inventory[1].inventorySprite.color = greyed;
+            inventory[1].item.SetActive(false);
+        }
+
+
+        // Compass
+        if (Compass.Instance.hasCompass)
+        {
+            inventory[2].inventorySprite.color = Color.white;
+            if (index == 2)
+            {
+                inventory[2].item.SetActive(true);
+                if (PlayerStats.Instance.SanityPercent < 25)
+                {
+                    Compass.Instance.isCompassHallucinating = true;
+                }
+                else
+                {
+                    Compass.Instance.isCompassHallucinating = false;
+                }
+            }
+            else
+            {
+                inventory[2].item.SetActive(false);
+            }
+        }
+        else
+        {
+            inventory[2].inventorySprite.color = greyed;
+            inventory[2].item.SetActive(false);
+        }
+
+
+        // Keys
+        if (hasKeys)
+        {
+            inventory[3].inventorySprite.color = Color.white;
+            if (index == 3)
+            {
+                inventory[3].item.SetActive(true);
+            }
+            else
+            {
+                inventory[3].item.SetActive(false);
+            }
+        }
+        else
+        {
+            inventory[3].inventorySprite.color = greyed;
+            inventory[3].item.SetActive(false);
+        }
+    }
 
 }

@@ -8,7 +8,7 @@ using UnityEngine;
 /// between drink water, and throw rock
 /// </summary>
 
-public class Pickup : MonoBehaviour
+public class Pickup : SingletonPattern<Pickup>
 {
     //public Rigidbody rb;
 
@@ -17,6 +17,9 @@ public class Pickup : MonoBehaviour
     public bool carryObject;
     public GameObject rock;
     public bool canPickUp;
+
+    public float pickUpScale = 0.7f;
+    Vector3 oldScale;
     
 
     //, rockContainer, guide;
@@ -48,7 +51,7 @@ public class Pickup : MonoBehaviour
         //check distance between player and pickup
         //Vector3 distanceToPlayer = player.position - transform.position;
 
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.E))
         {
             
             RaycastHit hit;
@@ -61,6 +64,7 @@ public class Pickup : MonoBehaviour
                 //Debug.DrawLine(transform.position, hit.point, Color.red);
                 if(hit.collider.tag == "Rock")
                 {
+                    oldScale = rock.transform.localScale;
                     carryObject = true;
                     canPickUp = true;
                     if(carryObject == true)
@@ -68,9 +72,10 @@ public class Pickup : MonoBehaviour
                         rock = hit.collider.gameObject;
                         rock.transform.SetParent(rockHolder);
                         rock.gameObject.transform.position = rockHolder.position;
-                        //rock.gameObject.transform.localScale
+                        rock.transform.localScale = new Vector3(pickUpScale, pickUpScale, pickUpScale);
                         rock.GetComponent<Rigidbody>().isKinematic = true;
                         rock.GetComponent<Rigidbody>().useGravity = false;
+                        InventoryUI.Instance.setIndex(1);
                     }
                 }
             }
@@ -89,12 +94,16 @@ public class Pickup : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            if (canPickUp)
+            if (rock.transform.parent != null)
             {
                 rockHolder.DetachChildren();
                 rock.GetComponent<Rigidbody>().isKinematic = false;
                 rock.GetComponent<Rigidbody>().useGravity = true;
                 rock.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * throwForce);
+                carryObject = false;
+                canPickUp = false;
+                rock.transform.localScale = oldScale;
+                rock.transform.parent = null;
             }
         }
         
