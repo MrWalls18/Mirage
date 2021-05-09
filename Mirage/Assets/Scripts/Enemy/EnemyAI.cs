@@ -84,7 +84,7 @@ public class EnemyAI : MonoBehaviour
         //if distance is less than agroRange, go to other state
         #endregion
         //function to check the distance in the animator
-        animator.SetFloat("agroRange", Vector3.Distance(transform.position, player.transform.position));
+        //animator.SetFloat("agroRange", Vector3.Distance(transform.position, player.transform.position));
 
         #region old state machine
         //state machine
@@ -165,12 +165,12 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("i hit something");
+        //Debug.Log("i hit something");
         if (collision.gameObject.CompareTag("Rock"))
         {
             
             hasHitRock = true;
-            Debug.Log("hashitrock is " + hasHitRock);
+            //Debug.Log("hashitrock is " + hasHitRock);
         }
     }
 

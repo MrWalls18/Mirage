@@ -66,9 +66,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isPlayerInMinAgroRange
     m_EventTreshold: 0
-  - m_ConditionMode: 4
-    m_ConditionEvent: agroRange
-    m_EventTreshold: 30
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8263265610713685219}
   m_Solo: 0
@@ -280,6 +277,7 @@ MonoBehaviour:
   sightRange: 0
   increaseSpeedInterval: 10
   enterStalkTime: 0
+  minAttackRange: 7
   playerStopped: 1
 --- !u!1101 &4875005035198564591
 AnimatorStateTransition:
