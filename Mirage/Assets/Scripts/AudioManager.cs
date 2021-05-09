@@ -2,19 +2,20 @@
 using System;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : SingletonPattern<AudioManager>
 {
     public Sound[] sounds;
 
-    public AudioSource vfx;
+    //public AudioSource vfx;
 
-    public AudioClip newClip;
+    //public AudioClip newClip;
 
     public static AudioManager instance;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
+        //check to make sure there is only one audioManager in the scene
         if (instance == null)
             instance = this;
         else
@@ -46,14 +47,15 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
             return;
-
-        //Debug.Log("I made it to the audiomanager Play function");
+        }
 
         s.source.Play();
     }
 
-    public void ChangeAudio(AudioClip clip)
+    /*public void ChangeAudio(AudioClip clip)
     {
         //check so audio clip doesn't get restarted if triggered again
         if (vfx.clip.name == clip.name)
@@ -63,6 +65,6 @@ public class AudioManager : MonoBehaviour
         vfx.Stop();
         //vfx.clip = clip;
         //vfx.Play();
-    }
+    }*/
 
 }
