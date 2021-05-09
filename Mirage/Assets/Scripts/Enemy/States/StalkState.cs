@@ -18,7 +18,7 @@ public class StalkState : StateMachineBehaviour
     public float enterStalkTime;
 
     private float distFromPlayer;
-    public float minAttackRange = 4f;
+    public float minAttackRange = 16f;
 
     public bool playerStopped = true;
 
@@ -137,6 +137,8 @@ public class StalkState : StateMachineBehaviour
     {
         //simply targets and moves to player
         //set coyote speed to player speed
+
+        enemy.agent.velocity = PlayerMovement.Instance.walkingSpeed;
 
         //TODO: modify this behaviour so it's more believable
         enemy.agent.SetDestination(enemy.player.transform.position);
