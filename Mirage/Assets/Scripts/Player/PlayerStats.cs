@@ -109,7 +109,7 @@ public class PlayerStats : SingletonPattern<PlayerStats>
     public void Sprint()
     {
        
-        if (isRunning)
+        if (isRunning && PlayerMovement.Instance.isGrounded)
         {
             //Sanity depletes faster when sprinting
             CalculateSanity(sanityDepletionRate);
