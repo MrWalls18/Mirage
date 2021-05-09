@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : SingletonPattern<PlayerMovement>
 {
     [SerializeField]private CharacterController controller;
     [SerializeField] private PlayerStats myStats;
@@ -15,12 +15,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    bool isGrounded;
+    public bool isGrounded;
 
     public float jumpHeight = 3f;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         defaultSpeed = walkingSpeed;
     }
 
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * xInput + transform.forward * zInput + -transform.up;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (isGrounded && Input.GetKeyDown(KeyCode.LeftShift))
         {
             myStats.isRunning = true;
         }
