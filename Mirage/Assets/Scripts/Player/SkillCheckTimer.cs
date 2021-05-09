@@ -38,7 +38,6 @@ public class SkillCheckTimer : MonoBehaviour
     void Update()
     {
         coinFlipText.text = "Coin is flipped. . .";
-       // Debug.Log(maxCoinFlipTime);
 
         if (maxCoinFlipTime > 0)
         {
@@ -85,7 +84,6 @@ public class SkillCheckTimer : MonoBehaviour
                         tailsUI.SetActive(false);
                         coinFlipText.text = "Coin: Heads";
 
-                        //isHeads = true;
                         wasLastFlipHeads = true;
                     }
                     else
@@ -94,7 +92,6 @@ public class SkillCheckTimer : MonoBehaviour
                         tailsUI.SetActive(true);
                         coinFlipText.text = "Coin: Tails";
 
-                       // isHeads = false;
                         wasLastFlipHeads = false;
                     }
                 }
@@ -152,11 +149,5 @@ public class SkillCheckTimer : MonoBehaviour
         {
             Instantiate(coin, point, transform.rotation);
         }
-
-        //Vector3 coinDropRadius = new Vector3(randomRadius.x + coinDropTransform.position.x, coinDropTransform.position.y, randomRadius.z + coinDropTransform.position.z);
-
-
-
-       
     }
 }

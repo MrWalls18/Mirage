@@ -74,14 +74,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 298859884351686289}
   myStats: {fileID: 0}
-  walkingSpeed: 20
-  gravity: -20
+  walkingSpeed: 45
+  gravity: -30
   groundCheck: {fileID: 2533102285859232277}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  jumpHeight: 5
+  isGrounded: 0
+  jumpHeight: 150
 --- !u!114 &7844060896701211309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprintSpeedMultiplier: 1.5
-  sanityDepletionRate: 0.5
+  sanityDepletionRate: 0.05
   sprintTimer: 10
   movePlayer: {fileID: 298859884351686303}
   coyoteAmbush: {fileID: 3609929174099901618}
@@ -532,6 +533,7 @@ MonoBehaviour:
   carryObject: 0
   rock: {fileID: 8994613785420990979, guid: 77e002834f5e7614f98d4970b40c81b3, type: 3}
   canPickUp: 0
+  pickUpScale: 0.7
 --- !u!1001 &2244117101244397594
 PrefabInstance:
   m_ObjectHideFlags: 0

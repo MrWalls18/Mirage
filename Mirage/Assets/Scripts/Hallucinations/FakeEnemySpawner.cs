@@ -12,10 +12,6 @@ public class FakeEnemySpawner : SingletonPattern<FakeEnemySpawner>
     // Start is called before the first frame update
     void Start()
     {
-        // eSpawner = new List<GameObject>();
-
-
-        //  eSpawner.AddRange(GameObject.FindGameObjectsWithTag("eSpawner"));
 
         StartCoroutine("SpawnFakeEnemy", timeBetweenSpawns);
     }
@@ -33,7 +29,6 @@ public class FakeEnemySpawner : SingletonPattern<FakeEnemySpawner>
     {
         while (true)
         {
-            //Debug.Log("Timer for fake enemy spawn: " + timer);
             yield return new WaitForSeconds(timer);
 
             EnemySpawner.Instance.SetSpawnPoint(fakeEnemyPrefab, fakeEnemyClone);

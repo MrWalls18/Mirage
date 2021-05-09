@@ -44,7 +44,6 @@ public class CaveIn : MonoBehaviour
             
             this.GetComponent<BoxCollider>().enabled = false;
             caveInFake.GetComponent<BoxCollider>().isTrigger = true;
-            //caveInFake.GetComponent<BoxCollider>().enabled = true;
             CancelInvoke();
         }
     }

@@ -42,7 +42,6 @@ public class SamplePostion : SingletonPattern<SamplePostion>
             coyoteCounter++;
 
 
-            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
         }
 
         if (coyoteCounter > coyoteCount)
