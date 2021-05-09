@@ -136,12 +136,9 @@ public class EnemySpawner : SingletonPattern<EnemySpawner>
     IEnumerator SpawnEnemy()
     {
         
-        Debug.Log("In Coroutine");
         while (true)
         {
-            Debug.Log("Waiting for " + waitTime + " seconds");
-            yield return new WaitForSeconds(waitTime);            
-            Debug.Log("Wait time passed");
+            yield return new WaitForSeconds(waitTime);     
 
             SetSpawnPoint(enemyPrefab, enemyClone);
         }
@@ -152,6 +149,10 @@ public class EnemySpawner : SingletonPattern<EnemySpawner>
         //Picks a random spawnPoint from the list of enemy spawn points
         randomSpawnPos = UnityEngine.Random.Range(0, eSpawner.Count);
 
+       while (Vector3.Distance(eSpawner[randomSpawnPos].transform.position, player.transform.position) > maxSpawnDistance)
+        {
+            randomSpawnPos = UnityEngine.Random.Range(0, eSpawner.Count);
+        }
 
         //Sends out a Raycast from the spawn point to the player
         //If there is something in between the player and the spawn point,
@@ -162,7 +163,7 @@ public class EnemySpawner : SingletonPattern<EnemySpawner>
             if (Physics.Raycast(eSpawner[randomSpawnPos].transform.position, (player.transform.position - eSpawner[randomSpawnPos].transform.position), out hit, maxSpawnDistance))
             {
                 if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy") && !hit.collider.CompareTag("FakeEnemy"))
-                {                    
+                {
                     clone = Instantiate(enemyToSpawn, eSpawner[randomSpawnPos].transform.position, eSpawner[randomSpawnPos].transform.rotation);
                     clone.SetActive(true);
                     clone.GetComponent<Animator>().enabled = true;

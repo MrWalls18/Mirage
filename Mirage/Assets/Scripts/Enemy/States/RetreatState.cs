@@ -14,6 +14,8 @@ public class RetreatState : StateMachineBehaviour
 
     private float retreatDistance = 20f;
 
+    private Vector3 runDirection;
+
     private float distFromPlayer;
 
     bool isRetreating = true;
@@ -24,6 +26,7 @@ public class RetreatState : StateMachineBehaviour
         enemy = animator.GetComponent<EnemyAI>();
         //retreatStartTime = Time.time;
         Retreat();
+        Debug.Log("i should run away...");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -34,6 +37,8 @@ public class RetreatState : StateMachineBehaviour
         //Retreat();
         distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
 
+        enemy.agent.SetDestination(runDirection);
+
         //timeElapsed += Time.time;
         if (distFromPlayer > retreatDistance)
         {
@@ -42,42 +47,38 @@ public class RetreatState : StateMachineBehaviour
             animator.SetBool("hitByRock", false);
             //timeElapsed = 0;
         }
-
-        
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
+        base.OnStateExit(animator, stateInfo, layerIndex);
+        animator.SetBool("hitByRock", false);
     }
 
     public void Retreat()
     {
-        Vector3 runDirection;
+        //Vector3 runDirection;
         enemy.agent.ResetPath();
-
+        Debug.Log("RETREAT!!");
         if(SamplePostion.Instance.RandomPoint(enemy.transform.position, retreatDistance, out runDirection))
         {
             enemy.agent.isStopped = false;
-            enemy.agent.SetDestination(runDirection);
+            //enemy.agent.SetDestination(runDirection);
             
         }
-
-        /*Vector3 retreatDirection = Vector3.MoveTowards(enemy.transform.position, enemy.player.transform.position, -enemy.speed * Time.deltaTime);
-        //Vector3 retreatDirection = enemy.transform.forward * -1 * retreatDistance;
-        Debug.Log("I'm going in this direction " + retreatDirection);
+        Debug.Log("my runDirection is " + runDirection);
+        //Vector3 retreatDirection = Vector3.MoveTowards(enemy.transform.position, enemy.player.transform.position, -enemy.speed * Time.deltaTime);
+        Vector3 retreatDirection = enemy.transform.forward * -1 * retreatDistance;
         Vector3 firstDestination = enemy.transform.position + retreatDirection;
 
-        SetPath(firstDestination);*/
+        SetPath(firstDestination);
     }
 
-    /*private void SetPath(Vector3 destination)
+    private void SetPath(Vector3 destination)
     {
         NavMeshHit hit;
         bool navMeshFound = NavMesh.SamplePosition(destination, out hit, 1.0f, NavMesh.AllAreas);
         //NavMesh.FindClosestEdge(enemy.transform.position, out hit, NavMesh.AllAreas);
-        Debug.Log("Setting a path");
 
         if(navMeshFound == true)
         {
@@ -88,26 +89,13 @@ public class RetreatState : StateMachineBehaviour
             if(path.status != NavMeshPathStatus.PathInvalid)
             {
                 enemy.agent.SetDestination(hit.position);
-                Debug.Log("my destination is " + hit.position);
                 if (enemy.transform.position == hit.position)
                 {
-                    Debug.Log("this check isn't useless");
                     enemy.animator.SetBool("hitByRock", false);
                 }
             }
         }
 
-    }*/
+    }
 
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }

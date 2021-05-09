@@ -59,9 +59,7 @@ public class DrinkWater : MonoBehaviour
     IEnumerator DrinkTimer()
     {
         movePlayer.enabled = false;
-        Debug.Log("Player is drinking...");
         yield return new WaitForSeconds(waterTimer);
-        Debug.Log("Player is done.");
         movePlayer.enabled = true;
     }
 }
