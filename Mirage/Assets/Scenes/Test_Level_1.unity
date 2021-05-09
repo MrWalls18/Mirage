@@ -527,7 +527,7 @@ Transform:
   m_GameObject: {fileID: 588924190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 162.78026, y: 1.0566, z: 135.85391}
+  m_LocalScale: {x: 337.91556, y: 1.0566, z: 297.18042}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -951,6 +951,31 @@ PrefabInstance:
       propertyPath: pickUpScale
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 6664215099437027954, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664215101143271358, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664215101143271358, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7656335271996095890, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536329273306643, guid: 1fbbf629c7d9bba4eac0d7012273c5b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fbbf629c7d9bba4eac0d7012273c5b0, type: 3}
 --- !u!1001 &1458261348
@@ -981,6 +1006,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1634261151990827206, guid: 5b17b950a5b2a434b85be55f4c349b41,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1634261151990827256, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}
       propertyPath: animator
@@ -994,7 +1024,7 @@ PrefabInstance:
     - target: {fileID: 1634261151990827256, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}
       propertyPath: attackRange
-      value: 16
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1634261151990827256, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}
@@ -1019,7 +1049,7 @@ PrefabInstance:
     - target: {fileID: 1634261151990827260, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32.6
+      value: -57.9
       objectReference: {fileID: 0}
     - target: {fileID: 1634261151990827260, guid: 5b17b950a5b2a434b85be55f4c349b41,
         type: 3}

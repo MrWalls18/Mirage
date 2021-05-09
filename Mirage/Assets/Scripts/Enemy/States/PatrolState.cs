@@ -78,7 +78,6 @@ public class PatrolState : EnemyBase_FSM
         {
 
             animator.SetBool("isIdleTimeOver", false);
-            //enemy.PlayAudio(1);
         }
     }
 }
