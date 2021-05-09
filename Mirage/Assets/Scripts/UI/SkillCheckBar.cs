@@ -9,7 +9,7 @@ public class SkillCheckBar : MonoBehaviour
     //public float timeAmt;
    // private float time;
 
-    [SerializeField] private SkillCheckTimer time;
+    //[SerializeField] private SkillCheckTimer time;
 
     void Awake()
     {
@@ -23,10 +23,10 @@ public class SkillCheckBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (time.maxCoinFlipTime > 0)
+        if (SkillCheckTimer.s_instance.maxCoinFlipTime > 0)
         {
            // time -= Time.deltaTime;
-            skillCheck.fillAmount = time.maxCoinFlipTime / time.coinFlipDuration;
+            skillCheck.fillAmount = SkillCheckTimer.s_instance.maxCoinFlipTime / SkillCheckTimer.s_instance.coinFlipDuration;
 
           //  timeText.text = "Time: " + time.ToString("F");
         }
