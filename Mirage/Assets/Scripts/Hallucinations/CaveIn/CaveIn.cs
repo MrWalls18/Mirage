@@ -16,7 +16,6 @@ public class CaveIn : MonoBehaviour
         {
             caveInLayers.Add(caveInFake.transform.GetChild(i));
 
-            //Debug.Log(caveInLayers[i].gameObject.name);
         }
                
     }
@@ -44,7 +43,8 @@ public class CaveIn : MonoBehaviour
             caveInAnim.SetActive(false);
             
             this.GetComponent<BoxCollider>().enabled = false;
-            caveInFake.GetComponent<BoxCollider>().enabled = true;
+            caveInFake.GetComponent<BoxCollider>().isTrigger = true;
+            //caveInFake.GetComponent<BoxCollider>().enabled = true;
             CancelInvoke();
         }
     }
