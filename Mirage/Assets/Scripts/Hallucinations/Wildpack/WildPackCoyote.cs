@@ -29,7 +29,6 @@ public class WildPackCoyote : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(coyoteMesh.isVisible);
 
         if (timer < Time.time && !coyoteMesh.isVisible)
         {
@@ -51,7 +50,7 @@ public class WildPackCoyote : MonoBehaviour
 
         else
         { 
-            playerPosition = GameObject.Find("Player").transform;
+            playerPosition = PlayerStats.Instance.transform;
             coyoteAgent.SetDestination(playerPosition.position);
         }
 

@@ -136,12 +136,12 @@ public class EnemySpawner : SingletonPattern<EnemySpawner>
     IEnumerator SpawnEnemy()
     {
         
-        Debug.Log("In Coroutine");
+       // Debug.Log("In Coroutine");
         while (true)
         {
-            Debug.Log("Waiting for " + waitTime + " seconds");
+            //Debug.Log("Waiting for " + waitTime + " seconds");
             yield return new WaitForSeconds(waitTime);            
-            Debug.Log("Wait time passed");
+           // Debug.Log("Wait time passed");
 
             SetSpawnPoint(enemyPrefab, enemyClone);
         }

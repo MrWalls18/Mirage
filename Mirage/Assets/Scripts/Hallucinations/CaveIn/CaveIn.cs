@@ -16,7 +16,7 @@ public class CaveIn : MonoBehaviour
         {
             caveInLayers.Add(caveInFake.transform.GetChild(i));
 
-            Debug.Log(caveInLayers[i].gameObject.name);
+            //Debug.Log(caveInLayers[i].gameObject.name);
         }
                
     }

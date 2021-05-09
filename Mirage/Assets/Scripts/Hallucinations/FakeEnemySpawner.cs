@@ -33,7 +33,7 @@ public class FakeEnemySpawner : SingletonPattern<FakeEnemySpawner>
     {
         while (true)
         {
-            Debug.Log("Timer for fake enemy spawn: " + timer);
+            //Debug.Log("Timer for fake enemy spawn: " + timer);
             yield return new WaitForSeconds(timer);
 
             EnemySpawner.Instance.SetSpawnPoint(fakeEnemyPrefab, fakeEnemyClone);
