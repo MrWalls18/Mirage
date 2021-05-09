@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1634261151990827206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.6363602, y: 0.91, z: -10.91}
-  m_LocalScale: {x: 1, y: 2.6722, z: 0.40336}
+  m_LocalScale: {x: 4, y: 10.6888, z: 1.61344}
   m_Children:
   - {fileID: 1634261152004845900}
   - {fileID: 3755439447939329931}
@@ -67,11 +67,7 @@ MonoBehaviour:
   attackRange: 0
   playerInSight: 0
   playerInAttackRange: 0
-  audioClips:
-  - {fileID: 8300000, guid: 21c29c019f36ed946989cd18135ed2b1, type: 3}
-  - {fileID: 8300000, guid: 05b0e2e245febf743af1706660b65007, type: 3}
-  - {fileID: 8300000, guid: c98dad57a6bf6f643837965a50d083a0, type: 3}
-  - {fileID: 8300000, guid: 92d0f3b7870e3ca439b181d31c0eee4a, type: 3}
+  audioManager: {fileID: 0}
 --- !u!195 &1634261151990827207
 NavMeshAgent:
   m_ObjectHideFlags: 0

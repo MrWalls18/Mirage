@@ -1354,28 +1354,30 @@ MonoBehaviour:
   sounds:
   - name: Coyote_running
     clip: {fileID: 8300000, guid: 21c29c019f36ed946989cd18135ed2b1, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Coyote_growl
     clip: {fileID: 8300000, guid: 92d0f3b7870e3ca439b181d31c0eee4a, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Coyote_howl_day
     clip: {fileID: 8300000, guid: 05b0e2e245febf743af1706660b65007, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Coyote_howl_night
     clip: {fileID: 8300000, guid: c98dad57a6bf6f643837965a50d083a0, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
+  vfx: {fileID: 0}
+  newClip: {fileID: 0}
 --- !u!1 &4992792426049249987
 GameObject:
   m_ObjectHideFlags: 0
