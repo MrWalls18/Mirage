@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8806397945377442842}
   - component: {fileID: 8806397945377442841}
   - component: {fileID: 4373241139715581141}
+  - component: {fileID: 3354175941437994394}
   m_Layer: 0
   m_Name: CarKey
   m_TagString: Untagged
@@ -90,10 +91,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8806397945377442840}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9157187, y: 0.11321497, z: 0.45766878}
+  m_Size: {x: 0.9157187, y: 0.92, z: 1.22}
   m_Center: {x: -0.3133064, y: 0.0036642551, z: -0.091609955}
 --- !u!82 &4373241139715581141
 AudioSource:
@@ -191,6 +192,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3354175941437994394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8806397945377442840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8283210de5e5cab4ba80b735957dad69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCompass: 0
+  isKeys: 1
 --- !u!1001 &3203830022138124398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206,17 +221,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: dae6c2f03e3204c48bf6fb79620bd346,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dae6c2f03e3204c48bf6fb79620bd346,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dae6c2f03e3204c48bf6fb79620bd346,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dae6c2f03e3204c48bf6fb79620bd346,
         type: 3}
