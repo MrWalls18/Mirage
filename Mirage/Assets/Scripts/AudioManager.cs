@@ -36,6 +36,8 @@ public class AudioManager : SingletonPattern<AudioManager>
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+
+        Play("Music");
     }
 
     /*public void Start()

@@ -18,7 +18,7 @@ public class PatrolState : EnemyBase_FSM
 
     public bool playerInSight;
     public float sightRange;
-    public float minAgroRange = 20f;
+    public float minAgroRange = 80f;
 
     float timeElapsed;
     bool isStalking = false;
@@ -57,7 +57,6 @@ public class PatrolState : EnemyBase_FSM
         //agent = GetComponent<NavMeshAgent>();
 
         //reference.GetComponent<EnemyAI>().Patrol();
-        distanceToPlayer = Vector3.Distance(enemy.transform.position, player.transform.position);
 
     }
 
@@ -67,18 +66,17 @@ public class PatrolState : EnemyBase_FSM
         
         //patrol needs to be called every frame otherwise it will only find one point
         enemy.Patrol();
-
-        if (distanceToPlayer < minAgroRange)
+        //Debug.Log("My agro range is " + minAgroRange);
+        if (enemy.distanceToPlayer < enemy.sightRange/*minAgroRange*/)
         {
 
             isStalking = true;
             animator.SetBool("isPlayerInMinAgroRange", true);
         }
-        else if (distanceToPlayer > minAgroRange)
+        else if (enemy.distanceToPlayer > enemy.sightRange/*minAgroRange*/)
         {
 
             animator.SetBool("isIdleTimeOver", false);
-            //enemy.PlayAudio(1);
         }
     }
 }
