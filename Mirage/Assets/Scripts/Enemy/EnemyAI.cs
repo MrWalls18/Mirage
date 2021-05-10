@@ -39,8 +39,9 @@ public class EnemyAI : MonoBehaviour
 
     //state
     public float sightRange;
-    public float attackRange = 30;
+    public float attackRange = 15f;
     public bool playerInSight, playerInAttackRange;
+    //public float distanceToPlayer;
 
     private PlayerStats myStats;
 
@@ -75,6 +76,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
         #region old field of view checks
         //can you see/attack the player?
         //playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -165,12 +168,9 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("i hit something");
         if (collision.gameObject.CompareTag("Rock"))
-        {
-            
+        {            
             hasHitRock = true;
-            //Debug.Log("hashitrock is " + hasHitRock);
         }
     }
 

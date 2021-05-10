@@ -17,10 +17,12 @@ public class StalkState : StateMachineBehaviour
     public float increaseSpeedInterval = 10f;
     public float enterStalkTime;
 
-    private float distFromPlayer;
-    public float minAttackRange = 4f;
+    //private float distFromPlayer;
+    private float minAttackRange = 30f;
 
     public bool playerStopped = true;
+
+    //private RaycastHit hit;
 
 
     //bool for when enemy gets hit by rock
@@ -41,17 +43,11 @@ public class StalkState : StateMachineBehaviour
         enemy = animator.GetComponent<EnemyAI>();
 
         //plays stalk audio
-        //enemy.PlayAudio(0);
         AudioManager.Instance.Play("Coyote_running");
-        //FindObjectOfType<AudioManager>().Play("Coyote_running");
-        //AudioManager.Instance
-        //enemy.audioManager.Play("Coyote_running");
-        //manager.Play("Coyote_running");
 
         //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
-
+        Debug.Log("minAttackRange is " + minAttackRange);
         playerInSight = true;
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -62,21 +58,20 @@ public class StalkState : StateMachineBehaviour
         //that new value
         //if player stops moving, start a timer, and after 5 seconds start creeping closer
 
-        distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+        //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+        Debug.Log("minAttackRange is NOW " + minAttackRange);
 
         if (playerInSight)
         {
+            Debug.Log("Player speed is " + PlayerMovement.Instance.walkingSpeed);
             StalkPlayer();
-            if (distFromPlayer < minAttackRange)
+            if (enemy.distanceToPlayer < minAttackRange)
             {
                 //kill the player
                 //play from the coyote itself, so need to change the call to the audio source and not the audio
                 AudioManager.Instance.Play("Coyote_growl");
-                //FindObjectOfType<AudioManager>().Play("Coyote_growl");
 
-                //enemy.audioManager.Play("Coyote_growl");
-                //manager.Play("Coyote_growl");
-                if (distFromPlayer < enemy.attackRange)
+                if (enemy.distanceToPlayer < enemy.attackRange)
                     animator.SetBool("isPlayerInMinAttackRange", true);
             }
 
@@ -86,7 +81,7 @@ public class StalkState : StateMachineBehaviour
         }
 
         //if the player gets too far away, return to patrol, and howl
-        if (distFromPlayer > 40f)
+        if (enemy.distanceToPlayer > 160f)
         {
             //check if it's day time
             if (EnemySpawner.Instance.timeRemaining < 700f)
@@ -94,24 +89,17 @@ public class StalkState : StateMachineBehaviour
                 playerInSight = false;
                 animator.SetBool("isPlayerInMinAgroRange", false);
                 AudioManager.Instance.Play("Coyote_howl_day");
-                //FindObjectOfType<AudioManager>().Play("Coyote_howl_day");
             }
             else if(EnemySpawner.Instance.timeRemaining > 700f) 
             {
                 //go to patrol and howl night time
                 playerInSight = false;
                 animator.SetBool("isPlayerInMinAgroRange", false);
-                //AudioManager.Instance.Play("Coyote_growl");
-                //AudioManager.Instance.Play("Coyote_howl_day");
-
-                AudioManager.Instance.Play("Coyote_howl_night");
                 
-                //FindObjectOfType<AudioManager>().Play("Coyote_howl_night");
+                AudioManager.Instance.Play("Coyote_howl_night");
             }
-            //enemy.audioManager.Play("Coyote_howl_day");
-            //manager.Play("Coyote_howl_day");
+
         }
-        Debug.Log("hitByRock has been set to " + enemy.hasHitRock);
         //this will transition the coyote to the retreatState
         if (enemy.hasHitRock)
         {
@@ -123,8 +111,6 @@ public class StalkState : StateMachineBehaviour
 
             //enemy.hasHitRock = false;
         }
-        //Debug.Log("playerinsight = " + playerInSight);
-        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -138,8 +124,15 @@ public class StalkState : StateMachineBehaviour
         //simply targets and moves to player
         //set coyote speed to player speed
 
+        //enemy.agent.velocity.x = PlayerMovement.Instance.walkingSpeed;
+        enemy.agent.speed = PlayerMovement.Instance.walkingSpeed;
+        Debug.Log("my speed is " + enemy.agent.speed);
+
         //TODO: modify this behaviour so it's more believable
         enemy.agent.SetDestination(enemy.player.transform.position);
+
+        RaycastHit hit;
+
         /*if (enemy.hasHitRock)
         {
             enemy.agent.isStopped = true;

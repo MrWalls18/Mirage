@@ -30,15 +30,10 @@ public class IdleState : StateMachineBehaviour
     {   
         
         timeElapsed += Time.deltaTime;
-        //Debug.Log("idleOver is set to " + idleOver);
-        //Debug.Log("timeElapsed is set to " + timeElapsed);
+
         if (timeElapsed >= startTime + idleTime)
         {
-            //Debug.Log("i entered at" + startTime);
-            //Debug.Log("idleTime is set to " + idleTime);
             animator.SetBool("isIdleTimeOver", true);
-            //animator.SetFloat("idleTime", 5f);
-            //idleOver = true;
             timeElapsed = 0;
         }
         
