@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Interact : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Interact : MonoBehaviour
     public float raycastDistance = 20f;
     private float timer;
 
-    private Text boneText;
+    [SerializeField] private TMP_Text boneText;
     private Text E_Tooltip;
 
 
@@ -30,7 +31,7 @@ public class Interact : MonoBehaviour
         myStats = this.GetComponent<PlayerStats>();
         movePlayer = this.GetComponent<PlayerMovement>();
 
-        boneText = GameObject.Find("BoneText").GetComponent<Text>();
+        // boneText = GameObject.Find("BoneText").GetComponent<Text>();
         if (boneText.gameObject.activeSelf == true) boneText.gameObject.SetActive(false);
 
         E_Tooltip = GameObject.Find("E_Tooltip").GetComponent<Text>();

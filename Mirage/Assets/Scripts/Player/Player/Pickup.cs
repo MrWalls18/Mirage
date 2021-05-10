@@ -8,7 +8,7 @@ using UnityEngine;
 /// between drink water, and throw rock
 /// </summary>
 
-public class Pickup : MonoBehaviour
+public class Pickup : SingletonPattern<Pickup>
 {
     //public Rigidbody rb;
 
@@ -20,6 +20,7 @@ public class Pickup : MonoBehaviour
 
     public float pickUpScale = 0.7f;
     Vector3 oldScale;
+    
 
     //, rockContainer, guide;
     //collider to detect collisions with coyote
@@ -30,10 +31,9 @@ public class Pickup : MonoBehaviour
     //how far can the player reach to pick up a rock
     //public float pickUpRange;
 
-    private void Start()
+    /*private void Start()
     {
-        
-        /*if (!canPickUp)
+        if (!canPickUp)
         {
             rb.isKinematic = false;
             coll.isTrigger = false;
@@ -43,8 +43,8 @@ public class Pickup : MonoBehaviour
             rb.isKinematic = true;
             coll.isTrigger = true;
             handFull = true;
-        }*/
-    }
+        }
+    }*/
 
     private void Update()
     {
@@ -61,6 +61,7 @@ public class Pickup : MonoBehaviour
             //OnDrawGizmos();
             if (Physics.Raycast(directionRay, out hit, 5000f))
             {
+                //Debug.DrawLine(transform.position, hit.point, Color.red);
                 if(hit.collider.tag == "Rock")
                 {
                     oldScale = rock.transform.localScale;
@@ -74,6 +75,7 @@ public class Pickup : MonoBehaviour
                         rock.transform.localScale = new Vector3(pickUpScale, pickUpScale, pickUpScale);
                         rock.GetComponent<Rigidbody>().isKinematic = true;
                         rock.GetComponent<Rigidbody>().useGravity = false;
+                        InventoryUI.Instance.setIndex(1);
                     }
                 }
             }
@@ -97,12 +99,14 @@ public class Pickup : MonoBehaviour
                 rockHolder.DetachChildren();
                 rock.GetComponent<Rigidbody>().isKinematic = false;
                 rock.GetComponent<Rigidbody>().useGravity = true;
-                rock.transform.localScale = oldScale;
                 rock.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * throwForce);
+                carryObject = false;
+                canPickUp = false;
+                rock.transform.localScale = oldScale;
                 rock.transform.parent = null;
             }
         }
-
+        
     }
 
     private void OnDrawGizmos()
@@ -117,7 +121,9 @@ public class Pickup : MonoBehaviour
         canPickUp = true;
         handFull = true;
         //set rock as child of player, and add to hand
+        Debug.Log("my parent is " + transform.parent);
         //transform.SetParent(rockContainer);
+        Debug.Log("is my parent the rock container? " + transform.parent);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(Vector3.zero);
 
