@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillCheckTimer : MonoBehaviour
+public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
 {
     public static SkillCheckTimer s_instance;
 
@@ -23,8 +23,9 @@ public class SkillCheckTimer : MonoBehaviour
     bool wasLastFlipHeads;
 
     // Start is called before the first frame update
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         s_instance = this;
 
         hasCoin = true;

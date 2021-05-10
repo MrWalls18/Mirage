@@ -8,7 +8,7 @@ public class PlayerMovement : SingletonPattern<PlayerMovement>
     [SerializeField] private PlayerStats myStats;
 
     public float walkingSpeed;
-    private float defaultSpeed;
+    [HideInInspector]public float defaultSpeed;
 
     Vector3 velocity;
     public float gravity = -9.81f;
