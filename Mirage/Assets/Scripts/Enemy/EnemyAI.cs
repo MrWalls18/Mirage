@@ -39,7 +39,7 @@ public class EnemyAI : MonoBehaviour
 
     //state
     public float sightRange;
-    public float attackRange = 30;
+    public float attackRange = 15f;
     public bool playerInSight, playerInAttackRange;
     //public float distanceToPlayer;
 

@@ -18,7 +18,7 @@ public class StalkState : StateMachineBehaviour
     public float enterStalkTime;
 
     //private float distFromPlayer;
-    public float minAttackRange = 20f;
+    private float minAttackRange = 30f;
 
     public bool playerStopped = true;
 
@@ -44,12 +44,10 @@ public class StalkState : StateMachineBehaviour
 
         //plays stalk audio
         AudioManager.Instance.Play("Coyote_running");
-        //Debug.Log("I am this far away from the player " + distFromPlayer);
 
         //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
-
+        Debug.Log("minAttackRange is " + minAttackRange);
         playerInSight = true;
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -59,9 +57,9 @@ public class StalkState : StateMachineBehaviour
         //if player moves within 15 units, min follow distance gets updated to 
         //that new value
         //if player stops moving, start a timer, and after 5 seconds start creeping closer
-        
+
         //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
-        //Debug.Log("I am NOW this far away from the player " + distFromPlayer);
+        Debug.Log("minAttackRange is NOW " + minAttackRange);
 
         if (playerInSight)
         {
@@ -99,7 +97,6 @@ public class StalkState : StateMachineBehaviour
                 animator.SetBool("isPlayerInMinAgroRange", false);
                 
                 AudioManager.Instance.Play("Coyote_howl_night");
-                
             }
 
         }
@@ -114,12 +111,6 @@ public class StalkState : StateMachineBehaviour
 
             //enemy.hasHitRock = false;
         }
-        //Debug.Log("my raycast distance is " + hit.distance);
-        /*if (hit.distance < 40f)
-            enemy.agent.isStopped = true;
-        else
-            enemy.agent.isStopped = false;*/
-        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
