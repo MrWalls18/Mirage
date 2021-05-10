@@ -17,12 +17,12 @@ public class StalkState : StateMachineBehaviour
     public float increaseSpeedInterval = 10f;
     public float enterStalkTime;
 
-    private float distFromPlayer;
+    //private float distFromPlayer;
     public float minAttackRange = 20f;
 
     public bool playerStopped = true;
 
-    private RaycastHit hit;
+    //private RaycastHit hit;
 
 
     //bool for when enemy gets hit by rock
@@ -44,6 +44,7 @@ public class StalkState : StateMachineBehaviour
 
         //plays stalk audio
         AudioManager.Instance.Play("Coyote_running");
+        //Debug.Log("I am this far away from the player " + distFromPlayer);
 
         //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
 
@@ -58,20 +59,21 @@ public class StalkState : StateMachineBehaviour
         //if player moves within 15 units, min follow distance gets updated to 
         //that new value
         //if player stops moving, start a timer, and after 5 seconds start creeping closer
-
-        distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+        
+        //distFromPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+        //Debug.Log("I am NOW this far away from the player " + distFromPlayer);
 
         if (playerInSight)
         {
             Debug.Log("Player speed is " + PlayerMovement.Instance.walkingSpeed);
             StalkPlayer();
-            if (distFromPlayer < minAttackRange)
+            if (enemy.distanceToPlayer < minAttackRange)
             {
                 //kill the player
                 //play from the coyote itself, so need to change the call to the audio source and not the audio
                 AudioManager.Instance.Play("Coyote_growl");
 
-                if (distFromPlayer < enemy.attackRange)
+                if (enemy.distanceToPlayer < enemy.attackRange)
                     animator.SetBool("isPlayerInMinAttackRange", true);
             }
 
@@ -81,7 +83,7 @@ public class StalkState : StateMachineBehaviour
         }
 
         //if the player gets too far away, return to patrol, and howl
-        if (distFromPlayer > 160f)
+        if (enemy.distanceToPlayer > 160f)
         {
             //check if it's day time
             if (EnemySpawner.Instance.timeRemaining < 700f)
@@ -112,7 +114,7 @@ public class StalkState : StateMachineBehaviour
 
             //enemy.hasHitRock = false;
         }
-
+        //Debug.Log("my raycast distance is " + hit.distance);
         /*if (hit.distance < 40f)
             enemy.agent.isStopped = true;
         else
@@ -137,6 +139,9 @@ public class StalkState : StateMachineBehaviour
 
         //TODO: modify this behaviour so it's more believable
         enemy.agent.SetDestination(enemy.player.transform.position);
+
+        RaycastHit hit;
+
         /*if (enemy.hasHitRock)
         {
             enemy.agent.isStopped = true;

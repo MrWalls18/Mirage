@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour
     public float sightRange;
     public float attackRange = 30;
     public bool playerInSight, playerInAttackRange;
+    //public float distanceToPlayer;
 
     private PlayerStats myStats;
 
@@ -75,6 +76,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
         #region old field of view checks
         //can you see/attack the player?
         //playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
