@@ -41,7 +41,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 1
-    animationCompression: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -207,7 +207,482 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Coyote_Mesh_Animated(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Master
+      parentName: Coyote_Mesh_Animated(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Shoulders
+      parentName: Controller_Master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Shoulder_L
+      parentName: Controller_Shoulders
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Shoulder_R
+      parentName: Controller_Shoulders
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Spine1
+      parentName: Controller_Master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle2
+      parentName: Controller_Spine1
+      position: {x: 0.000010590721, y: 3.741144, z: 0.27931708}
+      rotation: {x: -0.0062803756, y: 0.6976239, z: -0.0065808194, w: 0.7164064}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Spine2
+      parentName: Controller_Master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle3
+      parentName: Controller_Spine2
+      position: {x: -0.022505766, y: 3.9162621, z: 1.1278865}
+      rotation: {x: -0.07077826, y: 0.6940526, z: -0.07281466, w: 0.71272683}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Spine3
+      parentName: Controller_Master
+      position: {x: -0, y: 0.102652736, z: -0.2981632}
+      rotation: {x: 0.0393856, y: -0, z: -0, w: 0.9992241}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Back
+      parentName: Controller_Spine3
+      position: {x: -0, y: 4.11792, z: 1.7836614}
+      rotation: {x: -0.049405474, y: 0.7164541, z: -0.053942192, w: 0.6937888}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Neck
+      parentName: Controller_Spine3
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_Neck
+      parentName: Controller_Neck
+      position: {x: -5.8619776e-14, y: 4.2986407, z: 2.6011174}
+      rotation: {x: -0.108830325, y: 0.6986816, z: -0.108830325, w: 0.6986816}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Head
+      parentName: Controller_Neck
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_Head
+      parentName: Controller_Head
+      position: {x: 4.262001e-14, y: 3.8188045, z: 3.4583182}
+      rotation: {x: 0.47776282, y: 0.52128947, z: 0.47776282, w: 0.52128947}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Jaw
+      parentName: Controller_Head
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_Jaw
+      parentName: Controller_Jaw
+      position: {x: 5.5067062e-14, y: 3.5410252, z: 3.134368}
+      rotation: {x: 0.071766384, y: 0.7034555, z: 0.071766384, w: 0.7034555}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Muzzle
+      parentName: Controller_Head
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_Muzzle
+      parentName: Controller_Muzzle
+      position: {x: 4.262001e-14, y: 3.8188045, z: 3.4583182}
+      rotation: {x: 0.47776282, y: 0.52128947, z: 0.47776282, w: 0.52128947}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Pelvis
+      parentName: Controller_Master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pelvis
+      parentName: Controller_Pelvis
+      position: {x: -6.6508576e-11, y: 3.736508, z: -0.5907962}
+      rotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Front_R
+      parentName: Controller_Master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Wrist_R
+      parentName: Controller_Front_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_FrontPaw_R
+      parentName: Controller_Wrist_R
+      position: {x: 0.70138, y: 0.16778874, z: 1.0864372}
+      rotation: {x: 0.62830776, y: -0.43246832, z: 0.5326943, w: -0.36665696}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Fingers_R
+      parentName: Controller_Wrist_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_FrontToes_R
+      parentName: Controller_Fingers_R
+      position: {x: 0.70240504, y: 0.10308772, z: 1.4033972}
+      rotation: {x: 0.70466226, y: -0.071188554, z: 0.70238745, w: -0.07095874}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_FrontLeg_R
+      parentName: Controller_Front_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_Foreleg_R
+      parentName: Controller_FrontLeg_R
+      position: {x: 0.6704158, y: 0.7040102, z: 0.9016918}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Front_L
+      parentName: Controller_Master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Wrist_L
+      parentName: Controller_Front_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_FrontPaw_L
+      parentName: Controller_Wrist_L
+      position: {x: -0.7010596, y: 0.16421741, z: 1.0572052}
+      rotation: {x: 0.3709533, y: 0.5294046, z: 0.43683505, w: 0.6255394}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Fingers_L
+      parentName: Controller_Wrist_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_FrontToes_L
+      parentName: Controller_Fingers_L
+      position: {x: -0.70223683, y: 0.0947918, z: 1.3731558}
+      rotation: {x: 0.07587869, y: 0.70163184, z: 0.07676676, w: 0.70431674}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_FrontLeg_L
+      parentName: Controller_Front_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_Foreleg_L
+      parentName: Controller_FrontLeg_L
+      position: {x: -0.6782831, y: 0.70356655, z: 0.878759}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Rear_R
+      parentName: Controller_Master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Toes_R
+      parentName: Controller_Rear_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_RearToes_R
+      parentName: Controller_Toes_R
+      position: {x: 0.6338851, y: 0.09679336, z: -2.6645494}
+      rotation: {x: 0.6751891, y: -0.1110159, z: 0.71958095, w: -0.1183149}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Ankle_R
+      parentName: Controller_Rear_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_RearPaw_R
+      parentName: Controller_Ankle_R
+      position: {x: 0.6507391, y: 0.18637435, z: -2.9290595}
+      rotation: {x: 0.59604204, y: -0.39161333, z: 0.585845, w: -0.38491368}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Leg_R
+      parentName: Controller_Rear_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_RearLeg_R
+      parentName: Controller_Leg_R
+      position: {x: 0.6488167, y: 0.44399998, z: -3.04}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Rear_L
+      parentName: Controller_Master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Toes_L
+      parentName: Controller_Rear_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_Rear_Toes_L
+      parentName: Controller_Toes_L
+      position: {x: -0.63388485, y: 0.09679322, z: -2.6645494}
+      rotation: {x: 0.11831491, y: 0.719581, z: 0.11101591, w: 0.67518914}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Ankle_L
+      parentName: Controller_Rear_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_RearPaw_L
+      parentName: Controller_Ankle_L
+      position: {x: -0.6507394, y: 0.18637463, z: -2.929062}
+      rotation: {x: 0.38491368, y: 0.585845, z: 0.39161333, w: 0.59604204}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Leg_L
+      parentName: Controller_Rear_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_RearLeg_L
+      parentName: Controller_Leg_L
+      position: {x: -0.6488165, y: 0.44399998, z: -3.04}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Pelvis_Height
+      parentName: Controller_Master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Controller_Tail
+      parentName: Controller_Master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle_Tail
+      parentName: Controller_Tail
+      position: {x: -0.0119771855, y: 1.3825511, z: -3.6229517}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Geometry
+      parentName: Coyote_Mesh_Animated(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: REye
+      parentName: Geometry
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: coyote
+      parentName: Geometry
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LEye
+      parentName: Geometry
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: joint_pelvis
+      parentName: Coyote_Mesh_Animated(Clone)
+      position: {x: -0.035164222, y: 2.2717156, z: -0.7866267}
+      rotation: {x: -0.5110426, y: 0.5110426, z: -0.48870802, w: 0.48870802}
+      scale: {x: 0.9999999, y: 1, z: 1}
+    - name: joint_spine1
+      parentName: joint_pelvis
+      position: {x: -1.1096501, y: 0.033106234, z: 1.377431e-11}
+      rotation: {x: -1.2514431e-13, y: -0, z: 0.015993861, w: 0.99987215}
+      scale: {x: 1, y: 1, z: 1}
+    - name: joint_spine2
+      parentName: joint_spine1
+      position: {x: -0.8709575, y: -7.355228e-16, z: 1.2954356e-10}
+      rotation: {x: -4.7665416e-10, y: -0.000000029798496, z: -0.092492275, w: 0.9957134}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000001}
+    - name: joint_spine3
+      parentName: joint_spine2
+      position: {x: -0.8667431, y: 0, z: 6.197223e-11}
+      rotation: {x: -0.000000007436524, y: 0.0000000890932, z: -0.019936642, w: 0.9998013}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000001}
+    - name: joint_shoulder_L
+      parentName: joint_spine3
+      position: {x: 0.12601164, y: -0.6738133, z: -0.6201691}
+      rotation: {x: -0.3191328, y: -0.6184018, z: -0.35610047, w: 0.6236393}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000004}
+    - name: joint_elbow_L
+      parentName: joint_shoulder_L
+      position: {x: -1.0975753, y: -0.028682966, z: 0.002859144}
+      rotation: {x: 0.8692212, y: 0.01272067, z: -0.00100629, w: 0.49425882}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000002}
+    - name: joint_wrist_L
+      parentName: joint_elbow_L
+      position: {x: -1.4103205, y: 0.056799367, z: 0.08000277}
+      rotation: {x: 0.3887853, y: 0.07976495, z: -0.09749533, w: 0.9126764}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1.0000004}
+    - name: joint_pastern_L
+      parentName: joint_wrist_L
+      position: {x: -0.53005713, y: 2.775558e-17, z: 2.6020852e-16}
+      rotation: {x: 0.052053116, y: 0.061360188, z: -0.47975177, w: 0.8737068}
+      scale: {x: 0.9999997, y: 1.0000002, z: 1}
+    - name: joint_paw_L
+      parentName: joint_pastern_L
+      position: {x: -0.32349053, y: -2.4980018e-16, z: -2.2985088e-17}
+      rotation: {x: -0.07095871, y: -0.7023875, z: -0.07118851, w: 0.7046624}
+      scale: {x: 1, y: 1, z: 0.9999998}
+    - name: joint_shoulder_R
+      parentName: joint_spine3
+      position: {x: 0.12590201, y: -0.77499294, z: 0.48790723}
+      rotation: {x: 0.6354174, y: -0.35254276, z: 0.5972367, w: 0.3395096}
+      scale: {x: 0.99999976, y: 1.0000004, z: 1.0000005}
+    - name: joint_elbow_R
+      parentName: joint_shoulder_R
+      position: {x: 1.0975742, y: 0.028685171, z: -0.0028595375}
+      rotation: {x: 0.8687983, y: 0.013158672, z: -0.002630858, w: 0.49498415}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000004}
+    - name: joint_wrist_R
+      parentName: joint_elbow_R
+      position: {x: 1.4117961, y: -0.057052583, z: -0.08055981}
+      rotation: {x: 0.388908, y: 0.07848169, z: -0.096709765, w: 0.91281897}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
+    - name: joint_pastern_R
+      parentName: joint_wrist_R
+      position: {x: 0.53005636, y: 0.0000020466498, z: 0.0000006036143}
+      rotation: {x: 0.05205323, y: 0.061360277, z: -0.47975168, w: 0.87370694}
+      scale: {x: 0.9999998, y: 1.0000012, z: 1.0000004}
+    - name: joint_paw_R
+      parentName: joint_pastern_R
+      position: {x: 0.32349792, y: -0.0000014741588, z: 0.00000012929281}
+      rotation: {x: -0.07095884, y: -0.7023875, z: -0.07118867, w: 0.7046622}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: joint_neck
+      parentName: joint_spine3
+      position: {x: -0.67773575, y: 0.10390127, z: 0.000000004190336}
+      rotation: {x: 0.000000009173712, y: -0.000000058894447, z: -0.05792303, w: 0.9983211}
+      scale: {x: 1.0000011, y: 1.0000001, z: 1.0000011}
+    - name: joint_head
+      parentName: joint_neck
+      position: {x: -0.8494175, y: -0.03436019, z: -0.000000004084473}
+      rotation: {x: -6.2172477e-15, y: -9.947596e-14, z: 0.7810723, w: 0.6244406}
+      scale: {x: 0.9999999, y: 0.99999994, z: 1}
+    - name: joint_ear_L
+      parentName: joint_head
+      position: {x: 0.29606372, y: 0.0908455, z: -0.52441454}
+      rotation: {x: -0.107757926, y: -0.33166203, z: -0.8627927, w: 0.36602923}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000004}
+    - name: joint_ear_tip_L
+      parentName: joint_ear_L
+      position: {x: -0.46196133, y: -0.034003742, z: -5.3018604e-15}
+      rotation: {x: 0.17260692, y: -0.3786427, z: 0.37717232, w: 0.82739204}
+      scale: {x: 0.99999994, y: 1.0000005, z: 0.9999998}
+    - name: joint_jaw
+      parentName: joint_head
+      position: {x: -0.66109204, y: -0.003195228, z: 3.929413e-12}
+      rotation: {x: -0.000000020136191, y: -0.000000021970637, z: -0.5973475, w: 0.80198246}
+      scale: {x: 1.000001, y: 1.0000001, z: 1.0000008}
+    - name: joint_flew
+      parentName: joint_jaw
+      position: {x: -0.48901257, y: 5.828671e-16, z: 3.4763963e-11}
+      rotation: {x: -0.071766384, y: -0.70345545, z: -0.0717664, w: 0.70345545}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: joint_muzzle
+      parentName: joint_head
+      position: {x: -0.5525692, y: 0.8122206, z: 6.211808e-11}
+      rotation: {x: -0, y: -0, z: 0.000000029802315, w: 1}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000006}
+    - name: joint_ear_R
+      parentName: joint_head
+      position: {x: 0.29606324, y: 0.09084539, z: 0.52441496}
+      rotation: {x: 0.3316621, y: -0.10775794, z: 0.36602923, w: 0.8627927}
+      scale: {x: 0.9999998, y: 1.0000012, z: 1.0000012}
+    - name: joint_ear_tip_R
+      parentName: joint_ear_R
+      position: {x: 0.46196076, y: 0.034006923, z: -0.0000021480425}
+      rotation: {x: 0.17260689, y: -0.37864265, z: 0.3771723, w: 0.8273921}
+      scale: {x: 0.9999998, y: 1.0000006, z: 0.9999997}
+    - name: joint_hip_L
+      parentName: joint_pelvis
+      position: {x: 0.16322303, y: -0.78741395, z: -0.579284}
+      rotation: {x: -0.09413011, y: -0.9917824, z: 0.078133844, w: 0.037446525}
+      scale: {x: 1, y: 0.99999976, z: 0.9999995}
+    - name: joint_knee_L
+      parentName: joint_hip_L
+      position: {x: -0.8664277, y: -2.775558e-17, z: 5.551116e-17}
+      rotation: {x: -0.101369336, y: -0.060751006, z: -0.2661904, w: 0.9566485}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1.0000001}
+    - name: joint_ankle_L
+      parentName: joint_knee_L
+      position: {x: -1.1428825, y: 4.4408926e-16, z: -9.887924e-17}
+      rotation: {x: 0.035651404, y: -0.002412035, z: 0.7755171, w: 0.6303145}
+      scale: {x: 0.9999999, y: 1, z: 0.9999998}
+    - name: joint_tarsals_L
+      parentName: joint_ankle_L
+      position: {x: -0.8588198, y: 4.57967e-16, z: 1.2880323e-16}
+      rotation: {x: 0.96164334, y: 0.27377194, z: -0.00222603, w: 0.016914908}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000001}
+    - name: joint_foot_L
+      parentName: joint_tarsals_L
+      position: {x: -0.28073823, y: 1.9428906e-16, z: 1.9660924e-15}
+      rotation: {x: 0.027390534, y: 0.02974217, z: -0.40590525, w: 0.9130203}
+      scale: {x: 1.0000006, y: 0.9999999, z: 1.0000005}
+    - name: joint_toes_L
+      parentName: joint_foot_L
+      position: {x: -0.27977777, y: -1.2490009e-16, z: 5.20417e-17}
+      rotation: {x: -0.11831484, y: -0.719581, z: -0.11101586, w: 0.6751891}
+      scale: {x: 0.99999994, y: 1.0000001, z: 0.9999998}
+    - name: joint_hip_R
+      parentName: joint_pelvis
+      position: {x: 0.16322336, y: -0.78741014, z: 0.579284}
+      rotation: {x: 0.9915427, y: -0.096450135, z: 0.037639614, w: -0.07825475}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: joint_knee_R
+      parentName: joint_hip_R
+      position: {x: 0.8664294, y: -0.000002617412, z: 0.00000051364606}
+      rotation: {x: -0.10136927, y: -0.06075097, z: -0.2661904, w: 0.95664847}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+    - name: joint_ankle_R
+      parentName: joint_knee_R
+      position: {x: 1.1428822, y: 0.000010298567, z: -0.000000023289475}
+      rotation: {x: 0.03549702, y: -0.0022693085, z: 0.7740475, w: 0.63212764}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
+    - name: joint_tarsals_R
+      parentName: joint_ankle_R
+      position: {x: 0.8588163, y: -0.000006897048, z: -0.00000020917452}
+      rotation: {x: 0.96164334, y: 0.27377188, z: -0.0022260188, w: 0.016914904}
+      scale: {x: 0.99999994, y: 1.0000001, z: 0.9999998}
+    - name: joint_foot_R
+      parentName: joint_tarsals_R
+      position: {x: 0.28074044, y: -0.000003905486, z: -0.0000009156665}
+      rotation: {x: 0.027390502, y: 0.029742159, z: -0.4059053, w: 0.9130203}
+      scale: {x: 0.9999998, y: 1.0000004, z: 1.0000001}
+    - name: joint_toes_R
+      parentName: joint_foot_R
+      position: {x: 0.27977553, y: 0.0000003176189, z: 0.00000039329592}
+      rotation: {x: -0.11831486, y: -0.719581, z: -0.11101586, w: 0.67518914}
+      scale: {x: 0.99999994, y: 1.0000005, z: 1.0000002}
+    - name: joint_tail1
+      parentName: joint_pelvis
+      position: {x: 0.77090657, y: -0.42508733, z: -0.0028900756}
+      rotation: {x: -0.41909462, y: -0.9079295, z: -0.002040878, w: -0.0044214125}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000004}
+    - name: joint_tail2
+      parentName: joint_tail1
+      position: {x: -0.58458495, y: -5.551116e-17, z: 1.791102e-16}
+      rotation: {x: 0.011832458, y: 0.0075582424, z: 0.13700587, w: 0.99047077}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: joint_tail3
+      parentName: joint_tail2
+      position: {x: -0.78615063, y: 0, z: -6.938895e-18}
+      rotation: {x: -0.00653741, y: -0.0034118497, z: -0.04999949, w: 0.9987221}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000001}
+    - name: joint_tail4
+      parentName: joint_tail3
+      position: {x: -0.8613674, y: -7.2164497e-16, z: 1.951564e-18}
+      rotation: {x: 0.3506441, y: 0.61257803, z: -0.3519065, w: 0.6147835}
+      scale: {x: 1, y: 0.99999994, z: 0.9999998}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -215,7 +690,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 100
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
@@ -224,7 +699,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

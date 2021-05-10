@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillCheckTimer : MonoBehaviour
+public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
 {
     public static SkillCheckTimer s_instance;
 
