@@ -8,15 +8,11 @@ public class WinTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Inside win trigger");
 
         if (other.tag == "Player")
         {
             Cursor.lockState = CursorLockMode.None;
-            Debug.Log("it is player");
-            winPanel.SetActive(true);
-           // MenuUI.Instance.OpenPanel(winPanel);
-           // MenuUI.Instance.canPause = false;
+            EndGameUI.Instance.WinGame();
         }
     }
 }

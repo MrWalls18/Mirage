@@ -18,7 +18,7 @@ public class AttackState : StateMachineBehaviour
         animator.SetBool("isPlayerInMinAttackRange", true);
         //player dies, trigger death screen
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene(0);
+        EndGameUI.Instance.LoseGame();
        // MenuUI.Instance.OpenPanel(0);
        // Destroy(enemy.gameObject);
 

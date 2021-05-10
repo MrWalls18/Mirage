@@ -25,11 +25,13 @@ public class CoinFlip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerMovement.Instance.isGrounded)
+        if (PlayerMovement.Instance.isGrounded && InventoryUI.Instance.index == 0)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse1) && SkillCheckTimer.s_instance.hasCoin)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && SkillCheckTimer.s_instance.hasCoin)
             { 
                 marker.RandomizeMarker();
+
+                AudioManager.Instance.Play("CoinFlip");
 
                 //coinFlip.hasCoin = false;
                 SkillCheckTimer.s_instance.hasCoin = false;

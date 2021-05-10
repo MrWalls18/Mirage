@@ -6,38 +6,35 @@ public class CoyoteJumpscare : MonoBehaviour
 {
     public GameObject blink;
     public GameObject jumpScare;
-    private GameObject jumpScareClone;
-    public Transform spawnPos;
-    private bool didPlay = false;
-
-    public float spawnDistance;
 
     IEnumerator Blink()
     {
         blink.SetActive(true);
-        PlayerMovement.Instance.walkingSpeed = 0;
         yield return new WaitForSeconds(0.5f);
         PlayerMovement.Instance.walkingSpeed = PlayerMovement.Instance.defaultSpeed;
         blink.SetActive(false);
-        didPlay = true;
+        jumpScare.SetActive(true);
 
-        SpawnJumpscare();
     }
+    IEnumerator TimeToDestroy()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(jumpScare);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(Blink());
+            if (jumpScare != null)
+            {
+                StartCoroutine(Blink());
+                StartCoroutine(TimeToDestroy());
+            }
         }
     }
 
-    void SpawnJumpscare()
-    {
-        //spawnPos = PlayerStats.Instance.transform.position + PlayerStats.Instance.transform.forward * spawnDistance;
-        jumpScareClone = Instantiate(jumpScare, spawnPos.position, spawnPos.rotation);
-       // jumpScareClone.GetComponent<Animator>().enabled = true;
-    }
 
 
 }

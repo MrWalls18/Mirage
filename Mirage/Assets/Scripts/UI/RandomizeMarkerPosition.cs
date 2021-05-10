@@ -107,9 +107,6 @@ public class RandomizeMarkerPosition : MonoBehaviour
             }
         }
 
-        Debug.Log("Start timer: " + SkillCheckTimer.s_instance.startAccurateCatchTime);
-        Debug.Log("End timer: " + SkillCheckTimer.s_instance.endAccurateCatchTime);
-        Debug.Log(marker.fillOrigin);
 
 
     }

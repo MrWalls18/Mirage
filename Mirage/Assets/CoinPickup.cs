@@ -10,6 +10,7 @@ public class CoinPickup : MonoBehaviour
         {
             other.gameObject.GetComponentInParent<SkillCheckTimer>().hasCoin = true;
             SkillCheckTimer.s_instance.coinFlipText.gameObject.SetActive(false);
+            AudioManager.Instance.Play("CoinPickup");
             Destroy(this.gameObject);
         }
     }

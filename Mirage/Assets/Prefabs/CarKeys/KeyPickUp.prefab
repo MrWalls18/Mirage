@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8806397945377442843}
   - component: {fileID: 8806397945377442842}
   - component: {fileID: 4373241139715581141}
+  - component: {fileID: 6928814467107996019}
+  - component: {fileID: 4030405831790854083}
   m_Layer: 0
   m_Name: KeyPickUp
   m_TagString: Untagged
@@ -177,6 +179,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &6928814467107996019
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8806397945377442840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4030405831790854083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8806397945377442840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8283210de5e5cab4ba80b735957dad69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCompass: 0
+  isKeys: 1
 --- !u!1001 &3203830022138124398
 PrefabInstance:
   m_ObjectHideFlags: 0

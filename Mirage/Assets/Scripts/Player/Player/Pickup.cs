@@ -53,15 +53,12 @@ public class Pickup : SingletonPattern<Pickup>
 
         if(Input.GetKeyDown(KeyCode.E))
         {
-            
             RaycastHit hit;
             Ray directionRay = new Ray(transform.position, transform.forward);
             Vector3 tempSize = transform.localScale;
              
-            //OnDrawGizmos();
             if (Physics.Raycast(directionRay, out hit, 5000f))
             {
-                //Debug.DrawLine(transform.position, hit.point, Color.red);
                 if(hit.collider.tag == "Rock")
                 {
                     oldScale = rock.transform.localScale;

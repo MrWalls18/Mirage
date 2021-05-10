@@ -44,14 +44,13 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
     {
         coinFlipText.gameObject.SetActive(true);
         coinFlipText.text = "Coin is flipped. . .";
-       // Debug.Log(maxCoinFlipTime);
 
         if (maxCoinFlipTime > 0)
         {
             maxCoinFlipTime -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             StartCoroutine(SetCoinUI(true, 0f));
 
@@ -90,7 +89,6 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
                         headsUI.SetActive(true);
                         tailsUI.SetActive(false);
                         coinFlipText.text = "Coin: Heads";
-
                         //isHeads = true;
                         wasLastFlipHeads = true;
                     }
@@ -99,10 +97,11 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
                         headsUI.SetActive(false);
                         tailsUI.SetActive(true);
                         coinFlipText.text = "Coin: Tails";
-
                        // isHeads = false;
                         wasLastFlipHeads = false;
                     }
+
+                    AudioManager.Instance.Play("CoinCatch");
                 }
             }
 

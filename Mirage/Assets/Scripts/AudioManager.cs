@@ -1,6 +1,7 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using System.Collections;
 
 public class AudioManager : SingletonPattern<AudioManager>
 {
@@ -37,7 +38,22 @@ public class AudioManager : SingletonPattern<AudioManager>
             s.source.loop = s.loop;
         }
 
+        
+        Play("Wind");
+
+        StartCoroutine(PlayMusic());
+    }
+
+    IEnumerator PlayMusic()
+    {
+        yield return new WaitForSeconds(120);
         Play("Music");
+
+        while(true)
+        {
+            yield return new WaitForSeconds(600);
+            Play("Music");
+        }
     }
 
     /*public void Start()
@@ -53,6 +69,8 @@ public class AudioManager : SingletonPattern<AudioManager>
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
+
+        s.source.pitch *= UnityEngine.Random.Range(0.85f, 1.15f);
 
         s.source.Play();
     }
