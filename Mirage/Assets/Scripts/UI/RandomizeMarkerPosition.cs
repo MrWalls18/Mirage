@@ -11,7 +11,7 @@ public class RandomizeMarkerPosition : MonoBehaviour
 
     private Image marker;
     [SerializeField] private PlayerStats myStats;
-    [SerializeField] private SkillCheckTimer coinTimer;
+    //[SerializeField] private SkillCheckTimer coinTimer;
 
     private void Awake()
     {
@@ -49,26 +49,26 @@ public class RandomizeMarkerPosition : MonoBehaviour
             switch(marker.fillOrigin) 
             {
                 case (int)FillOrigin.Bottom:
-                    coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (1.0f);
+                    SkillCheckTimer.s_instance.endAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (1.0f);
 
-                    coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - (1.0f - (coinTimer.coinFlipDuration * fillAmount));
+                    SkillCheckTimer.s_instance.startAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (1.0f - (SkillCheckTimer.s_instance.coinFlipDuration * fillAmount));
                     break;
                 case (int)FillOrigin.Right:
-                    coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (1.5f);
+                    SkillCheckTimer.s_instance.endAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (1.5f);
 
-                    coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - (1.5f - (coinTimer.coinFlipDuration * fillAmount));
+                    SkillCheckTimer.s_instance.startAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (1.5f - (SkillCheckTimer.s_instance.coinFlipDuration * fillAmount));
                     break;
                 case (int)FillOrigin.Top:
                     marker.fillOrigin = (int)FillOrigin.Left;
 
-                    coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f);
+                    SkillCheckTimer.s_instance.endAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (0.5f);
 
-                    coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f - (coinTimer.coinFlipDuration * fillAmount));
+                    SkillCheckTimer.s_instance.startAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (0.5f - (SkillCheckTimer.s_instance.coinFlipDuration * fillAmount));
                     break;
                 case (int)FillOrigin.Left:
-                    coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f);
+                    SkillCheckTimer.s_instance.endAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (0.5f);
 
-                    coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f - (coinTimer.coinFlipDuration * fillAmount));
+                    SkillCheckTimer.s_instance.startAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (0.5f - (SkillCheckTimer.s_instance.coinFlipDuration * fillAmount));
                     break;
                 default:
 
@@ -80,26 +80,26 @@ public class RandomizeMarkerPosition : MonoBehaviour
             switch (marker.fillOrigin)
             {
                 case (int)FillOrigin.Bottom:
-                    coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - (1.0f);
+                    SkillCheckTimer.s_instance.startAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (1.0f);
 
-                    coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (1.0f + (coinTimer.coinFlipDuration * fillAmount));
+                    SkillCheckTimer.s_instance.endAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (1.0f + (SkillCheckTimer.s_instance.coinFlipDuration * fillAmount));
                     break;
                 case (int)FillOrigin.Right:
-                    coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - (1.5f);
+                    SkillCheckTimer.s_instance.startAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (1.5f);
 
-                    coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (1.5f + (coinTimer.coinFlipDuration * fillAmount));
+                    SkillCheckTimer.s_instance.endAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (1.5f + (SkillCheckTimer.s_instance.coinFlipDuration * fillAmount));
                     break;
                 case (int)FillOrigin.Top:
                     marker.fillOrigin = (int)FillOrigin.Left;
 
-                    coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - 0.5f;
+                    SkillCheckTimer.s_instance.startAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - 0.5f;
 
-                    coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f + (coinTimer.coinFlipDuration * fillAmount));
+                    SkillCheckTimer.s_instance.endAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (0.5f + (SkillCheckTimer.s_instance.coinFlipDuration * fillAmount));
                     break;
                 case (int)FillOrigin.Left:
-                    coinTimer.startAccurateCatchTime = coinTimer.coinFlipDuration - 0.5f;
+                    SkillCheckTimer.s_instance.startAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - 0.5f;
 
-                    coinTimer.endAccurateCatchTime = coinTimer.coinFlipDuration - (0.5f + (coinTimer.coinFlipDuration * fillAmount));
+                    SkillCheckTimer.s_instance.endAccurateCatchTime = SkillCheckTimer.s_instance.coinFlipDuration - (0.5f + (SkillCheckTimer.s_instance.coinFlipDuration * fillAmount));
                     break;
                 default:
 
@@ -107,8 +107,8 @@ public class RandomizeMarkerPosition : MonoBehaviour
             }
         }
 
-        Debug.Log("Start timer: " + coinTimer.startAccurateCatchTime);
-        Debug.Log("End timer: " + coinTimer.endAccurateCatchTime);
+        Debug.Log("Start timer: " + SkillCheckTimer.s_instance.startAccurateCatchTime);
+        Debug.Log("End timer: " + SkillCheckTimer.s_instance.endAccurateCatchTime);
         Debug.Log(marker.fillOrigin);
 
 

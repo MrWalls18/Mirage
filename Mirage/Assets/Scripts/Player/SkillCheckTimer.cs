@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
+public class SkillCheckTimer : MonoBehaviour
 {
+    public static SkillCheckTimer s_instance;
+
     public GameObject coin, headsUI, tailsUI;
     public Transform coinDropTransform;
 
@@ -13,17 +15,18 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
     [HideInInspector] public float maxCoinFlipTime;
     [HideInInspector] public float startAccurateCatchTime, endAccurateCatchTime;
     private bool coinCaught;
-    [SerializeField]private Text coinFlipText;
-    [SerializeField]private PlayerStats stats;
+    public Text coinFlipText;
+    [SerializeField] private PlayerStats stats;
 
     [HideInInspector] public bool hasCoin = true;
 
     bool wasLastFlipHeads;
 
     // Start is called before the first frame update
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
+        s_instance = this;
+
         hasCoin = true;
         coinCaught = false;
         maxCoinFlipTime = coinFlipDuration;
@@ -38,7 +41,9 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
     // Update is called once per frame
     void Update()
     {
+        coinFlipText.gameObject.SetActive(true);
         coinFlipText.text = "Coin is flipped. . .";
+       // Debug.Log(maxCoinFlipTime);
 
         if (maxCoinFlipTime > 0)
         {
@@ -47,6 +52,8 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            StartCoroutine(SetCoinUI(true, 0f));
+
             if (maxCoinFlipTime < startAccurateCatchTime && maxCoinFlipTime > endAccurateCatchTime)
             {
                 coinCaught = true;
@@ -74,8 +81,6 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
                     
 
 
-
-
                 }
                 else
                 {
@@ -85,6 +90,7 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
                         tailsUI.SetActive(false);
                         coinFlipText.text = "Coin: Heads";
 
+                        //isHeads = true;
                         wasLastFlipHeads = true;
                     }
                     else
@@ -93,6 +99,7 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
                         tailsUI.SetActive(true);
                         coinFlipText.text = "Coin: Tails";
 
+                       // isHeads = false;
                         wasLastFlipHeads = false;
                     }
                 }
@@ -103,9 +110,12 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
                 headsUI.SetActive(false);
                 tailsUI.SetActive(false);
                 coinFlipText.text = "Coin was dropped!";
+                StartCoroutine(SetCoinUI(false, 0));
                 hasCoin = false;
                 DropCoin();
             }
+
+            StartCoroutine(SetCoinUI(false, 5f));
 
             coinCaught = false;
             maxCoinFlipTime = coinFlipDuration;
@@ -121,6 +131,8 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
         if (maxCoinFlipTime <= 0)
         {
             hasCoin = false;
+            headsUI.SetActive(false);
+            tailsUI.SetActive(false);
             coinFlipText.text = "Coin was dropped!";
             DropCoin();
             maxCoinFlipTime = coinFlipDuration;
@@ -130,6 +142,9 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
             this.GetComponent<CoinFlip>().enabled = true;
 
             this.GetComponent<CoinFlip>().skillBar.SetActive(false);
+
+            StartCoroutine(SetCoinUI(false, 0f));
+
 
             this.enabled = false;
 
@@ -150,5 +165,21 @@ public class SkillCheckTimer : SingletonPattern<SkillCheckTimer>
         {
             Instantiate(coin, point, transform.rotation);
         }
+
+        //Vector3 coinDropRadius = new Vector3(randomRadius.x + coinDropTransform.position.x, coinDropTransform.position.y, randomRadius.z + coinDropTransform.position.z);
     }
+
+    public IEnumerator SetCoinUI(bool active, float seconds)
+    {
+        yield return new WaitForSeconds(seconds); //if activating, do so instantly (0 sec); if deactivating, wait 5 seconds before doing so
+
+        headsUI.SetActive(active);
+        tailsUI.SetActive(active);
+
+        if (coinFlipText.text == "Coin: Heads" || coinFlipText.text == "Coin: Tails")
+            coinFlipText.gameObject.SetActive(active);
+    }
+
+    
+    
 }

@@ -6,7 +6,7 @@ using TMPro;
 
 public class CoinFlip : MonoBehaviour
 {
-    [SerializeField] SkillCheckTimer coinFlip;
+    //[SerializeField] SkillCheckTimer coinFlip;
     [SerializeField] SkillCheckBar barReset;
     [SerializeField] RandomizeMarkerPosition marker;
 
@@ -27,13 +27,14 @@ public class CoinFlip : MonoBehaviour
     {
         if (PlayerMovement.Instance.isGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse1) && coinFlip.hasCoin)
-            {
-
-
+            if (Input.GetKeyDown(KeyCode.Mouse1) && SkillCheckTimer.s_instance.hasCoin)
+            { 
                 marker.RandomizeMarker();
-                coinFlip.hasCoin = false;
-                coinFlip.enabled = true;
+
+                //coinFlip.hasCoin = false;
+                SkillCheckTimer.s_instance.hasCoin = false;
+                //coinFlip.enabled = true;
+                SkillCheckTimer.s_instance.enabled = true;
 
 
                 this.GetComponent<PlayerMovement>().enabled = false;
@@ -43,6 +44,7 @@ public class CoinFlip : MonoBehaviour
                 barReset.ResetBar();
 
                 this.enabled = false;
+
 
                 //hacky solution to tutorial section; fix later
                 if (firstFlip == true)
