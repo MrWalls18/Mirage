@@ -46,14 +46,11 @@ public class AudioManager : SingletonPattern<AudioManager>
 
     IEnumerator PlayMusic()
     {
-        yield return new WaitForSeconds(120);
+        yield return new WaitForSeconds(60);
         Play("Music");
 
-        while(true)
-        {
-            yield return new WaitForSeconds(600);
-            Play("Music");
-        }
+        yield return new WaitForSeconds(600);
+        Play("Music"); 
     }
 
     /*public void Start()
