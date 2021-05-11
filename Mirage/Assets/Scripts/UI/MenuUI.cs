@@ -18,6 +18,10 @@ public class MenuUI : SingletonPattern<MenuUI>
     {
         base.Awake();
         Application.targetFrameRate = 60;
+        if (!canPause)
+        {
+            Cursor.visible = true;
+        }
     }
 
     private void Update()
@@ -62,6 +66,7 @@ public class MenuUI : SingletonPattern<MenuUI>
         OpenPanel(0);
         isPaused = true;
         Time.timeScale = 0f;
+        Cursor.visible = true;
     }
 
     public void UnpauseGame()
@@ -70,6 +75,7 @@ public class MenuUI : SingletonPattern<MenuUI>
         ClosePanel(0);
         isPaused = false;
         Time.timeScale = 1.0f;
+        Cursor.visible = false;
     }
 
     public void RestartScene()

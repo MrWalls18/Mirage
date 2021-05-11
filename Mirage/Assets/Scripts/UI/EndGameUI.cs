@@ -17,7 +17,7 @@ public class EndGameUI : SingletonPattern<EndGameUI>
     {
         EndPanel.SetActive(true);
         statusBox.text = "YOU WON!";
-        textBox1.text = "Time Elapsed: " + Sun.Instance.timer.ToString("0.00");
+        textBox1.text = "Time Elapsed: " + Sun.Instance.timer.ToString("0.00") + " seconds";
         textBox2.text = "Distance Traveled: " + DistanceCheck.Instance.totalDistance.ToString("0.00") + " Meters";
         bonesText.text = PlayerStats.Instance.bonesFound.ToString() + "/8 Bones Found" ;
     }
@@ -26,7 +26,7 @@ public class EndGameUI : SingletonPattern<EndGameUI>
     {
         EndPanel.SetActive(true);
         statusBox.text = "YOU DIED.";
-        textBox1.text = "Time Elapsed: " + Sun.Instance.timer.ToString("0.00");
+        textBox1.text = "Time Elapsed: " + Sun.Instance.timer.ToString("0.00") + " seconds";
         textBox2.text = "Distance from Exit: " + DistanceCheck.Instance.DistanceToEnd().ToString("0.00") + " Meters";
     }
 
