@@ -130,8 +130,8 @@ public class StalkState : StateMachineBehaviour
 
         //TODO: modify this behaviour so it's more believable
         enemy.agent.SetDestination(enemy.player.transform.position);
-
-        RaycastHit hit;
+        //enemy.agent.Move(Vector3.MoveTowards(enemy.transform.position, enemy.player.transform.position, sightRange));
+        //RaycastHit hit;
 
         /*if (enemy.hasHitRock)
         {
