@@ -46,5 +46,5 @@ MonoBehaviour:
   getCoyotePosition: {fileID: 0}
   rangeToSpawn: 50
   player: {fileID: 0}
-  fakeEnemyPrefab: {fileID: 1744633218906334519, guid: baefd774c9613974e9b41f7c954a2380,
+  fakeEnemyPrefab: {fileID: 4764666509392020327, guid: 50e03acf7bb94a04e9ea305bdb06c201,
     type: 3}
