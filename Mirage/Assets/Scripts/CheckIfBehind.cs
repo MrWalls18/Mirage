@@ -14,6 +14,10 @@ public class CheckIfBehind : MonoBehaviour
 
     private bool hasSpotted = false;
 
+    public Transform spawnPos;
+
+    private float chanceToSpawn;
+
     private void Awake()
     {
         StartCoroutine(CloseEnemyTimer());
@@ -26,6 +30,7 @@ public class CheckIfBehind : MonoBehaviour
 
             if (IsPlayerFacingCoyote())
             {
+                
                 coyoteClone.SetActive(true);
                 hasSpotted = true;
                 timer = 0f;
@@ -43,10 +48,8 @@ public class CheckIfBehind : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("Waiting for " + timeInBetweenSpawns + " seconds");
             yield return new WaitForSeconds(timeInBetweenSpawns);
             SpawnCoyote();
-            Debug.Log("Wait time passed");
         }
     }
 
@@ -54,8 +57,9 @@ public class CheckIfBehind : MonoBehaviour
     void SpawnCoyote()
     {
         Vector3 spawnPoint;
+        SanityCheck();
         
-        if (coyoteClone == null && SamplePostion.Instance.RandomPoint(transform.position, 2f, out spawnPoint) )
+        if (coyoteClone == null && SamplePostion.Instance.RandomPoint(transform.position, 2f, out spawnPoint) && Random.value < chanceToSpawn)
         {
             coyoteClone = Instantiate(fakeCoyotePrefab, spawnPoint, transform.rotation);
 
@@ -67,6 +71,35 @@ public class CheckIfBehind : MonoBehaviour
         }
     }
 
+    void SanityCheck()
+    {
+        if(PlayerStats.Instance.SanityPercent < 10f)
+        {
+            chanceToSpawn = 0.2f;
+        }
+        else if (PlayerStats.Instance.SanityPercent < 20f)
+        {
+            chanceToSpawn = 0.16f;
+        }
+        else if (PlayerStats.Instance.SanityPercent < 30f)
+        {
+            chanceToSpawn = 0.12f;
+        }
+        else if (PlayerStats.Instance.SanityPercent < 40f)
+        {
+            chanceToSpawn = 0.08f;
+        }
+        else if (PlayerStats.Instance.SanityPercent < 50f)
+        {
+            chanceToSpawn = 0.04f;
+        }
+        else
+        {
+            chanceToSpawn = 0f;
+        }
+
+        Debug.Log(chanceToSpawn);
+    }
 
     bool IsPlayerFacingCoyote()
     {
@@ -74,7 +107,8 @@ public class CheckIfBehind : MonoBehaviour
 
         if (Vector3.Dot(toTarget, target.transform.forward) > 0)
         {
-            Debug.Log("Player is facing wolf");
+            
+            coyoteClone.transform.LookAt(target);
             return true;
         }
 
@@ -84,7 +118,6 @@ public class CheckIfBehind : MonoBehaviour
             {
                 coyoteClone.transform.position = Vector3.MoveTowards(coyoteClone.transform.position, target.position, 10f);
             }
-            Debug.Log("Player is looking away from wolf");
             return false;
         }
     }
