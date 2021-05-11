@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
 
-public class PatrolState : EnemyBase_FSM
+public class PatrolState : EnemyBase_FSM/*StateMachineBehaviour*/
 {
     //if enemy exists for 30 seconds and doesn't detect the player, destroy the coyote
     //move around the scene so it looks more natural
