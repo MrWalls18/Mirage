@@ -27,11 +27,8 @@ public class FakeEnemySpawner : SingletonPattern<FakeEnemySpawner>
 
     IEnumerator SpawnFakeEnemy(float timer)
     {
-        while (true)
-        {
             yield return new WaitForSeconds(timer);
-
             EnemySpawner.Instance.SetSpawnPoint(fakeEnemyPrefab, fakeEnemyClone);
-        }
+            yield return StartCoroutine(SpawnFakeEnemy(timer));
     }
 }
