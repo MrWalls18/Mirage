@@ -13,11 +13,11 @@ public class FakeEnemySpawner : SingletonPattern<FakeEnemySpawner>
     void Start()
     {
 
-        StartCoroutine("SpawnFakeEnemy", timeBetweenSpawns);
+        //StartCoroutine("SpawnFakeEnemy", timeBetweenSpawns);
     }
 
    
-
+    /*
     public void ChangeFakeEnemySpawnRate(float timer)
     {
         StopCoroutine("SpawnFakeEnemy");
@@ -25,6 +25,7 @@ public class FakeEnemySpawner : SingletonPattern<FakeEnemySpawner>
         StartCoroutine("SpawnFakeEnemy", timer);
     }
 
+    
     IEnumerator SpawnFakeEnemy(float timer)
     {
         while (true)
@@ -34,4 +35,5 @@ public class FakeEnemySpawner : SingletonPattern<FakeEnemySpawner>
             EnemySpawner.Instance.SetSpawnPoint(fakeEnemyPrefab, fakeEnemyClone);
         }
     }
+    */
 }

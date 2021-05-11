@@ -34,7 +34,7 @@ public class EnemySpawner : SingletonPattern<EnemySpawner>
 
         timerIsRunning = true;
 
-        StartCoroutine(SpawnMultiplier());
+        //StartCoroutine(SpawnMultiplier());
     }
 
     private void FixedUpdate()
@@ -107,6 +107,8 @@ public class EnemySpawner : SingletonPattern<EnemySpawner>
 
         if (seconds == 59f)
         {
+            maxNumOfEnemies = Mathf.CeilToInt(maxNumOfEnemies * maxEnemiesMultiplier);
+
             StopCoroutine("SpawnEnemy");
             waitTime = minutes;
             
@@ -121,21 +123,13 @@ public class EnemySpawner : SingletonPattern<EnemySpawner>
 
     }
 
-    //After each min that passes, the Max number of enemies increases
-    //by multiplying the current max and the maxEnemy multiplier
-    IEnumerator SpawnMultiplier()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(60f);
-            maxNumOfEnemies = Mathf.CeilToInt(maxNumOfEnemies * maxEnemiesMultiplier);
-        }
-    }
+    
+
+
 
     //Spawns enemy after x amount of seconds
     IEnumerator SpawnEnemy()
     {
-        
         while (true)
         {
             yield return new WaitForSeconds(waitTime);     
@@ -144,15 +138,18 @@ public class EnemySpawner : SingletonPattern<EnemySpawner>
         }
     }
 
+        
     public void SetSpawnPoint(GameObject enemyToSpawn, GameObject clone)
     {
         //Picks a random spawnPoint from the list of enemy spawn points
         randomSpawnPos = UnityEngine.Random.Range(0, eSpawner.Count);
 
+        /*
        while (Vector3.Distance(eSpawner[randomSpawnPos].transform.position, player.transform.position) > maxSpawnDistance)
         {
             randomSpawnPos = UnityEngine.Random.Range(0, eSpawner.Count);
         }
+        */
 
         //Sends out a Raycast from the spawn point to the player
         //If there is something in between the player and the spawn point,

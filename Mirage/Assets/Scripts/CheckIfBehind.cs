@@ -14,6 +14,8 @@ public class CheckIfBehind : MonoBehaviour
 
     private bool hasSpotted = false;
 
+    private float chanceToSpawn;
+
     private void Awake()
     {
         StartCoroutine(CloseEnemyTimer());
@@ -26,6 +28,7 @@ public class CheckIfBehind : MonoBehaviour
 
             if (IsPlayerFacingCoyote())
             {
+                coyoteClone.transform.LookAt(target);
                 coyoteClone.SetActive(true);
                 hasSpotted = true;
                 timer = 0f;
@@ -37,6 +40,31 @@ public class CheckIfBehind : MonoBehaviour
         }
     }
 
+    void CheckForSanity()
+    {
+        if (PlayerStats.Instance.SanityPercent < 10f)
+        {
+            chanceToSpawn = 0.2f;
+        }
+        else if (PlayerStats.Instance.SanityPercent < 20f)
+        {
+            chanceToSpawn = 0.16f;
+        }
+        else if (PlayerStats.Instance.SanityPercent < 30f)
+        {
+            chanceToSpawn = 0.12f;
+        }
+        else if (PlayerStats.Instance.SanityPercent < 40f)
+        {
+            chanceToSpawn = 0.8f;
+        }
+        else if (PlayerStats.Instance.SanityPercent < 50f)
+        {
+            chanceToSpawn = 0.4f;
+        }
+        else
+            chanceToSpawn = 0f;
+    }
 
 
     IEnumerator CloseEnemyTimer()
@@ -55,7 +83,7 @@ public class CheckIfBehind : MonoBehaviour
     {
         Vector3 spawnPoint;
         
-        if (coyoteClone == null && SamplePostion.Instance.RandomPoint(transform.position, 2f, out spawnPoint) )
+        if (coyoteClone == null && SamplePostion.Instance.RandomPoint(transform.position, 2f, out spawnPoint) && Random.value < chanceToSpawn)
         {
             coyoteClone = Instantiate(fakeCoyotePrefab, spawnPoint, transform.rotation);
 
