@@ -84,6 +84,36 @@ PrefabInstance:
       propertyPath: m_TagString
       value: FakeKey
       objectReference: {fileID: 0}
+    - target: {fileID: 8806397945377442841, guid: becda348b4df9504588f6babbddbf73b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.5619817
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806397945377442841, guid: becda348b4df9504588f6babbddbf73b,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806397945377442841, guid: becda348b4df9504588f6babbddbf73b,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.3695765
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806397945377442841, guid: becda348b4df9504588f6babbddbf73b,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -1.2809908
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806397945377442841, guid: becda348b4df9504588f6babbddbf73b,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806397945377442841, guid: becda348b4df9504588f6babbddbf73b,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.18478823
+      objectReference: {fileID: 0}
     - target: {fileID: 8806397945377442842, guid: becda348b4df9504588f6babbddbf73b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
