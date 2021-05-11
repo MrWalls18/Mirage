@@ -6,14 +6,13 @@ public class DestroyGameObject : MonoBehaviour
 {
     IEnumerator TimeToDestroy()
     {
-        AudioManager.Instance.Play("Jumpscare");
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
     }
 
 
     private void Start()
     {
-        StartCoroutine(TimeToDestroy());
+        TimeToDestroy();
     }
 }
