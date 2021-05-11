@@ -12,6 +12,7 @@ TagManager:
   - FakeKey
   - Bone
   - Rock
+  - EntryCaveIn
   layers:
   - Default
   - TransparentFX
