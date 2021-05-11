@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: StalkState
-  m_Speed: 0.6666667
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4875005035198564591}
@@ -206,7 +206,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RetreatState
-  m_Speed: 0.6666667
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6480653639464656519}
@@ -235,7 +235,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PatrolState
-  m_Speed: 0.6666667
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7794395870204506405}
@@ -387,7 +387,7 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 1
+  m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
